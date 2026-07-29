@@ -12,7 +12,6 @@ from .database import get_db
 from .models import Task
 from .schemas import HealthRead, TaskCreate, TaskRead, TaskUpdate, VersionRead
 
-
 settings = get_settings()
 
 logging.basicConfig(

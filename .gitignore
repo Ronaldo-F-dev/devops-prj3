@@ -12,7 +12,7 @@ logs/
 backups/
 *.sql
 *.sql.gz
-
+*.pdf
 
 REDACTED_IP
 
