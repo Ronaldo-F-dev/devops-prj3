@@ -12,7 +12,7 @@ logs/
 backups/
 *.sql
 *.sql.gz
-
+*.pdf
 
 169.58.11.221
 
