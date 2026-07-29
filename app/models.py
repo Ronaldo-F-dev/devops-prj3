@@ -24,7 +24,9 @@ class Task(Base):
         default=TaskStatus.todo,
         server_default=TaskStatus.todo.value,
     )
-    created_at = mapped_column(DateTime(timezone=True), nullable=False, server_default=func.now())
+    created_at = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
     updated_at = mapped_column(
         DateTime(timezone=True),
         nullable=False,
