@@ -72,7 +72,10 @@ def health(db: Session = Depends(get_db)):
             version=settings.app_version,
             details=str(exc.__class__.__name__),
         )
-        return JSONResponse(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, content=payload.model_dump())
+        return JSONResponse(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            content=payload.model_dump(),
+        )
 
     return HealthRead(status="ok", database="ok", version=settings.app_version)
 
@@ -86,7 +89,12 @@ def list_tasks(
     return db.query(Task).order_by(Task.id.asc()).offset(offset).limit(limit).all()
 
 
-@app.post("/tasks", response_model=TaskRead, status_code=status.HTTP_201_CREATED, tags=["tasks"])
+@app.post(
+    "/tasks",
+    response_model=TaskRead,
+    status_code=status.HTTP_201_CREATED,
+    tags=["tasks"],
+)
 def create_task(payload: TaskCreate, db: Session = Depends(get_db)):
     task = Task(**payload.model_dump())
     db.add(task)
@@ -100,7 +108,9 @@ def create_task(payload: TaskCreate, db: Session = Depends(get_db)):
 def get_task(task_id: int, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+        )
     return task
 
 
@@ -108,7 +118,9 @@ def get_task(task_id: int, db: Session = Depends(get_db)):
 def update_task(task_id: int, payload: TaskUpdate, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+        )
 
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(task, field, value)
@@ -123,7 +135,9 @@ def update_task(task_id: int, payload: TaskUpdate, db: Session = Depends(get_db)
 def delete_task(task_id: int, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+        )
 
     db.delete(task)
     db.commit()
