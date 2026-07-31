@@ -13,7 +13,3 @@ backups/
 *.sql
 *.sql.gz
 *.pdf
-
-REDACTED_IP
-
-REDACTED_SECRET
