@@ -19,7 +19,7 @@ WORKDIR /app
 
 RUN useradd --create-home --shell /usr/sbin/nologin appuser
 
-COPY requirements.txt ./
+COPY requirements-typo.txt ./
 COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir --no-index --find-links=/wheels -r requirements.txt && \
     rm -rf /wheels
