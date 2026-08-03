@@ -12,8 +12,4 @@ logs/
 backups/
 *.sql
 *.sql.gz
-
-
-REDACTED_IP
-
-REDACTED_SECRET
+*.pdf

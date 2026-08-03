@@ -84,6 +84,7 @@ The stack uses these variables from `.env`:
 - [Soutenance notes](docs/soutenance.md)
 - [Healthcheck proof](docs/healthcheck-proof.md)
 - [PostgreSQL persistence proof](docs/postgres-persistence-proof.md)
+- [Security and quality (Gitleaks, SonarCloud)](docs/security-and-quality.md)
 
 ## Operational scripts
 

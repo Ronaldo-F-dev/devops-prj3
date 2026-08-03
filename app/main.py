@@ -12,8 +12,9 @@ from .database import get_db
 from .models import Task
 from .schemas import HealthRead, TaskCreate, TaskRead, TaskUpdate, VersionRead
 
-
 settings = get_settings()
+
+TASK_NOT_FOUND = "Task not found"
 
 logging.basicConfig(
     level=settings.log_level.upper(),
@@ -43,7 +44,7 @@ async def log_requests(request: Request, call_next):
     return response
 
 
-@app.get("/", response_model=VersionRead, tags=["meta"])
+@app.get("/", tags=["meta"])
 def root() -> VersionRead:
     return VersionRead(
         name=settings.app_name,
@@ -52,7 +53,7 @@ def root() -> VersionRead:
     )
 
 
-@app.get("/version", response_model=VersionRead, tags=["meta"])
+@app.get("/version", tags=["meta"])
 def version() -> VersionRead:
     return VersionRead(
         name=settings.app_name,
@@ -73,7 +74,10 @@ def health(db: Session = Depends(get_db)):
             version=settings.app_version,
             details=str(exc.__class__.__name__),
         )
-        return JSONResponse(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, content=payload.model_dump())
+        return JSONResponse(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            content=payload.model_dump(),
+        )
 
     return HealthRead(status="ok", database="ok", version=settings.app_version)
 
@@ -87,7 +91,12 @@ def list_tasks(
     return db.query(Task).order_by(Task.id.asc()).offset(offset).limit(limit).all()
 
 
-@app.post("/tasks", response_model=TaskRead, status_code=status.HTTP_201_CREATED, tags=["tasks"])
+@app.post(
+    "/tasks",
+    response_model=TaskRead,
+    status_code=status.HTTP_201_CREATED,
+    tags=["tasks"],
+)
 def create_task(payload: TaskCreate, db: Session = Depends(get_db)):
     task = Task(**payload.model_dump())
     db.add(task)
@@ -101,7 +110,9 @@ def create_task(payload: TaskCreate, db: Session = Depends(get_db)):
 def get_task(task_id: int, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=TASK_NOT_FOUND
+        )
     return task
 
 
@@ -109,7 +120,9 @@ def get_task(task_id: int, db: Session = Depends(get_db)):
 def update_task(task_id: int, payload: TaskUpdate, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=TASK_NOT_FOUND
+        )
 
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(task, field, value)
@@ -124,7 +137,9 @@ def update_task(task_id: int, payload: TaskUpdate, db: Session = Depends(get_db)
 def delete_task(task_id: int, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=TASK_NOT_FOUND
+        )
 
     db.delete(task)
     db.commit()

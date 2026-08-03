@@ -1,0 +1,203 @@
+Set up job	﻿2026-08-03T09:09:39.9733391Z Current runner version: '2.336.0'
+Set up job	2026-08-03T09:09:39.9759448Z ##[group]Runner Image Provisioner
+Set up job	2026-08-03T09:09:39.9760328Z Hosted Compute Agent
+Set up job	2026-08-03T09:09:39.9760887Z Version: 20260707.563
+Set up job	2026-08-03T09:09:39.9761581Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+Set up job	2026-08-03T09:09:39.9762340Z Build Date: 2026-07-07T19:33:50Z
+Set up job	2026-08-03T09:09:39.9763050Z Worker ID: {3c90ae25-81ff-43bc-bf78-c84f57620726}
+Set up job	2026-08-03T09:09:39.9763776Z Azure Region: westus
+Set up job	2026-08-03T09:09:39.9764374Z ##[endgroup]
+Set up job	2026-08-03T09:09:39.9765844Z ##[group]Operating System
+Set up job	2026-08-03T09:09:39.9766528Z Ubuntu
+Set up job	2026-08-03T09:09:39.9767015Z 24.04.4
+Set up job	2026-08-03T09:09:39.9767608Z LTS
+Set up job	2026-08-03T09:09:39.9768333Z ##[endgroup]
+Set up job	2026-08-03T09:09:39.9768923Z ##[group]Runner Image
+Set up job	2026-08-03T09:09:39.9769579Z Image: ubuntu-24.04
+Set up job	2026-08-03T09:09:39.9770135Z Version: 20260720.247.2
+Set up job	2026-08-03T09:09:39.9771238Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
+Set up job	2026-08-03T09:09:39.9773013Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
+Set up job	2026-08-03T09:09:39.9774026Z ##[endgroup]
+Set up job	2026-08-03T09:09:39.9775239Z ##[group]GITHUB_TOKEN Permissions
+Set up job	2026-08-03T09:09:39.9777216Z Contents: read
+Set up job	2026-08-03T09:09:39.9777875Z Metadata: read
+Set up job	2026-08-03T09:09:39.9778720Z Packages: read
+Set up job	2026-08-03T09:09:39.9779311Z ##[endgroup]
+Set up job	2026-08-03T09:09:39.9782075Z Secret source: Actions
+Set up job	2026-08-03T09:09:39.9783342Z Prepare workflow directory
+Set up job	2026-08-03T09:09:40.0132176Z Prepare all required actions
+Set up job	2026-08-03T09:09:40.0184433Z Getting action download info
+Set up job	2026-08-03T09:09:40.4260189Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Set up job	2026-08-03T09:09:40.8694230Z Download action repository 'gitleaks/gitleaks-action@v2' (SHA:ff98106e4c7b2bc287b24eaf42907196329070c7)
+Set up job	2026-08-03T09:09:41.4285290Z Complete job name: Gitleaks secret scan
+Run actions/checkout@v4	﻿2026-08-03T09:09:41.5116690Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Run actions/checkout@v4	2026-08-03T09:09:41.5126511Z ##[group]Run actions/checkout@v4
+Run actions/checkout@v4	2026-08-03T09:09:41.5127351Z with:
+Run actions/checkout@v4	2026-08-03T09:09:41.5127835Z   fetch-depth: 0
+Run actions/checkout@v4	2026-08-03T09:09:41.5128576Z   repository: Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T09:09:41.5132537Z   token: ***
+Run actions/checkout@v4	2026-08-03T09:09:41.5133018Z   ssh-strict: true
+Run actions/checkout@v4	2026-08-03T09:09:41.5133496Z   ssh-user: git
+Run actions/checkout@v4	2026-08-03T09:09:41.5133999Z   persist-credentials: true
+Run actions/checkout@v4	2026-08-03T09:09:41.5134531Z   clean: true
+Run actions/checkout@v4	2026-08-03T09:09:41.5135037Z   sparse-checkout-cone-mode: true
+Run actions/checkout@v4	2026-08-03T09:09:41.5135625Z   fetch-tags: false
+Run actions/checkout@v4	2026-08-03T09:09:41.5136119Z   show-progress: true
+Run actions/checkout@v4	2026-08-03T09:09:41.5136610Z   lfs: false
+Run actions/checkout@v4	2026-08-03T09:09:41.5137088Z   submodules: false
+Run actions/checkout@v4	2026-08-03T09:09:41.5137659Z   set-safe-directory: true
+Run actions/checkout@v4	2026-08-03T09:09:41.5138377Z   allow-unsafe-pr-checkout: false
+Run actions/checkout@v4	2026-08-03T09:09:41.5139246Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:09:41.6175499Z Syncing repository: Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T09:09:41.6178896Z ##[group]Getting Git version info
+Run actions/checkout@v4	2026-08-03T09:09:41.6180139Z Working directory is '/home/runner/work/devops-prj3/devops-prj3'
+Run actions/checkout@v4	2026-08-03T09:09:41.6182082Z [command]/usr/bin/git version
+Run actions/checkout@v4	2026-08-03T09:09:41.6242928Z git version 2.54.0
+Run actions/checkout@v4	2026-08-03T09:09:41.6268943Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:09:41.6305711Z Temporarily overriding HOME='/home/runner/work/_temp/e0b482d5-563b-4461-8435-309100aead61' before making global git config changes
+Run actions/checkout@v4	2026-08-03T09:09:41.6307513Z Adding repository directory to the temporary git global config as a safe directory
+Run actions/checkout@v4	2026-08-03T09:09:41.6309518Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-prj3/devops-prj3
+Run actions/checkout@v4	2026-08-03T09:09:41.6364369Z Deleting the contents of '/home/runner/work/devops-prj3/devops-prj3'
+Run actions/checkout@v4	2026-08-03T09:09:41.6368588Z ##[group]Initializing the repository
+Run actions/checkout@v4	2026-08-03T09:09:41.6374874Z [command]/usr/bin/git init /home/runner/work/devops-prj3/devops-prj3
+Run actions/checkout@v4	2026-08-03T09:09:41.6477226Z hint: Using 'master' as the name for the initial branch. This default branch name
+Run actions/checkout@v4	2026-08-03T09:09:41.6479658Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Run actions/checkout@v4	2026-08-03T09:09:41.6481333Z hint: to use in all of your new repositories, which will suppress this warning,
+Run actions/checkout@v4	2026-08-03T09:09:41.6482861Z hint: call:
+Run actions/checkout@v4	2026-08-03T09:09:41.6483348Z hint:
+Run actions/checkout@v4	2026-08-03T09:09:41.6484406Z hint: 	git config --global init.defaultBranch <name>
+Run actions/checkout@v4	2026-08-03T09:09:41.6485355Z hint:
+Run actions/checkout@v4	2026-08-03T09:09:41.6486059Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Run actions/checkout@v4	2026-08-03T09:09:41.6487131Z hint: 'development'. The just-created branch can be renamed via this command:
+Run actions/checkout@v4	2026-08-03T09:09:41.6488173Z hint:
+Run actions/checkout@v4	2026-08-03T09:09:41.6489112Z hint: 	git branch -m <name>
+Run actions/checkout@v4	2026-08-03T09:09:41.6490080Z hint:
+Run actions/checkout@v4	2026-08-03T09:09:41.6491233Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Run actions/checkout@v4	2026-08-03T09:09:41.6493290Z Initialized empty Git repository in /home/runner/work/devops-prj3/devops-prj3/.git/
+Run actions/checkout@v4	2026-08-03T09:09:41.6496584Z [command]/usr/bin/git remote add origin https://github.com/Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T09:09:41.6542091Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:09:41.6543434Z ##[group]Disabling automatic garbage collection
+Run actions/checkout@v4	2026-08-03T09:09:41.6546579Z [command]/usr/bin/git config --local gc.auto 0
+Run actions/checkout@v4	2026-08-03T09:09:41.6581082Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:09:41.6582255Z ##[group]Setting up auth
+Run actions/checkout@v4	2026-08-03T09:09:41.6589112Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Run actions/checkout@v4	2026-08-03T09:09:41.6626564Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Run actions/checkout@v4	2026-08-03T09:09:41.7009495Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Run actions/checkout@v4	2026-08-03T09:09:41.7054879Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Run actions/checkout@v4	2026-08-03T09:09:41.7304693Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Run actions/checkout@v4	2026-08-03T09:09:41.7343087Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Run actions/checkout@v4	2026-08-03T09:09:41.7576266Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Run actions/checkout@v4	2026-08-03T09:09:41.7619276Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:09:41.7620237Z ##[group]Fetching the repository
+Run actions/checkout@v4	2026-08-03T09:09:41.7630687Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +e0d8cbd266d0543b66267580b2556f90f6ebfa36:refs/remotes/pull/3/merge
+Run actions/checkout@v4	2026-08-03T09:10:00.7907350Z From https://github.com/Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T09:10:00.7908705Z  * [new branch]      feature/quality-and-security             -> origin/feature/quality-and-security
+Run actions/checkout@v4	2026-08-03T09:10:00.7909452Z  * [new branch]      feature/setup-ci                         -> origin/feature/setup-ci
+Run actions/checkout@v4	2026-08-03T09:10:00.7910041Z  * [new branch]      main                                     -> origin/main
+Run actions/checkout@v4	2026-08-03T09:10:00.7910606Z  * [new ref]         e0d8cbd266d0543b66267580b2556f90f6ebfa36 -> pull/3/merge
+Run actions/checkout@v4	2026-08-03T09:10:00.7945584Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:10:00.7946880Z ##[group]Determining the checkout info
+Run actions/checkout@v4	2026-08-03T09:10:00.7949124Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:10:00.7956414Z [command]/usr/bin/git sparse-checkout disable
+Run actions/checkout@v4	2026-08-03T09:10:00.8014371Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Run actions/checkout@v4	2026-08-03T09:10:00.8054141Z ##[group]Checking out the ref
+Run actions/checkout@v4	2026-08-03T09:10:00.8072826Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/3/merge
+Run actions/checkout@v4	2026-08-03T09:10:00.8131695Z Note: switching to 'refs/remotes/pull/3/merge'.
+Run actions/checkout@v4	2026-08-03T09:10:00.8132607Z 
+Run actions/checkout@v4	2026-08-03T09:10:00.8133441Z You are in 'detached HEAD' state. You can look around, make experimental
+Run actions/checkout@v4	2026-08-03T09:10:00.8134523Z changes and commit them, and you can discard any commits you make in this
+Run actions/checkout@v4	2026-08-03T09:10:00.8135435Z state without impacting any branches by switching back to a branch.
+Run actions/checkout@v4	2026-08-03T09:10:00.8136061Z 
+Run actions/checkout@v4	2026-08-03T09:10:00.8136467Z If you want to create a new branch to retain commits you create, you may
+Run actions/checkout@v4	2026-08-03T09:10:00.8137335Z do so (now or later) by using -c with the switch command. Example:
+Run actions/checkout@v4	2026-08-03T09:10:00.8137853Z 
+Run actions/checkout@v4	2026-08-03T09:10:00.8138328Z   git switch -c <new-branch-name>
+Run actions/checkout@v4	2026-08-03T09:10:00.8138699Z 
+Run actions/checkout@v4	2026-08-03T09:10:00.8138981Z Or undo this operation with:
+Run actions/checkout@v4	2026-08-03T09:10:00.8139380Z 
+Run actions/checkout@v4	2026-08-03T09:10:00.8139579Z   git switch -
+Run actions/checkout@v4	2026-08-03T09:10:00.8139848Z 
+Run actions/checkout@v4	2026-08-03T09:10:00.8140223Z Turn off this advice by setting config variable advice.detachedHead to false
+Run actions/checkout@v4	2026-08-03T09:10:00.8140715Z 
+Run actions/checkout@v4	2026-08-03T09:10:00.8141201Z HEAD is now at e0d8cbd Merge 1931443d6b9474bd7b9b146413daeab4e021d267 into 1a0c7665bfaad68459cd1699d7c58457b023737b
+Run actions/checkout@v4	2026-08-03T09:10:00.8147420Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T09:10:00.8187992Z [command]/usr/bin/git log -1 --format=%H
+Run actions/checkout@v4	2026-08-03T09:10:00.8216072Z e0d8cbd266d0543b66267580b2556f90f6ebfa36
+Run Gitleaks	﻿2026-08-03T09:10:00.8454871Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Run Gitleaks	2026-08-03T09:10:00.8457128Z ##[group]Run gitleaks/gitleaks-action@v2
+Run Gitleaks	2026-08-03T09:10:00.8457476Z env:
+Run Gitleaks	2026-08-03T09:10:00.8460372Z   GITHUB_TOKEN: ***
+Run Gitleaks	2026-08-03T09:10:00.8460699Z ##[endgroup]
+Run Gitleaks	2026-08-03T09:10:01.0250441Z (node:2262) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Run Gitleaks	2026-08-03T09:10:01.0251869Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Run Gitleaks	2026-08-03T09:10:01.0379644Z (node:2262) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Run Gitleaks	2026-08-03T09:10:01.2735947Z [Ronaldo-F-dev] is an individual user. No license key is required.
+Run Gitleaks	2026-08-03T09:10:01.2736835Z gitleaks version: 8.24.3
+Run Gitleaks	2026-08-03T09:10:01.2739448Z Version to install: 8.24.3 (target directory: /tmp/gitleaks-8.24.3)
+Run Gitleaks	2026-08-03T09:10:01.5328264Z Cache hit for: gitleaks-cache-8.24.3-linux-x64
+Run Gitleaks	2026-08-03T09:10:07.8058875Z Received 4194304 of 5712906 (73.4%), 4.0 MBs/sec
+Run Gitleaks	2026-08-03T09:10:07.8340517Z Received 5712906 of 5712906 (100.0%), 5.3 MBs/sec
+Run Gitleaks	2026-08-03T09:10:07.8342722Z Cache Size: ~5 MB (5712906 B)
+Run Gitleaks	2026-08-03T09:10:07.8383811Z [command]/usr/bin/tar -xf /home/runner/work/_temp/d987ae8a-3514-4d57-84bf-c124cf052ea9/cache.tzst -P -C /home/runner/work/devops-prj3/devops-prj3 --use-compress-program unzstd
+Run Gitleaks	2026-08-03T09:10:07.8733290Z Cache restored successfully
+Run Gitleaks	2026-08-03T09:10:07.8738968Z Gitleaks restored from cache
+Run Gitleaks	2026-08-03T09:10:07.8741808Z event type: pull_request
+Run Gitleaks	2026-08-03T09:10:08.1671373Z gitleaks cmd: gitleaks detect --redact -v --exit-code=2 --report-format=sarif --report-path=results.sarif --log-level=debug --log-opts=--no-merges --first-parent c8e52a93c54a7959647448c990ae3e91acec7a8c^..1931443d6b9474bd7b9b146413daeab4e021d267
+Run Gitleaks	2026-08-03T09:10:08.1692886Z [command]/tmp/gitleaks-8.24.3/gitleaks detect --redact -v --exit-code=2 --report-format=sarif --report-path=results.sarif --log-level=debug --log-opts=--no-merges --first-parent c8e52a93c54a7959647448c990ae3e91acec7a8c^..1931443d6b9474bd7b9b146413daeab4e021d267
+Run Gitleaks	2026-08-03T09:10:08.4401123Z 
+Run Gitleaks	2026-08-03T09:10:08.4401846Z     ○
+Run Gitleaks	2026-08-03T09:10:08.4402285Z     │╲
+Run Gitleaks	2026-08-03T09:10:08.4402642Z     │ ○
+Run Gitleaks	2026-08-03T09:10:08.4403041Z     ○ ░
+Run Gitleaks	2026-08-03T09:10:08.4403843Z     ░    gitleaks
+Run Gitleaks	2026-08-03T09:10:08.4404061Z 
+Run Gitleaks	2026-08-03T09:10:08.4404520Z ^[[90m9:10AM^[[0m DBG using github.com/wasilibs/go-re2 regex engine
+Run Gitleaks	2026-08-03T09:10:08.4405571Z ^[[90m9:10AM^[[0m DBG no gitleaks config found in path .gitleaks.toml, using default gitleaks config
+Run Gitleaks	2026-08-03T09:10:08.5814759Z ^[[90m9:10AM^[[0m DBG executing: /usr/bin/git -C . log -p -U0 --no-merges --first-parent c8e52a93c54a7959647448c990ae3e91acec7a8c^..1931443d6b9474bd7b9b146413daeab4e021d267
+Run Gitleaks	2026-08-03T09:10:08.5861764Z ^[[90m9:10AM^[[0m DBG SCM platform parsed from host ^[[36mhost=^[[0mgithub.com ^[[36mplatform=^[[0mgithub
+Run Gitleaks	2026-08-03T09:10:08.6216815Z Finding:     ...S_SECRET_ACCESS_KEY=^[[1;3;mREDACTED^[[0m
+Run Gitleaks	2026-08-03T09:10:08.6222912Z Secret:      ^[[1;3;mREDACTED^[[0m
+Run Gitleaks	2026-08-03T09:10:08.6223409Z RuleID:      aws-access-token
+Run Gitleaks	2026-08-03T09:10:08.6223670Z Entropy:     4.021928
+Run Gitleaks	2026-08-03T09:10:08.6224036Z File:        .env.example
+Run Gitleaks	2026-08-03T09:10:08.6224264Z Line:        11
+Run Gitleaks	2026-08-03T09:10:08.6224519Z Commit:      08b002573e8f7942b5de739d16f2d7781e85445b
+Run Gitleaks	2026-08-03T09:10:08.6224870Z Author:      Ronaldo
+Run Gitleaks	2026-08-03T09:10:08.6225102Z Email:       awademeronaldoo@gmail.com
+Run Gitleaks	2026-08-03T09:10:08.6225373Z Date:        2026-07-31T08:09:13Z
+Run Gitleaks	2026-08-03T09:10:08.6225781Z Fingerprint: 08b002573e8f7942b5de739d16f2d7781e85445b:.env.example:aws-access-token:11
+Run Gitleaks	2026-08-03T09:10:08.6226518Z Link:        https://github.com/Ronaldo-F-dev/devops-prj3/blob/08b002573e8f7942b5de739d16f2d7781e85445b/.env.example#L11
+Run Gitleaks	2026-08-03T09:10:08.6227352Z 
+Run Gitleaks	2026-08-03T09:10:08.6316302Z ^[[90m9:10AM^[[0m ^[[32mINF^[[0m ^[[1m20 commits scanned.^[[0m
+Run Gitleaks	2026-08-03T09:10:08.6317710Z ^[[90m9:10AM^[[0m DBG Note: this number might be smaller than expected due to commits with no additions
+Run Gitleaks	2026-08-03T09:10:08.6324335Z ^[[90m9:10AM^[[0m ^[[32mINF^[[0m ^[[1mscanned ~7772 bytes (7.77 KB) in 182ms^[[0m
+Run Gitleaks	2026-08-03T09:10:08.6325190Z ^[[90m9:10AM^[[0m ^[[33mWRN^[[0m ^[[1mleaks found: 1^[[0m
+Run Gitleaks	2026-08-03T09:10:08.6325829Z Artifact name is valid!
+Run Gitleaks	2026-08-03T09:10:08.6326264Z Root directory input is valid!
+Run Gitleaks	2026-08-03T09:10:08.9524317Z Beginning upload of artifact content to blob storage
+Run Gitleaks	2026-08-03T09:10:09.2615678Z Uploaded bytes 7142
+Run Gitleaks	2026-08-03T09:10:09.3430641Z Finished uploading artifact content to blob storage!
+Run Gitleaks	2026-08-03T09:10:09.3431765Z SHA256 digest of uploaded artifact zip is cfc2f90832c10e43a02e0a8a563f9c105d4cc7cd0855f39af6cbfbe8f9123c48
+Run Gitleaks	2026-08-03T09:10:09.3432946Z Finalizing artifact upload
+Run Gitleaks	2026-08-03T09:10:09.7051385Z Artifact gitleaks-results.sarif.zip successfully finalized. Artifact ID 8850486933
+Run Gitleaks	2026-08-03T09:10:10.2660191Z ##[warning]Error encountered when attempting to write a comment on PR #3: HttpError: Resource not accessible by integration
+Run Gitleaks	Likely an issue with too large of a diff for the comment to be written.
+Run Gitleaks	All secrets that have been leaked will be reported in the summary and job artifact.
+Run Gitleaks	2026-08-03T09:10:10.2669891Z ##[warning]🛑 Leaks detected, see job summary for details
+Post Run actions/checkout@v4	﻿2026-08-03T09:10:10.2878206Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Post Run actions/checkout@v4	2026-08-03T09:10:10.2879524Z Post job cleanup.
+Post Run actions/checkout@v4	2026-08-03T09:10:10.3758822Z [command]/usr/bin/git version
+Post Run actions/checkout@v4	2026-08-03T09:10:10.3796964Z git version 2.54.0
+Post Run actions/checkout@v4	2026-08-03T09:10:10.3838795Z Temporarily overriding HOME='/home/runner/work/_temp/fd9935f3-71c1-441b-8919-7ae22c0dbaac' before making global git config changes
+Post Run actions/checkout@v4	2026-08-03T09:10:10.3840196Z Adding repository directory to the temporary git global config as a safe directory
+Post Run actions/checkout@v4	2026-08-03T09:10:10.3845585Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-prj3/devops-prj3
+Post Run actions/checkout@v4	2026-08-03T09:10:10.3890216Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Post Run actions/checkout@v4	2026-08-03T09:10:10.3927566Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Post Run actions/checkout@v4	2026-08-03T09:10:10.4197582Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Post Run actions/checkout@v4	2026-08-03T09:10:10.4240514Z http.https://github.com/.extraheader
+Post Run actions/checkout@v4	2026-08-03T09:10:10.4253171Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Post Run actions/checkout@v4	2026-08-03T09:10:10.4292695Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Post Run actions/checkout@v4	2026-08-03T09:10:10.4561751Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Post Run actions/checkout@v4	2026-08-03T09:10:10.4594933Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Complete job	﻿2026-08-03T09:10:10.5011865Z Cleaning up orphan processes
+Complete job	2026-08-03T09:10:10.5303278Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, gitleaks/gitleaks-action@v2. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
