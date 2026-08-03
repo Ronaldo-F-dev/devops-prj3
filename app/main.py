@@ -14,6 +14,8 @@ from .schemas import HealthRead, TaskCreate, TaskRead, TaskUpdate, VersionRead
 
 settings = get_settings()
 
+TASK_NOT_FOUND = "Task not found"
+
 logging.basicConfig(
     level=settings.log_level.upper(),
     format="%(asctime)s %(levelname)s %(name)s %(message)s",
@@ -109,7 +111,7 @@ def get_task(task_id: int, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+            status_code=status.HTTP_404_NOT_FOUND, detail=TASK_NOT_FOUND
         )
     return task
 
@@ -119,7 +121,7 @@ def update_task(task_id: int, payload: TaskUpdate, db: Session = Depends(get_db)
     task = db.get(Task, task_id)
     if task is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+            status_code=status.HTTP_404_NOT_FOUND, detail=TASK_NOT_FOUND
         )
 
     for field, value in payload.model_dump(exclude_unset=True).items():
@@ -136,7 +138,7 @@ def delete_task(task_id: int, db: Session = Depends(get_db)):
     task = db.get(Task, task_id)
     if task is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found"
+            status_code=status.HTTP_404_NOT_FOUND, detail=TASK_NOT_FOUND
         )
 
     db.delete(task)
