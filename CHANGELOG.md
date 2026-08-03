@@ -14,12 +14,12 @@ Première version stable du projet : chaîne CI complète (lint, test, build Doc
 ### Amélioration CI
 
 - Pipeline structuré en jobs indépendants et dépendants (`lint → test → build/sonar`, `secret_scan` en parallèle)
-- Documentation complète de la chaîne CI : [docs/ci-pipeline.md](docs/ci-pipeline.md)
+- Documentation complète de la chaîne CI : [docs/prj3/ci-pipeline.md](docs/prj3/ci-pipeline.md)
 
 ### Contrôles qualité ajoutés
 
-- Gitleaks (détection de secrets) — [docs/security-and-quality.md](docs/security-and-quality.md)
-- SonarCloud (bugs, vulnérabilités, code smells, duplication, couverture) — [docs/security-and-quality.md](docs/security-and-quality.md)
+- Gitleaks (détection de secrets) — [docs/prj3/security-and-quality.md](docs/prj3/security-and-quality.md)
+- SonarCloud (bugs, vulnérabilités, code smells, duplication, couverture) — [docs/prj3/security-and-quality.md](docs/prj3/security-and-quality.md)
 
 ### Limites connues
 

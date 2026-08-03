@@ -64,6 +64,6 @@ Exemple concret déjà rencontré et documenté dans ce dépôt : une erreur de 
 ## Liens
 
 - Versioning et tags : [versioning.md](versioning.md)
-- Changelog : [../CHANGELOG.md](../CHANGELOG.md)
+- Changelog : [../../CHANGELOG.md](../../CHANGELOG.md)
 - Sécurité et qualité (Gitleaks, SonarCloud) : [security-and-quality.md](security-and-quality.md)
-- Preuves : `evidence/pipeline-green.txt`, `evidence/docker-build-ci.txt`, `evidence/sonar-report.txt`, `evidence/gitleaks-detection.txt`
+- Preuves : `../../evidence/pipeline-green.txt`, `../../evidence/docker-build-ci.txt`, `../../evidence/sonar-report.txt`, `../../evidence/gitleaks-detection.txt`
