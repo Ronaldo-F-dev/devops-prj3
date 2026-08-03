@@ -85,6 +85,10 @@ The stack uses these variables from `.env`:
 - [Healthcheck proof](docs/healthcheck-proof.md)
 - [PostgreSQL persistence proof](docs/postgres-persistence-proof.md)
 - [Security and quality (Gitleaks, SonarCloud)](docs/security-and-quality.md)
+- [CI pipeline](docs/ci-pipeline.md)
+- [Versioning strategy](docs/versioning.md)
+- [Branching strategy (ADR-001)](docs/adr/0001-git-branching-strategy.md)
+- [Changelog](CHANGELOG.md)
 
 ## Operational scripts
 
