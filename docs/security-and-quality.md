@@ -67,10 +67,34 @@ Un vrai identifiant (IP + mot de passe VPS) avait été accidentellement commit�
 
 Deux points minimum étaient demandés par le brief (point 37) ; quatre ont été identifiés, trois corrigés.
 
-### Sonar bloque-t-il toujours le merge ?
+## 3. Questions intermédiaires (points 39-44 du brief)
+
+### 39. Pourquoi scanner les secrets dans un pipeline ?
+
+Parce qu'un secret commité arrive tôt ou tard sur un dépôt distant (souvent public, comme ici), et que le point de contrôle le plus fiable est automatique et systématique : personne ne relit ligne par ligne chaque diff avant de pousser. Un job Gitleaks qui tourne sur chaque push/PR détecte la fuite en quelques secondes, avant que le code ne soit fusionné ou même simplement consulté par quelqu'un d'autre.
+
+### 40. Que fais-tu si un vrai secret est commité ?
+
+C'est arrivé concrètement pendant ce projet (IP + mot de passe VPS retrouvés dans l'historique d'une branche). La marche suivie :
+1. **Faire tourner l'accès immédiatement** (changer le mot de passe / la clé), avant même de toucher à Git — un secret poussé sur un dépôt public doit être considéré comme compromis dès sa découverte, qu'on ait ou non la preuve qu'il ait été utilisé.
+2. Vérifier les journaux d'accès (`last`, `journalctl`, `/var/log/auth.log`) pour repérer une éventuelle connexion suspecte pendant la période d'exposition.
+3. Nettoyer ou isoler l'historique Git contenant le secret (ici : reconstruction d'une branche propre à partir des seuls commits sains, plutôt que réécriture de l'historique existant).
+4. Documenter l'incident (ce document) pour que la leçon reste, même si le code, lui, ne garde plus la trace.
+
+### 41. Supprimer le secret du fichier suffit-il toujours ?
+
+Non. Le fichier au dernier commit est propre, mais le secret reste lisible dans l'historique Git (le commit qui l'a introduit existe toujours, accessible à quiconque clone le dépôt ou consulte un ancien commit/PR). C'est exactement ce qu'on a observé avec le job Gitleaks sur la fausse clé AWS : il continue de la signaler après sa suppression, tant qu'il scanne une plage de commits qui inclut celui où elle a été ajoutée. Un vrai nettoyage nécessite soit de traiter la cause (rotation de l'accès, ce qui rend le secret exposé sans valeur), soit de réécrire l'historique (`git filter-repo`/BFG + force-push), les deux étant complémentaires plutôt qu'alternatifs.
+
+### 42. Sonar bloque-t-il toujours le merge ?
 
 Non. Le Quality Gate SonarCloud est un statut de check GitHub comme un autre (`SonarCloud Code Analysis`) : il ne bloque le merge que si une règle de protection de branche l'exige explicitement. Par défaut, il informe — il ne décide pas à la place de l'équipe.
 
-### Sonar remplace-t-il une revue de code humaine ?
+### 43. Quelle est la différence entre un bug, une vulnérabilité et un code smell ?
 
-Non. Sonar détecte des motifs connus (duplication, vulnérabilités classées, complexité) mais ne comprend ni l'intention métier ni les compromis d'architecture. Il sert de filet de sécurité automatique en amont d'une revue humaine, pas de substitut.
+- **Bug** : le code fait quelque chose de différent de ce qui était prévu — un défaut de comportement, potentiellement reproductible par un test.
+- **Vulnerability** : le code fonctionne comme prévu, mais ce comportement ouvre une faille exploitable (ex. injection, secret exposé, exécution de code non désirée comme le `pip install` sans `--only-binary :all:` trouvé ici).
+- **Code smell** : le code fonctionne correctement, sans risque de sécurité, mais sa forme rend la maintenance plus difficile ou plus risquée à terme (ex. littéral dupliqué, paramètre redondant) — c'est un problème de qualité, pas de correction.
+
+### 44. Pourquoi le contrôle qualité en CI ne remplace-t-il pas une revue de code ?
+
+Parce que Sonar (comme Gitleaks) détecte des motifs connus et mesurables — duplication, complexité, règles de sécurité cataloguées — mais ne comprend ni l'intention métier, ni si la solution choisie est la bonne à l'échelle de l'architecture, ni le contexte d'une décision (pourquoi ce compromis, pour quel besoin). Un outil automatique est un filtre rapide et systématique en amont ; la revue humaine reste nécessaire pour juger ce que l'outil ne peut pas évaluer.
