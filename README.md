@@ -89,6 +89,7 @@ The stack uses these variables from `.env`:
 - [Versioning strategy](docs/versioning.md)
 - [Branching strategy (ADR-001)](docs/adr/0001-git-branching-strategy.md)
 - [Changelog](CHANGELOG.md)
+- [Mini-defense support (Project 3)](docs/defense-support.md)
 
 ## Operational scripts
 
