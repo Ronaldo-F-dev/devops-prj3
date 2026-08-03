@@ -6,4 +6,5 @@ python-dotenv>=1.0,<2.0
 pydantic>=2.8,<3.0
 ruff
 pytest
+pytest-cov
 httpx
