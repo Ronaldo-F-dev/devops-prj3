@@ -1,0 +1,402 @@
+Set up job	﻿2026-08-03T10:22:31.5115597Z Current runner version: '2.336.0'
+Set up job	2026-08-03T10:22:31.5140271Z ##[group]Runner Image Provisioner
+Set up job	2026-08-03T10:22:31.5141501Z Hosted Compute Agent
+Set up job	2026-08-03T10:22:31.5142170Z Version: 20260707.563
+Set up job	2026-08-03T10:22:31.5142810Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+Set up job	2026-08-03T10:22:31.5143549Z Build Date: 2026-07-07T19:33:50Z
+Set up job	2026-08-03T10:22:31.5144285Z Worker ID: {993ae791-ce87-427f-a1c0-56a0541c7500}
+Set up job	2026-08-03T10:22:31.5144977Z Azure Region: westus
+Set up job	2026-08-03T10:22:31.5145513Z ##[endgroup]
+Set up job	2026-08-03T10:22:31.5147007Z ##[group]Operating System
+Set up job	2026-08-03T10:22:31.5147680Z Ubuntu
+Set up job	2026-08-03T10:22:31.5148245Z 24.04.4
+Set up job	2026-08-03T10:22:31.5148759Z LTS
+Set up job	2026-08-03T10:22:31.5149258Z ##[endgroup]
+Set up job	2026-08-03T10:22:31.5149825Z ##[group]Runner Image
+Set up job	2026-08-03T10:22:31.5150429Z Image: ubuntu-24.04
+Set up job	2026-08-03T10:22:31.5150966Z Version: 20260720.247.2
+Set up job	2026-08-03T10:22:31.5152403Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260720.247/images/ubuntu/Ubuntu2404-Readme.md
+Set up job	2026-08-03T10:22:31.5154156Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260720.247
+Set up job	2026-08-03T10:22:31.5155129Z ##[endgroup]
+Set up job	2026-08-03T10:22:31.5156276Z ##[group]GITHUB_TOKEN Permissions
+Set up job	2026-08-03T10:22:31.5158144Z Contents: read
+Set up job	2026-08-03T10:22:31.5158749Z Metadata: read
+Set up job	2026-08-03T10:22:31.5159433Z Packages: read
+Set up job	2026-08-03T10:22:31.5159977Z ##[endgroup]
+Set up job	2026-08-03T10:22:31.5162655Z Secret source: Actions
+Set up job	2026-08-03T10:22:31.5163744Z Prepare workflow directory
+Set up job	2026-08-03T10:22:31.5498387Z Prepare all required actions
+Set up job	2026-08-03T10:22:31.5571631Z Getting action download info
+Set up job	2026-08-03T10:22:31.9281994Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Set up job	2026-08-03T10:22:32.5129250Z Complete job name: Build Docker image
+Run actions/checkout@v4	﻿2026-08-03T10:22:32.5969205Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Run actions/checkout@v4	2026-08-03T10:22:32.5978194Z ##[group]Run actions/checkout@v4
+Run actions/checkout@v4	2026-08-03T10:22:32.5978952Z with:
+Run actions/checkout@v4	2026-08-03T10:22:32.5979416Z   repository: Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T10:22:32.5983213Z   token: ***
+Run actions/checkout@v4	2026-08-03T10:22:32.5983638Z   ssh-strict: true
+Run actions/checkout@v4	2026-08-03T10:22:32.5984060Z   ssh-user: git
+Run actions/checkout@v4	2026-08-03T10:22:32.5984487Z   persist-credentials: true
+Run actions/checkout@v4	2026-08-03T10:22:32.5984964Z   clean: true
+Run actions/checkout@v4	2026-08-03T10:22:32.5985400Z   sparse-checkout-cone-mode: true
+Run actions/checkout@v4	2026-08-03T10:22:32.5985911Z   fetch-depth: 1
+Run actions/checkout@v4	2026-08-03T10:22:32.5986326Z   fetch-tags: false
+Run actions/checkout@v4	2026-08-03T10:22:32.5986755Z   show-progress: true
+Run actions/checkout@v4	2026-08-03T10:22:32.5987188Z   lfs: false
+Run actions/checkout@v4	2026-08-03T10:22:32.5987586Z   submodules: false
+Run actions/checkout@v4	2026-08-03T10:22:32.5988060Z   set-safe-directory: true
+Run actions/checkout@v4	2026-08-03T10:22:32.5988551Z   allow-unsafe-pr-checkout: false
+Run actions/checkout@v4	2026-08-03T10:22:32.5989321Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:32.6980755Z Syncing repository: Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T10:22:32.6983622Z ##[group]Getting Git version info
+Run actions/checkout@v4	2026-08-03T10:22:32.6984837Z Working directory is '/home/runner/work/devops-prj3/devops-prj3'
+Run actions/checkout@v4	2026-08-03T10:22:32.6986558Z [command]/usr/bin/git version
+Run actions/checkout@v4	2026-08-03T10:22:32.7031414Z git version 2.54.0
+Run actions/checkout@v4	2026-08-03T10:22:32.7084666Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:32.7112552Z Temporarily overriding HOME='/home/runner/work/_temp/1ac3430e-e1f4-4515-b46d-65f4119c7247' before making global git config changes
+Run actions/checkout@v4	2026-08-03T10:22:32.7114918Z Adding repository directory to the temporary git global config as a safe directory
+Run actions/checkout@v4	2026-08-03T10:22:32.7116863Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-prj3/devops-prj3
+Run actions/checkout@v4	2026-08-03T10:22:32.7192334Z Deleting the contents of '/home/runner/work/devops-prj3/devops-prj3'
+Run actions/checkout@v4	2026-08-03T10:22:32.7193974Z ##[group]Initializing the repository
+Run actions/checkout@v4	2026-08-03T10:22:32.7195229Z [command]/usr/bin/git init /home/runner/work/devops-prj3/devops-prj3
+Run actions/checkout@v4	2026-08-03T10:22:32.7281928Z hint: Using 'master' as the name for the initial branch. This default branch name
+Run actions/checkout@v4	2026-08-03T10:22:32.7283429Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Run actions/checkout@v4	2026-08-03T10:22:32.7284982Z hint: to use in all of your new repositories, which will suppress this warning,
+Run actions/checkout@v4	2026-08-03T10:22:32.7286086Z hint: call:
+Run actions/checkout@v4	2026-08-03T10:22:32.7286536Z hint:
+Run actions/checkout@v4	2026-08-03T10:22:32.7287087Z hint: 	git config --global init.defaultBranch <name>
+Run actions/checkout@v4	2026-08-03T10:22:32.7287780Z hint:
+Run actions/checkout@v4	2026-08-03T10:22:32.7288420Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Run actions/checkout@v4	2026-08-03T10:22:32.7289480Z hint: 'development'. The just-created branch can be renamed via this command:
+Run actions/checkout@v4	2026-08-03T10:22:32.7290323Z hint:
+Run actions/checkout@v4	2026-08-03T10:22:32.7290775Z hint: 	git branch -m <name>
+Run actions/checkout@v4	2026-08-03T10:22:32.7291760Z hint:
+Run actions/checkout@v4	2026-08-03T10:22:32.7292491Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Run actions/checkout@v4	2026-08-03T10:22:32.7299199Z Initialized empty Git repository in /home/runner/work/devops-prj3/devops-prj3/.git/
+Run actions/checkout@v4	2026-08-03T10:22:32.7311405Z [command]/usr/bin/git remote add origin https://github.com/Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T10:22:32.7354660Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:32.7355952Z ##[group]Disabling automatic garbage collection
+Run actions/checkout@v4	2026-08-03T10:22:32.7357880Z [command]/usr/bin/git config --local gc.auto 0
+Run actions/checkout@v4	2026-08-03T10:22:32.7388820Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:32.7390005Z ##[group]Setting up auth
+Run actions/checkout@v4	2026-08-03T10:22:32.7395567Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Run actions/checkout@v4	2026-08-03T10:22:32.7431731Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Run actions/checkout@v4	2026-08-03T10:22:32.7808017Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Run actions/checkout@v4	2026-08-03T10:22:32.7848458Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Run actions/checkout@v4	2026-08-03T10:22:32.8089295Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Run actions/checkout@v4	2026-08-03T10:22:32.8125280Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Run actions/checkout@v4	2026-08-03T10:22:32.8348724Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Run actions/checkout@v4	2026-08-03T10:22:32.8387591Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:32.8388821Z ##[group]Fetching the repository
+Run actions/checkout@v4	2026-08-03T10:22:32.8397494Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +38caab531c1a0c072bfe6dcd8cffc1b9ed23f2f6:refs/remotes/origin/main
+Run actions/checkout@v4	2026-08-03T10:22:33.2103771Z From https://github.com/Ronaldo-F-dev/devops-prj3
+Run actions/checkout@v4	2026-08-03T10:22:33.2105134Z  * [new ref]         38caab531c1a0c072bfe6dcd8cffc1b9ed23f2f6 -> origin/main
+Run actions/checkout@v4	2026-08-03T10:22:33.2146428Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:33.2147567Z ##[group]Determining the checkout info
+Run actions/checkout@v4	2026-08-03T10:22:33.2149162Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:33.2158581Z [command]/usr/bin/git sparse-checkout disable
+Run actions/checkout@v4	2026-08-03T10:22:33.2213245Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Run actions/checkout@v4	2026-08-03T10:22:33.2250008Z ##[group]Checking out the ref
+Run actions/checkout@v4	2026-08-03T10:22:33.2256084Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Run actions/checkout@v4	2026-08-03T10:22:33.2341813Z Switched to a new branch 'main'
+Run actions/checkout@v4	2026-08-03T10:22:33.2343994Z branch 'main' set up to track 'origin/main'.
+Run actions/checkout@v4	2026-08-03T10:22:33.2349453Z ##[endgroup]
+Run actions/checkout@v4	2026-08-03T10:22:33.2394552Z [command]/usr/bin/git log -1 --format=%H
+Run actions/checkout@v4	2026-08-03T10:22:33.2421950Z 38caab531c1a0c072bfe6dcd8cffc1b9ed23f2f6
+Build Docker image	﻿2026-08-03T10:22:33.2667180Z ##[group]Run docker build -t kps-tasks-api:ci-${GITHUB_SHA::7} .
+Build Docker image	2026-08-03T10:22:33.2668910Z ^[[36;1mdocker build -t kps-tasks-api:ci-${GITHUB_SHA::7} .^[[0m
+Build Docker image	2026-08-03T10:22:33.2719036Z shell: /usr/bin/bash -e {0}
+Build Docker image	2026-08-03T10:22:33.2719919Z ##[endgroup]
+Build Docker image	2026-08-03T10:22:33.8634094Z #0 building with "default" instance using docker driver
+Build Docker image	2026-08-03T10:22:33.8635588Z 
+Build Docker image	2026-08-03T10:22:33.8636103Z #1 [internal] load build definition from Dockerfile
+Build Docker image	2026-08-03T10:22:33.8638749Z #1 transferring dockerfile: 798B 0.0s done
+Build Docker image	2026-08-03T10:22:33.8639920Z #1 DONE 0.0s
+Build Docker image	2026-08-03T10:22:33.8640343Z 
+Build Docker image	2026-08-03T10:22:33.8641040Z #2 [internal] load metadata for docker.io/library/python:3.12-slim
+Build Docker image	2026-08-03T10:22:34.1151563Z #2 ...
+Build Docker image	2026-08-03T10:22:34.1152384Z 
+Build Docker image	2026-08-03T10:22:34.1153008Z #3 [auth] library/python:pull token for registry-1.docker.io
+Build Docker image	2026-08-03T10:22:34.1154366Z #3 DONE 0.0s
+Build Docker image	2026-08-03T10:22:34.2653904Z 
+Build Docker image	2026-08-03T10:22:34.2655193Z #2 [internal] load metadata for docker.io/library/python:3.12-slim
+Build Docker image	2026-08-03T10:22:34.5699820Z #2 DONE 0.9s
+Build Docker image	2026-08-03T10:22:34.6960011Z 
+Build Docker image	2026-08-03T10:22:34.6960905Z #4 [internal] load .dockerignore
+Build Docker image	2026-08-03T10:22:34.6967452Z #4 transferring context: 190B done
+Build Docker image	2026-08-03T10:22:34.6968878Z #4 DONE 0.0s
+Build Docker image	2026-08-03T10:22:34.6969523Z 
+Build Docker image	2026-08-03T10:22:34.6970107Z #5 [internal] load build context
+Build Docker image	2026-08-03T10:22:34.6971688Z #5 transferring context: 8.13kB done
+Build Docker image	2026-08-03T10:22:34.6972873Z #5 DONE 0.0s
+Build Docker image	2026-08-03T10:22:34.6973418Z 
+Build Docker image	2026-08-03T10:22:34.6975498Z #6 [builder 1/4] FROM docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
+Build Docker image	2026-08-03T10:22:34.6981046Z #6 resolve docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de done
+Build Docker image	2026-08-03T10:22:34.6987032Z #6 sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de 10.37kB / 10.37kB done
+Build Docker image	2026-08-03T10:22:34.6993526Z #6 sha256:cab2dbf575e971934a81e4622f5aba17aa7929719bd7e31033a3a83b97fd0464 1.75kB / 1.75kB done
+Build Docker image	2026-08-03T10:22:34.6997237Z #6 sha256:25c5b8011a3425a140bf5fa73be0feabd3c0d5b323eecb19dc02437a368ae075 5.66kB / 5.66kB done
+Build Docker image	2026-08-03T10:22:34.6999330Z #6 sha256:062e450697faa5f02a3a74eba9864ee4d79bc9cfbd65769fc6cdff2c05c6a053 2.10MB / 29.78MB 0.1s
+Build Docker image	2026-08-03T10:22:34.7001914Z #6 sha256:98db2485a0d07a8914586b02387e3813aa7e9fed79ab252898d3e96e21c717ea 0B / 1.29MB 0.1s
+Build Docker image	2026-08-03T10:22:34.7004140Z #6 sha256:48347b15c85fd6dde9c5b0259f378fbaee3ce231b30a42f2f2bcc4ea0285cbc9 0B / 12.11MB 0.1s
+Build Docker image	2026-08-03T10:22:34.8165401Z #6 sha256:062e450697faa5f02a3a74eba9864ee4d79bc9cfbd65769fc6cdff2c05c6a053 29.78MB / 29.78MB 0.2s done
+Build Docker image	2026-08-03T10:22:34.8167568Z #6 sha256:98db2485a0d07a8914586b02387e3813aa7e9fed79ab252898d3e96e21c717ea 1.29MB / 1.29MB 0.2s done
+Build Docker image	2026-08-03T10:22:34.8169377Z #6 sha256:fd079632edc0ab4e9d10c77ec348d5057a976e6fc508e93855548096dec2ae1e 0B / 250B 0.2s
+Build Docker image	2026-08-03T10:22:34.8171008Z #6 extracting sha256:062e450697faa5f02a3a74eba9864ee4d79bc9cfbd65769fc6cdff2c05c6a053
+Build Docker image	2026-08-03T10:22:34.9232781Z #6 sha256:48347b15c85fd6dde9c5b0259f378fbaee3ce231b30a42f2f2bcc4ea0285cbc9 12.11MB / 12.11MB 0.3s done
+Build Docker image	2026-08-03T10:22:34.9235580Z #6 sha256:fd079632edc0ab4e9d10c77ec348d5057a976e6fc508e93855548096dec2ae1e 250B / 250B 0.3s done
+Build Docker image	2026-08-03T10:22:35.8232882Z #6 extracting sha256:062e450697faa5f02a3a74eba9864ee4d79bc9cfbd65769fc6cdff2c05c6a053 1.0s done
+Build Docker image	2026-08-03T10:22:35.8234859Z #6 extracting sha256:98db2485a0d07a8914586b02387e3813aa7e9fed79ab252898d3e96e21c717ea
+Build Docker image	2026-08-03T10:22:36.1225068Z #6 extracting sha256:98db2485a0d07a8914586b02387e3813aa7e9fed79ab252898d3e96e21c717ea 0.1s done
+Build Docker image	2026-08-03T10:22:36.1226841Z #6 extracting sha256:48347b15c85fd6dde9c5b0259f378fbaee3ce231b30a42f2f2bcc4ea0285cbc9 0.1s
+Build Docker image	2026-08-03T10:22:36.5996430Z #6 extracting sha256:48347b15c85fd6dde9c5b0259f378fbaee3ce231b30a42f2f2bcc4ea0285cbc9 0.5s done
+Build Docker image	2026-08-03T10:22:36.8075882Z #6 extracting sha256:fd079632edc0ab4e9d10c77ec348d5057a976e6fc508e93855548096dec2ae1e
+Build Docker image	2026-08-03T10:22:36.8076955Z #6 extracting sha256:fd079632edc0ab4e9d10c77ec348d5057a976e6fc508e93855548096dec2ae1e done
+Build Docker image	2026-08-03T10:22:36.8078769Z #6 DONE 2.0s
+Build Docker image	2026-08-03T10:22:36.8079446Z 
+Build Docker image	2026-08-03T10:22:36.8079777Z #7 [stage-1 2/7] WORKDIR /app
+Build Docker image	2026-08-03T10:22:36.8080725Z #7 DONE 0.0s
+Build Docker image	2026-08-03T10:22:36.8081484Z 
+Build Docker image	2026-08-03T10:22:36.8081751Z #8 [builder 2/4] WORKDIR /build
+Build Docker image	2026-08-03T10:22:36.8082124Z #8 DONE 0.0s
+Build Docker image	2026-08-03T10:22:36.8082298Z 
+Build Docker image	2026-08-03T10:22:36.8082468Z #9 [builder 3/4] COPY requirements.txt ./
+Build Docker image	2026-08-03T10:22:36.8082876Z #9 DONE 0.0s
+Build Docker image	2026-08-03T10:22:36.8083059Z 
+Build Docker image	2026-08-03T10:22:36.8083717Z #10 [builder 4/4] RUN python -m pip install --upgrade pip &&     pip wheel --only-binary :all: --wheel-dir /wheels -r requirements.txt
+Build Docker image	2026-08-03T10:22:36.8484331Z #10 ...
+Build Docker image	2026-08-03T10:22:36.8485389Z 
+Build Docker image	2026-08-03T10:22:36.8485840Z #11 [stage-1 3/7] RUN useradd --create-home --shell /usr/sbin/nologin appuser
+Build Docker image	2026-08-03T10:22:36.8487182Z #11 DONE 0.2s
+Build Docker image	2026-08-03T10:22:37.0213011Z 
+Build Docker image	2026-08-03T10:22:37.0222485Z #12 [stage-1 4/7] COPY requirements.txt ./
+Build Docker image	2026-08-03T10:22:37.0223389Z #12 DONE 0.0s
+Build Docker image	2026-08-03T10:22:37.0223653Z 
+Build Docker image	2026-08-03T10:22:37.0224580Z #10 [builder 4/4] RUN python -m pip install --upgrade pip &&     pip wheel --only-binary :all: --wheel-dir /wheels -r requirements.txt
+Build Docker image	2026-08-03T10:22:37.9996648Z #10 1.343 Requirement already satisfied: pip in /usr/local/lib/python3.12/site-packages (25.0.1)
+Build Docker image	2026-08-03T10:22:38.1004748Z #10 1.389 Collecting pip
+Build Docker image	2026-08-03T10:22:38.1005451Z #10 1.406   Downloading pip-26.2-py3-none-any.whl.metadata (4.6 kB)
+Build Docker image	2026-08-03T10:22:38.1006208Z #10 1.410 Downloading pip-26.2-py3-none-any.whl (1.8 MB)
+Build Docker image	2026-08-03T10:22:38.1007314Z #10 1.429    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 174.8 MB/s eta 0:00:00
+Build Docker image	2026-08-03T10:22:38.1008005Z #10 1.444 Installing collected packages: pip
+Build Docker image	2026-08-03T10:22:38.3039182Z #10 1.444   Attempting uninstall: pip
+Build Docker image	2026-08-03T10:22:38.3039834Z #10 1.447     Found existing installation: pip 25.0.1
+Build Docker image	2026-08-03T10:22:38.3040722Z #10 1.486     Uninstalling pip-25.0.1:
+Build Docker image	2026-08-03T10:22:38.3041561Z #10 1.497       Successfully uninstalled pip-25.0.1
+Build Docker image	2026-08-03T10:22:38.9843341Z #10 2.328 Successfully installed pip-26.2
+Build Docker image	2026-08-03T10:22:39.1363455Z #10 2.329 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Build Docker image	2026-08-03T10:22:39.8868863Z #10 3.230 Collecting fastapi<1.0,>=0.115 (from -r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:40.0835863Z #10 3.253   Downloading fastapi-0.141.1-py3-none-any.whl.metadata (27 kB)
+Build Docker image	2026-08-03T10:22:40.0837015Z #10 3.273 Collecting uvicorn<1.0,>=0.30 (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:40.0838028Z #10 3.276   Downloading uvicorn-0.52.1-py3-none-any.whl.metadata (6.6 kB)
+Build Docker image	2026-08-03T10:22:40.1767772Z #10 3.520 Collecting SQLAlchemy<3.0,>=2.0 (from -r requirements.txt (line 3))
+Build Docker image	2026-08-03T10:22:40.2952828Z #10 3.523   Downloading sqlalchemy-2.0.51-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Build Docker image	2026-08-03T10:22:40.2954343Z #10 3.537 Collecting psycopg<4.0,>=3.2 (from psycopg[binary]<4.0,>=3.2->-r requirements.txt (line 4))
+Build Docker image	2026-08-03T10:22:40.2955374Z #10 3.540   Downloading psycopg-3.3.4-py3-none-any.whl.metadata (4.3 kB)
+Build Docker image	2026-08-03T10:22:40.2956273Z #10 3.551 Collecting python-dotenv<2.0,>=1.0 (from -r requirements.txt (line 5))
+Build Docker image	2026-08-03T10:22:40.2957197Z #10 3.553   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+Build Docker image	2026-08-03T10:22:40.2958102Z #10 3.638 Collecting pydantic<3.0,>=2.8 (from -r requirements.txt (line 6))
+Build Docker image	2026-08-03T10:22:40.4483431Z #10 3.641   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+Build Docker image	2026-08-03T10:22:40.5939695Z #10 3.937 Collecting ruff (from -r requirements.txt (line 7))
+Build Docker image	2026-08-03T10:22:40.6992249Z #10 3.940   Downloading ruff-0.16.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+Build Docker image	2026-08-03T10:22:40.6994187Z #10 3.963 Collecting pytest (from -r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:40.6995515Z #10 3.965   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Build Docker image	2026-08-03T10:22:40.6996673Z #10 3.976 Collecting pytest-cov (from -r requirements.txt (line 9))
+Build Docker image	2026-08-03T10:22:40.6997419Z #10 3.978   Downloading pytest_cov-7.1.0-py3-none-any.whl.metadata (32 kB)
+Build Docker image	2026-08-03T10:22:40.6998129Z #10 3.992 Collecting httpx (from -r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:40.6998807Z #10 3.995   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Build Docker image	2026-08-03T10:22:40.6999616Z #10 4.011 Collecting starlette>=0.46.0 (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:40.7000635Z #10 4.014   Downloading starlette-1.3.1-py3-none-any.whl.metadata (6.4 kB)
+Build Docker image	2026-08-03T10:22:40.7001695Z #10 4.026 Collecting typing-extensions>=4.8.0 (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:40.7002647Z #10 4.028   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Build Docker image	2026-08-03T10:22:40.7003581Z #10 4.034 Collecting typing-inspection>=0.4.2 (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:40.7004520Z #10 4.037   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+Build Docker image	2026-08-03T10:22:40.7005445Z #10 4.042 Collecting annotated-doc>=0.0.2 (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:40.8593535Z #10 4.045   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Build Docker image	2026-08-03T10:22:40.8595177Z #10 4.056 Collecting click>=7.0 (from uvicorn<1.0,>=0.30->uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:40.8596225Z #10 4.058   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+Build Docker image	2026-08-03T10:22:40.8597235Z #10 4.065 Collecting h11>=0.8 (from uvicorn<1.0,>=0.30->uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:40.8598104Z #10 4.067   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Build Docker image	2026-08-03T10:22:40.8598804Z #10 4.202 Collecting greenlet>=1 (from SQLAlchemy<3.0,>=2.0->-r requirements.txt (line 3))
+Build Docker image	2026-08-03T10:22:41.0240420Z #10 4.205   Downloading greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Build Docker image	2026-08-03T10:22:41.0241776Z #10 4.214 Collecting annotated-types>=0.6.0 (from pydantic<3.0,>=2.8->-r requirements.txt (line 6))
+Build Docker image	2026-08-03T10:22:41.0242613Z #10 4.217   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Build Docker image	2026-08-03T10:22:41.4694912Z #10 4.812 Collecting pydantic-core==2.46.4 (from pydantic<3.0,>=2.8->-r requirements.txt (line 6))
+Build Docker image	2026-08-03T10:22:41.6018156Z #10 4.815   Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+Build Docker image	2026-08-03T10:22:41.6020374Z #10 4.945 Collecting psycopg-binary==3.3.4 (from psycopg[binary]<4.0,>=3.2->-r requirements.txt (line 4))
+Build Docker image	2026-08-03T10:22:41.7528028Z #10 4.948   Downloading psycopg_binary-3.3.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.7 kB)
+Build Docker image	2026-08-03T10:22:41.7529759Z #10 4.972 Collecting httptools>=0.8.0 (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:41.7531019Z #10 4.974   Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+Build Docker image	2026-08-03T10:22:41.7532750Z #10 5.003 Collecting pyyaml>=5.1 (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:41.7533994Z #10 5.005   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Build Docker image	2026-08-03T10:22:41.7535219Z #10 5.033 Collecting uvloop>=0.15.1 (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:41.7536284Z #10 5.035   Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (4.9 kB)
+Build Docker image	2026-08-03T10:22:41.7537620Z #10 5.096 Collecting watchfiles>=0.20 (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:41.8605134Z #10 5.099   Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Build Docker image	2026-08-03T10:22:41.8606598Z #10 5.184 Collecting websockets>=13.0 (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:41.8607707Z #10 5.187   Downloading websockets-17.0.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+Build Docker image	2026-08-03T10:22:41.8608708Z #10 5.193 Collecting iniconfig>=1.0.1 (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:41.8609425Z #10 5.195   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+Build Docker image	2026-08-03T10:22:41.8610122Z #10 5.204 Collecting packaging>=22 (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:42.0413637Z #10 5.207   Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+Build Docker image	2026-08-03T10:22:42.0414776Z #10 5.216 Collecting pluggy<2,>=1.5 (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:42.0415576Z #10 5.219   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Build Docker image	2026-08-03T10:22:42.0416344Z #10 5.232 Collecting pygments>=2.7.2 (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:42.0417137Z #10 5.234   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+Build Docker image	2026-08-03T10:22:42.2548459Z #10 5.598 Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov->-r requirements.txt (line 9))
+Build Docker image	2026-08-03T10:22:42.3572182Z #10 5.601   Downloading coverage-7.15.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (8.6 kB)
+Build Docker image	2026-08-03T10:22:42.3574207Z #10 5.616 Collecting anyio (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:42.3575487Z #10 5.618   Downloading anyio-4.14.2-py3-none-any.whl.metadata (4.6 kB)
+Build Docker image	2026-08-03T10:22:42.3576426Z #10 5.630 Collecting certifi (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:42.3577180Z #10 5.632   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+Build Docker image	2026-08-03T10:22:42.3578011Z #10 5.641 Collecting httpcore==1.* (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:42.3578802Z #10 5.643   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Build Docker image	2026-08-03T10:22:42.3579517Z #10 5.653 Collecting idna (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:42.3580195Z #10 5.655   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+Build Docker image	2026-08-03T10:22:42.3580856Z #10 5.675 Downloading fastapi-0.141.1-py3-none-any.whl (131 kB)
+Build Docker image	2026-08-03T10:22:42.3581716Z #10 5.678 Downloading uvicorn-0.52.1-py3-none-any.whl (79 kB)
+Build Docker image	2026-08-03T10:22:42.3582818Z #10 5.682 Downloading sqlalchemy-2.0.51-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.4 MB)
+Build Docker image	2026-08-03T10:22:42.4593260Z #10 5.700    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 213.2 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.4594213Z #10 5.703 Downloading psycopg-3.3.4-py3-none-any.whl (213 kB)
+Build Docker image	2026-08-03T10:22:42.4595068Z #10 5.706 Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+Build Docker image	2026-08-03T10:22:42.4595912Z #10 5.708 Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+Build Docker image	2026-08-03T10:22:42.4597071Z #10 5.711 Downloading pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+Build Docker image	2026-08-03T10:22:42.4598226Z #10 5.719    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 412.7 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.4598917Z #10 5.721 Downloading psycopg_binary-3.3.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.2 MB)
+Build Docker image	2026-08-03T10:22:42.4599655Z #10 5.731    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 594.8 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.4600246Z #10 5.734 Downloading ruff-0.16.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.5 MB)
+Build Docker image	2026-08-03T10:22:42.4600969Z #10 5.755    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.5/11.5 MB 583.2 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.4601878Z #10 5.757 Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Build Docker image	2026-08-03T10:22:42.4602550Z #10 5.760 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Build Docker image	2026-08-03T10:22:42.4602977Z #10 5.763 Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Build Docker image	2026-08-03T10:22:42.4603561Z #10 5.765 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+Build Docker image	2026-08-03T10:22:42.4603970Z #10 5.767 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Build Docker image	2026-08-03T10:22:42.4604406Z #10 5.769 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Build Docker image	2026-08-03T10:22:42.4604873Z #10 5.772 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Build Docker image	2026-08-03T10:22:42.4605309Z #10 5.774 Downloading click-8.4.2-py3-none-any.whl (119 kB)
+Build Docker image	2026-08-03T10:22:42.4605954Z #10 5.777 Downloading coverage-7.15.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (257 kB)
+Build Docker image	2026-08-03T10:22:42.4606885Z #10 5.779 Downloading greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+Build Docker image	2026-08-03T10:22:42.4607653Z #10 5.782    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.5/621.5 kB 745.5 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.4608109Z #10 5.785 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Build Docker image	2026-08-03T10:22:42.4608984Z #10 5.787 Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (523 kB)
+Build Docker image	2026-08-03T10:22:42.4609636Z #10 5.791 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Build Docker image	2026-08-03T10:22:42.4610025Z #10 5.793 Downloading packaging-26.2-py3-none-any.whl (100 kB)
+Build Docker image	2026-08-03T10:22:42.4610402Z #10 5.796 Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+Build Docker image	2026-08-03T10:22:42.4610873Z #10 5.799    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 757.6 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.4611743Z #10 5.802 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Build Docker image	2026-08-03T10:22:42.6033125Z #10 5.805    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 567.5 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.6034746Z #10 5.808 Downloading starlette-1.3.1-py3-none-any.whl (73 kB)
+Build Docker image	2026-08-03T10:22:42.6036055Z #10 5.810 Downloading anyio-4.14.2-py3-none-any.whl (125 kB)
+Build Docker image	2026-08-03T10:22:42.6037251Z #10 5.813 Downloading idna-3.18-py3-none-any.whl (65 kB)
+Build Docker image	2026-08-03T10:22:42.6038598Z #10 5.815 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Build Docker image	2026-08-03T10:22:42.6039891Z #10 5.817 Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+Build Docker image	2026-08-03T10:22:42.6041038Z #10 5.820 Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+Build Docker image	2026-08-03T10:22:42.6042360Z #10 5.828    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 655.6 MB/s  0:00:00
+Build Docker image	2026-08-03T10:22:42.6043256Z #10 5.831 Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
+Build Docker image	2026-08-03T10:22:42.6044486Z #10 5.834 Downloading websockets-17.0.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (220 kB)
+Build Docker image	2026-08-03T10:22:42.6045479Z #10 5.837 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+Build Docker image	2026-08-03T10:22:42.6046093Z #10 5.947 Saved /wheels/fastapi-0.141.1-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7695992Z #10 5.947 Saved /wheels/uvicorn-0.52.1-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7701517Z #10 5.949 Saved /wheels/sqlalchemy-2.0.51-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7733339Z #10 5.949 Saved /wheels/psycopg-3.3.4-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7734389Z #10 5.950 Saved /wheels/python_dotenv-1.2.2-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7735091Z #10 5.951 Saved /wheels/pydantic-2.13.4-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7735981Z #10 5.952 Saved /wheels/pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7737148Z #10 5.954 Saved /wheels/psycopg_binary-3.3.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7738214Z #10 5.958 Saved /wheels/ruff-0.16.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7738869Z #10 5.958 Saved /wheels/pytest-9.1.1-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7739506Z #10 5.959 Saved /wheels/pluggy-1.6.0-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7739865Z #10 5.959 Saved /wheels/pytest_cov-7.1.0-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7740365Z #10 5.960 Saved /wheels/httpx-0.28.1-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7740694Z #10 5.960 Saved /wheels/httpcore-1.0.9-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7741042Z #10 5.961 Saved /wheels/annotated_doc-0.0.5-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7773136Z #10 5.961 Saved /wheels/annotated_types-0.8.0-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7773560Z #10 5.962 Saved /wheels/click-8.4.2-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7774120Z #10 5.963 Saved /wheels/coverage-7.15.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7774819Z #10 5.963 Saved /wheels/greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7775322Z #10 5.964 Saved /wheels/h11-0.16.0-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7775861Z #10 5.964 Saved /wheels/httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7776408Z #10 5.965 Saved /wheels/iniconfig-2.3.0-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7776775Z #10 5.965 Saved /wheels/packaging-26.2-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7777116Z #10 5.966 Saved /wheels/pygments-2.20.0-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7777654Z #10 5.967 Saved /wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7778200Z #10 5.968 Saved /wheels/starlette-1.3.1-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7778532Z #10 5.968 Saved /wheels/anyio-4.14.2-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7778851Z #10 5.969 Saved /wheels/idna-3.18-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7779209Z #10 5.969 Saved /wheels/typing_extensions-4.16.0-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7779606Z #10 5.970 Saved /wheels/typing_inspection-0.4.2-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7780175Z #10 5.971 Saved /wheels/uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7780875Z #10 5.972 Saved /wheels/watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7785847Z #10 5.973 Saved /wheels/websockets-17.0.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl
+Build Docker image	2026-08-03T10:22:42.7867225Z #10 5.973 Saved /wheels/certifi-2026.7.22-py3-none-any.whl
+Build Docker image	2026-08-03T10:22:42.7867597Z #10 DONE 6.1s
+Build Docker image	2026-08-03T10:22:42.9012190Z 
+Build Docker image	2026-08-03T10:22:42.9012954Z #13 [stage-1 5/7] COPY --from=builder /wheels /wheels
+Build Docker image	2026-08-03T10:22:43.0863783Z #13 DONE 0.0s
+Build Docker image	2026-08-03T10:22:43.0864054Z 
+Build Docker image	2026-08-03T10:22:43.0864780Z #14 [stage-1 6/7] RUN pip install --no-cache-dir --only-binary :all: --no-index --find-links=/wheels -r requirements.txt &&     rm -rf /wheels
+Build Docker image	2026-08-03T10:22:44.1732649Z #14 1.237 Looking in links: /wheels
+Build Docker image	2026-08-03T10:22:44.2768211Z #14 1.248 Processing /wheels/fastapi-0.141.1-py3-none-any.whl (from -r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:44.2769679Z #14 1.258 Processing /wheels/uvicorn-0.52.1-py3-none-any.whl (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.2771719Z #14 1.262 Processing /wheels/sqlalchemy-2.0.51-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r requirements.txt (line 3))
+Build Docker image	2026-08-03T10:22:44.2773517Z #14 1.276 Processing /wheels/psycopg-3.3.4-py3-none-any.whl (from psycopg[binary]<4.0,>=3.2->-r requirements.txt (line 4))
+Build Docker image	2026-08-03T10:22:44.2774916Z #14 1.283 Processing /wheels/python_dotenv-1.2.2-py3-none-any.whl (from -r requirements.txt (line 5))
+Build Docker image	2026-08-03T10:22:44.2776201Z #14 1.287 Processing /wheels/pydantic-2.13.4-py3-none-any.whl (from -r requirements.txt (line 6))
+Build Docker image	2026-08-03T10:22:44.2777649Z #14 1.293 Processing /wheels/ruff-0.16.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r requirements.txt (line 7))
+Build Docker image	2026-08-03T10:22:44.2779053Z #14 1.305 Processing /wheels/pytest-9.1.1-py3-none-any.whl (from -r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:44.2780694Z #14 1.309 Processing /wheels/pytest_cov-7.1.0-py3-none-any.whl (from -r requirements.txt (line 9))
+Build Docker image	2026-08-03T10:22:44.2782330Z #14 1.313 Processing /wheels/httpx-0.28.1-py3-none-any.whl (from -r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:44.2783580Z #14 1.318 Processing /wheels/starlette-1.3.1-py3-none-any.whl (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:44.2785009Z #14 1.322 Processing /wheels/typing_extensions-4.16.0-py3-none-any.whl (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:44.2786456Z #14 1.324 Processing /wheels/typing_inspection-0.4.2-py3-none-any.whl (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:44.2787895Z #14 1.326 Processing /wheels/annotated_doc-0.0.5-py3-none-any.whl (from fastapi<1.0,>=0.115->-r requirements.txt (line 1))
+Build Docker image	2026-08-03T10:22:44.2789411Z #14 1.329 Processing /wheels/click-8.4.2-py3-none-any.whl (from uvicorn<1.0,>=0.30->uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.2791045Z #14 1.332 Processing /wheels/h11-0.16.0-py3-none-any.whl (from uvicorn<1.0,>=0.30->uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.2793017Z #14 1.335 Processing /wheels/greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (from SQLAlchemy<3.0,>=2.0->-r requirements.txt (line 3))
+Build Docker image	2026-08-03T10:22:44.2794722Z #14 1.341 Processing /wheels/annotated_types-0.8.0-py3-none-any.whl (from pydantic<3.0,>=2.8->-r requirements.txt (line 6))
+Build Docker image	2026-08-03T10:22:44.4397180Z #14 1.344 Processing /wheels/pydantic_core-2.46.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from pydantic<3.0,>=2.8->-r requirements.txt (line 6))
+Build Docker image	2026-08-03T10:22:44.4398901Z #14 1.351 Processing /wheels/iniconfig-2.3.0-py3-none-any.whl (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:44.4400151Z #14 1.353 Processing /wheels/packaging-26.2-py3-none-any.whl (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:44.4401650Z #14 1.356 Processing /wheels/pluggy-1.6.0-py3-none-any.whl (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:44.4402904Z #14 1.358 Processing /wheels/pygments-2.20.0-py3-none-any.whl (from pytest->-r requirements.txt (line 8))
+Build Docker image	2026-08-03T10:22:44.4404623Z #14 1.364 Processing /wheels/coverage-7.15.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (from coverage[toml]>=7.10.6->pytest-cov->-r requirements.txt (line 9))
+Build Docker image	2026-08-03T10:22:44.4406370Z #14 1.369 Processing /wheels/anyio-4.14.2-py3-none-any.whl (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:44.4407591Z #14 1.372 Processing /wheels/certifi-2026.7.22-py3-none-any.whl (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:44.4408816Z #14 1.374 Processing /wheels/httpcore-1.0.9-py3-none-any.whl (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:44.4410011Z #14 1.378 Processing /wheels/idna-3.18-py3-none-any.whl (from httpx->-r requirements.txt (line 10))
+Build Docker image	2026-08-03T10:22:44.4411875Z #14 1.383 Processing /wheels/psycopg_binary-3.3.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (from psycopg[binary]<4.0,>=3.2->-r requirements.txt (line 4))
+Build Docker image	2026-08-03T10:22:44.4414038Z #14 1.393 Processing /wheels/httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.4416229Z #14 1.396 Processing /wheels/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.4418379Z #14 1.400 Processing /wheels/uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.4419579Z #14 1.408 Processing /wheels/watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.4422920Z #14 1.411 Processing /wheels/websockets-17.0.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (from uvicorn[standard]<1.0,>=0.30->-r requirements.txt (line 2))
+Build Docker image	2026-08-03T10:22:44.4425580Z #14 1.504 Installing collected packages: websockets, uvloop, typing-extensions, ruff, pyyaml, python-dotenv, pygments, psycopg-binary, pluggy, packaging, iniconfig, idna, httptools, h11, greenlet, coverage, click, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, SQLAlchemy, pytest, pydantic-core, psycopg, httpcore, anyio, watchfiles, starlette, pytest-cov, pydantic, httpx, fastapi
+Build Docker image	2026-08-03T10:22:48.0780120Z #14 5.142 Successfully installed SQLAlchemy-2.0.51 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.14.2 certifi-2026.7.22 click-8.4.2 coverage-7.15.3 fastapi-0.141.1 greenlet-3.5.4 h11-0.16.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 idna-3.18 iniconfig-2.3.0 packaging-26.2 pluggy-1.6.0 psycopg-3.3.4 psycopg-binary-3.3.4 pydantic-2.13.4 pydantic-core-2.46.4 pygments-2.20.0 pytest-9.1.1 pytest-cov-7.1.0 python-dotenv-1.2.2 pyyaml-6.0.3 ruff-0.16.1 starlette-1.3.1 typing-extensions-4.16.0 typing-inspection-0.4.2 uvicorn-0.52.1 uvloop-0.22.1 watchfiles-1.2.0 websockets-17.0.1
+Build Docker image	2026-08-03T10:22:48.2205840Z #14 5.143 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Build Docker image	2026-08-03T10:22:48.2209137Z #14 DONE 5.3s
+Build Docker image	2026-08-03T10:22:48.3855943Z 
+Build Docker image	2026-08-03T10:22:48.3856682Z #15 [stage-1 7/7] COPY --chown=appuser:appuser app /app/app
+Build Docker image	2026-08-03T10:22:48.3857390Z #15 DONE 0.0s
+Build Docker image	2026-08-03T10:22:48.3857756Z 
+Build Docker image	2026-08-03T10:22:48.3858098Z #16 exporting to image
+Build Docker image	2026-08-03T10:22:48.3858653Z #16 exporting layers
+Build Docker image	2026-08-03T10:22:49.2101016Z #16 exporting layers 1.0s done
+Build Docker image	2026-08-03T10:22:49.2277109Z #16 writing image sha256:29d029b47b77d0c2d9c0be37bfb08582a796b702ad82e755ae5a96c1e417cb32 done
+Build Docker image	2026-08-03T10:22:49.2278084Z #16 naming to docker.io/library/kps-tasks-api:ci-38caab5 done
+Build Docker image	2026-08-03T10:22:49.2278760Z #16 DONE 1.0s
+Post Run actions/checkout@v4	﻿2026-08-03T10:22:49.2460401Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Post Run actions/checkout@v4	2026-08-03T10:22:49.2462560Z Post job cleanup.
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3309217Z [command]/usr/bin/git version
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3362119Z git version 2.54.0
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3392775Z Temporarily overriding HOME='/home/runner/work/_temp/1c005ea0-975a-44a9-8b7b-d4838e87e0d2' before making global git config changes
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3394273Z Adding repository directory to the temporary git global config as a safe directory
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3399060Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-prj3/devops-prj3
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3437685Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3473239Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3718191Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3746153Z http.https://github.com/.extraheader
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3757864Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Post Run actions/checkout@v4	2026-08-03T10:22:49.3792058Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Post Run actions/checkout@v4	2026-08-03T10:22:49.4047432Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Post Run actions/checkout@v4	2026-08-03T10:22:49.4082390Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Complete job	﻿2026-08-03T10:22:49.4457256Z Cleaning up orphan processes
+Complete job	2026-08-03T10:22:49.4841980Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

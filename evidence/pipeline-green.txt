@@ -1,0 +1,33 @@
+
+✓ main CI · 30805249792
+Triggered via push about 2 minutes ago
+
+JOBS
+✓ Gitleaks secret scan in 9s (ID 91659000994)
+✓ lint in 20s (ID 91659001052)
+✓ test in 19s (ID 91659104962)
+✓ Build Docker image in 21s (ID 91659187030)
+✓ SonarCloud analysis in 51s (ID 91659187085)
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, gitleaks/gitleaks-action@v2. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Gitleaks secret scan: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+lint: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build Docker image: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, SonarSource/sonarqube-scan-action@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SonarCloud analysis: .github#2
+
+
+ARTIFACTS
+gitleaks-results.sarif
+
+For more information about a job, try: gh run view --job=<job-id>
+View this run on GitHub: https://github.com/Ronaldo-F-dev/devops-prj3/actions/runs/30805249792

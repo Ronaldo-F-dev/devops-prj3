@@ -1,0 +1,39 @@
+SonarCloud — Project Health Dashboard (Overall Code, branch main)
+Captured: 2026-08-03, after merging PR #3 (Gitleaks + SonarCloud) and PR #5 (docs catch-up) into main.
+Dashboard: https://sonarcloud.io/dashboard?id=ronaldo-f-dev
+
+Quality gate status: Failed (1 condition failed)
+Open issues (Overall code): 12
+Duplications: 0.0%
+Coverage: no data displayed on the project overview yet (see note below)
+
+Security snapshot
+  Security rating: C
+  Security issues: 12 (all open issues are classified under Security)
+  Severity breakdown: Medium 83% (~10 issues), High 17% (~2 issues)
+  Security hotspots: 0 (rating A)
+
+Reliability snapshot
+  Reliability rating: A
+  Reliability issues: 0 (no bugs)
+
+Maintainability snapshot
+  Maintainability rating: A
+  Maintainability issues: 0
+  (both code smells identified during Day 4 — duplicated "Task not found" literal,
+   redundant response_model — were fixed before merge; that is why this is now 0)
+
+Remaining open issues (12, all Vulnerability/Security type)
+  Cause: every `pip install -r requirements.txt` line (3 in .github/workflows/ci.yml,
+  2 in the Dockerfile) is flagged for "Using dependencies without locking resolved
+  versions" — requirements.txt pins version RANGES (e.g. fastapi>=0.115,<1.0), not
+  exact resolved versions. This was identified and deliberately left open (see
+  docs/security-and-quality.md, observation #4) — fixing it means introducing a
+  proper lock-file workflow (pip-compile or equivalent), which is a larger change
+  than the scope of this Day 4/5 exercise.
+
+Note on coverage: the CI log for the `sonar` job shows the Cobertura sensor parsing
+coverage.xml successfully ("Sensor Cobertura Sensor for Python coverage ... done"),
+so the pipeline wiring is correct. The project overview widget showing "No data
+available to display" is most likely a display lag on a single-test-covering-one-
+endpoint project rather than a broken pipeline.

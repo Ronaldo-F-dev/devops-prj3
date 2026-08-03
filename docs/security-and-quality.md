@@ -67,6 +67,12 @@ Un vrai identifiant (IP + mot de passe VPS) avait été accidentellement commit�
 
 Deux points minimum étaient demandés par le brief (point 37) ; quatre ont été identifiés, trois corrigés.
 
+### État du dashboard après merge sur `main` (voir `evidence/sonar-report.txt`)
+
+- Quality Gate : **Failed** (1 condition), Security rating **C**, Reliability **A**, Maintainability **A**, Duplications **0.0%**
+- 12 issues ouvertes, toutes de type Vulnerability/Security — causées par les 5 lignes `pip install -r requirements.txt` (CI + Dockerfile) qui utilisent des plages de versions plutôt que des versions verrouillées (observation #4 ci-dessus, volontairement non corrigée)
+- Maintainability à 0 issue confirme que les deux code smells (littéral dupliqué, `response_model` redondant) sont bien résolus
+
 ## 3. Questions intermédiaires (points 39-44 du brief)
 
 ### 39. Pourquoi scanner les secrets dans un pipeline ?
