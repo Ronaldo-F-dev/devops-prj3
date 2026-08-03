@@ -7,7 +7,7 @@ WORKDIR /build
 
 COPY requirements.txt ./
 RUN python -m pip install --upgrade pip && \
-    pip wheel --wheel-dir /wheels -r requirements.txt
+    pip wheel --only-binary :all: --wheel-dir /wheels -r requirements.txt
 
 FROM python:3.12-slim
 
@@ -21,7 +21,7 @@ RUN useradd --create-home --shell /usr/sbin/nologin appuser
 
 COPY requirements.txt ./
 COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir --no-index --find-links=/wheels -r requirements.txt && \
+RUN pip install --no-cache-dir --only-binary :all: --no-index --find-links=/wheels -r requirements.txt && \
     rm -rf /wheels
 
 COPY --chown=appuser:appuser app /app/app

@@ -44,7 +44,7 @@ async def log_requests(request: Request, call_next):
     return response
 
 
-@app.get("/", response_model=VersionRead, tags=["meta"])
+@app.get("/", tags=["meta"])
 def root() -> VersionRead:
     return VersionRead(
         name=settings.app_name,
@@ -53,7 +53,7 @@ def root() -> VersionRead:
     )
 
 
-@app.get("/version", response_model=VersionRead, tags=["meta"])
+@app.get("/version", tags=["meta"])
 def version() -> VersionRead:
     return VersionRead(
         name=settings.app_name,
