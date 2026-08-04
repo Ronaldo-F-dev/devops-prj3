@@ -47,3 +47,12 @@ Extrait de `.github/workflows/ci.yml` (job `docker_build`) :
 - Un push normal sur une branche → une seule image, taguée par son commit.
 - Un `git tag v1.0.1 && git push origin v1.0.1` → le pipeline se redéclenche (le tag Git fait partie des déclencheurs), et l'image obtient **en plus** le tag `v1.0.1`, pointant vers exactement le même contenu que le tag commit correspondant.
 - Le déploiement en production (Jour 3) utilisera toujours le tag de version, jamais le tag de commit ni `latest`.
+
+## Test d'un build en échec, puis correction (tâche 20)
+
+Une erreur de chemin a été introduite volontairement dans le `Dockerfile` (`COPY --chown=appuser:appuser app-typo /app/app`, un répertoire qui n'existe pas) pour vérifier que le job `docker_build` échoue proprement et de façon lisible.
+
+- Run en échec : le build s'arrête avec `"/app-typo": not found`, log complet dans [evidence/image-build-failed.txt](../../evidence/image-build-failed.txt)
+- Correctif appliqué (chemin restauré), run suivant entièrement vert : build, tag, login, push, vérification — log complet dans [evidence/image-build.txt](../../evidence/image-build.txt) et [evidence/registry-push.txt](../../evidence/registry-push.txt)
+
+Ce test confirme aussi une propriété importante du pipeline : quand le `docker build` échoue, les étapes suivantes (login, push, vérification) ne s'exécutent pas — aucune image cassée ne risque d'être poussée vers le registre.
