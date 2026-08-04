@@ -1,0 +1,74 @@
+﻿2026-08-04T12:22:30.8541668Z ##[group]Run docker build -t "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ecb1371" .
+2026-08-04T12:22:30.8542414Z ^[[36;1mdocker build -t "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ecb1371" .^[[0m
+2026-08-04T12:22:30.8542901Z ^[[36;1mif [ -n "" ]; then^[[0m
+2026-08-04T12:22:30.8543324Z ^[[36;1m  docker tag "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ecb1371" ""^[[0m
+2026-08-04T12:22:30.8543759Z ^[[36;1mfi^[[0m
+2026-08-04T12:22:30.8585987Z shell: /usr/bin/bash -e {0}
+2026-08-04T12:22:30.8586311Z ##[endgroup]
+2026-08-04T12:22:33.5309573Z #0 building with "default" instance using docker driver
+2026-08-04T12:22:33.5310231Z 
+2026-08-04T12:22:33.5316133Z #1 [internal] load build definition from Dockerfile
+2026-08-04T12:22:33.5316717Z #1 transferring dockerfile: 803B 0.0s done
+2026-08-04T12:22:33.5317207Z #1 DONE 0.0s
+2026-08-04T12:22:33.5317370Z 
+2026-08-04T12:22:33.5317652Z #2 [internal] load metadata for docker.io/library/python:3.12-slim
+2026-08-04T12:22:33.7218336Z #2 ...
+2026-08-04T12:22:33.7218768Z 
+2026-08-04T12:22:33.7219308Z #3 [auth] library/python:pull token for registry-1.docker.io
+2026-08-04T12:22:33.7219943Z #3 DONE 0.0s
+2026-08-04T12:22:33.8722708Z 
+2026-08-04T12:22:33.8723486Z #2 [internal] load metadata for docker.io/library/python:3.12-slim
+2026-08-04T12:22:34.1926287Z #2 DONE 0.8s
+2026-08-04T12:22:34.2539639Z 
+2026-08-04T12:22:34.2540260Z #4 [internal] load .dockerignore
+2026-08-04T12:22:34.2540816Z #4 transferring context: 190B done
+2026-08-04T12:22:34.2541705Z #4 DONE 0.0s
+2026-08-04T12:22:34.2541877Z 
+2026-08-04T12:22:34.2542019Z #5 [internal] load build context
+2026-08-04T12:22:34.2542554Z #5 transferring context: 227B done
+2026-08-04T12:22:34.2542998Z #5 DONE 0.0s
+2026-08-04T12:22:34.2543148Z 
+2026-08-04T12:22:34.2543266Z #6 [builder 2/4] WORKDIR /build
+2026-08-04T12:22:34.2543558Z #6 CACHED
+2026-08-04T12:22:34.2543695Z 
+2026-08-04T12:22:34.2544221Z #7 [builder 4/4] RUN python -m pip install --upgrade pip &&     pip wheel --only-binary :all: --wheel-dir /wheels -r requirements.txt
+2026-08-04T12:22:34.2544984Z #7 CACHED
+2026-08-04T12:22:34.2545349Z 
+2026-08-04T12:22:34.2545660Z #8 [stage-1 3/7] RUN useradd --create-home --shell /usr/sbin/nologin appuser
+2026-08-04T12:22:34.2546181Z #8 CACHED
+2026-08-04T12:22:34.2546326Z 
+2026-08-04T12:22:34.2546462Z #9 [builder 3/4] COPY requirements.txt ./
+2026-08-04T12:22:34.2546894Z #9 CACHED
+2026-08-04T12:22:34.2547102Z 
+2026-08-04T12:22:34.2547279Z #10 [stage-1 5/7] COPY --from=builder /wheels /wheels
+2026-08-04T12:22:34.2547695Z #10 CACHED
+2026-08-04T12:22:34.2547856Z 
+2026-08-04T12:22:34.2548409Z #11 [stage-1 6/7] RUN pip install --no-cache-dir --only-binary :all: --no-index --find-links=/wheels -r requirements.txt &&     rm -rf /wheels
+2026-08-04T12:22:34.2549191Z #11 CACHED
+2026-08-04T12:22:34.2549322Z 
+2026-08-04T12:22:34.2549445Z #12 [stage-1 2/7] WORKDIR /app
+2026-08-04T12:22:34.2549740Z #12 CACHED
+2026-08-04T12:22:34.2549900Z 
+2026-08-04T12:22:34.2550275Z #13 [stage-1 4/7] COPY requirements.txt ./
+2026-08-04T12:22:34.2550623Z #13 CACHED
+2026-08-04T12:22:34.2550766Z 
+2026-08-04T12:22:34.2550980Z #14 [stage-1 7/7] COPY --chown=appuser:appuser app-typo /app/app
+2026-08-04T12:22:34.2554876Z #14 ERROR: failed to calculate checksum of ref dce1e4a9-fc26-4218-aaf0-feee5194c8cb::ey2gpaxgrhll2k6s3ah9uetds: "/app-typo": not found
+2026-08-04T12:22:34.2555637Z 
+2026-08-04T12:22:34.2556036Z #15 [builder 1/4] FROM docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
+2026-08-04T12:22:34.2556864Z #15 resolve docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de done
+2026-08-04T12:22:34.2557578Z #15 sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de 10.37kB / 10.37kB done
+2026-08-04T12:22:34.2558018Z #15 CANCELED
+2026-08-04T12:22:34.2558199Z ------
+2026-08-04T12:22:34.2558472Z  > [stage-1 7/7] COPY --chown=appuser:appuser app-typo /app/app:
+2026-08-04T12:22:34.2558828Z ------
+2026-08-04T12:22:34.2663441Z Dockerfile:27
+2026-08-04T12:22:34.2663868Z --------------------
+2026-08-04T12:22:34.2664441Z   25 |         rm -rf /wheels
+2026-08-04T12:22:34.2664714Z   26 |     
+2026-08-04T12:22:34.2665003Z   27 | >>> COPY --chown=appuser:appuser app-typo /app/app
+2026-08-04T12:22:34.2752546Z   28 |     
+2026-08-04T12:22:34.2752997Z   29 |     USER appuser
+2026-08-04T12:22:34.2753781Z --------------------
+2026-08-04T12:22:34.2755373Z ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref dce1e4a9-fc26-4218-aaf0-feee5194c8cb::ey2gpaxgrhll2k6s3ah9uetds: "/app-typo": not found
+2026-08-04T12:22:34.2770253Z ##[error]Process completed with exit code 1.

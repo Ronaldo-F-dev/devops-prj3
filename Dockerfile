@@ -24,7 +24,7 @@ COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir --only-binary :all: --no-index --find-links=/wheels -r requirements.txt && \
     rm -rf /wheels
 
-COPY --chown=appuser:appuser app-typo /app/app
+COPY --chown=appuser:appuser app /app/app
 
 USER appuser
 
