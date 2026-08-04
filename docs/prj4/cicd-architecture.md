@@ -38,6 +38,17 @@ Une image Docker peut contenir des détails qu'on ne veut pas rendre publics (st
 
 C'est cohérent avec ce que le brief attend : il liste explicitement des variables `REGISTRY_USER` / `REGISTRY_PASSWORD`, ce qui suppose qu'une authentification est nécessaire quelque part dans la chaîne.
 
+### c) Où voir l'image concrètement
+
+Point important à bien comprendre : **l'image Docker n'est pas un fichier du dépôt Git**. On ne la trouvera jamais en naviguant dans les fichiers du repo sur GitHub — elle vit dans une section séparée de GitHub appelée **Packages**.
+
+- Sur le profil GitHub, onglet **Packages** : https://github.com/Ronaldo-F-dev?tab=packages
+- Lien direct vers le package de ce projet : https://github.com/users/Ronaldo-F-dev/packages/container/package/kps-tasks-api
+
+Comme le package est **privé** (décision du point 2b), seul le compte `Ronaldo-F-dev` (connecté) peut le voir dans l'interface GitHub — ce n'est pas visible publiquement, même si le code source du dépôt, lui, est public. Pour que le VPS puisse le récupérer plus tard, il devra s'authentifier avec le PAT (voir tâche 3 ci-dessous), exactement comme n'importe quel utilisateur externe.
+
+Chaque version poussée de l'image apparaît comme un **tag** sur cette page (ex. `auth-check` pour l'instant — le tag de test créé pendant la vérification ci-dessous). Au Jour 2, ces tags seront remplacés par la vraie stratégie de versioning (SHA de commit, version Git).
+
 ## 3. Vérification de l'authentification (tâche 3)
 
 Ici, il fallait distinguer **deux mécanismes d'authentification différents**, qui servent à deux moments différents :
