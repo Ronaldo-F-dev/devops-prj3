@@ -96,7 +96,9 @@ jobs:
           fi
 
       - name: Verify image is available in the registry
-        run: docker manifest inspect "${{ steps.tags.outputs.commit_tag }}" > /dev/null && echo "OK: ${{ steps.tags.outputs.commit_tag }} is available"
+        run: |
+          docker manifest inspect "${{ steps.tags.outputs.commit_tag }}" > /dev/null
+          echo "Image available: ${{ steps.tags.outputs.commit_tag }}"
 
   secret_scan:
     name: Gitleaks secret scan
