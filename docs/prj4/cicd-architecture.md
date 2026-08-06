@@ -80,9 +80,66 @@ Ces trois valeurs sont maintenant enregistrées dans *Settings → Secrets and v
 
 Ces variables serviront au Jour 2 (le job de la CI qui pousse l'image) et au Jour 3 (le script `deploy.sh` qui, exécuté sur ou vers le VPS, doit lui aussi s'authentifier pour faire le `pull`).
 
-## Suite (tâches 4 et +)
+## 4. Utilisateur de déploiement sur le VPS (tâche 5)
 
-- Tâche 4 : liste complète des variables CI/CD nécessaires (couvert en partie ci-dessus, à compléter dans `docs/prj4/ci-cd-variables.md`)
-- Tâche 5-7 : utilisateur de déploiement sur le VPS, accès SSH depuis le pipeline, répertoire applicatif
-- Tâche 8-9 : schéma d'architecture de déploiement complet
-- Tâche 10 : vérifier que le VPS peut lui-même faire un `pull` (avec le PAT stocké)
+**Décision : réutiliser l'utilisateur existant `ronaldo`, ne pas en créer un nouveau.**
+
+Pourquoi :
+- Il est déjà **non-root** — ce qui est justement une des contraintes non négociables du brief ("non-root deployment user"). Créer un utilisateur dédié supplémentaire n'apporterait rien de plus en sécurité ici, juste une identité de plus à gérer.
+- Il a déjà accès SSH au VPS (clé régénérée le 2026-08-03, suite à l'incident de sécurité documenté dans `docs/prj3/security-and-quality.md`).
+- Il fait déjà partie du groupe `sudo` pour les opérations d'administration ponctuelles (créer un dossier, changer un groupe) — mais **pas** pour les déploiements de routine, qui doivent pouvoir s'exécuter sans mot de passe interactif (voir point suivant).
+
+Un ajustement a été nécessaire : `ronaldo` n'était pas membre du groupe `docker`, donc chaque commande `docker`/`docker compose` exigeait `sudo` — impossible à automatiser depuis un pipeline (sudo demande un mot de passe interactif, qu'un job CI ne peut pas fournir). Correctif, exécuté une fois manuellement sur le VPS (nécessite les droits root, donc pas automatisable depuis ce poste) :
+
+```bash
+sudo usermod -aG docker ronaldo
+```
+
+Une fois dans le groupe `docker`, `ronaldo` peut lancer `docker`/`docker compose` sans `sudo` — exactement ce qu'il faut pour un déploiement automatisé non interactif.
+
+## 5. Accès SSH depuis le pipeline (tâche 6)
+
+La clé SSH déjà présente (`~/.ssh/id_ed25519`, régénérée le 2026-08-03) a été testée avec succès :
+
+```bash
+ssh -i ~/.ssh/id_ed25519 ronaldo@<IP_VPS> "whoami"
+# → ronaldo
+```
+
+Pour que le pipeline GitHub Actions puisse se connecter de la même façon, la **clé privée** doit devenir un secret (`DEPLOY_SSH_PRIVATE_KEY`), et l'hôte/l'utilisateur des secrets simples (`DEPLOY_HOST`, `DEPLOY_USER`) — voir `docs/prj4/ci-cd-variables.md`.
+
+## 6. Répertoire applicatif sur le VPS (tâche 7)
+
+Créé (opération root, faite une fois manuellement) :
+
+```bash
+sudo mkdir -p /opt/kps-tasks-api
+sudo chown ronaldo:ronaldo /opt/kps-tasks-api
+```
+
+`ronaldo` est propriétaire du dossier, donc tout ce qui suit (copier `docker-compose.prod.yml`, écrire `.env`, exécuter `deploy.sh`) peut se faire sans `sudo`.
+
+## 7. Découverte importante : un déploiement manuel existe déjà (tâches 8-9)
+
+En inspectant le VPS, on a trouvé que le déploiement manuel du **Projet 2** tourne toujours, dans `/home/ronaldo/app/` — exactement le scénario "déploiement manuel" que le brief du Projet 4 décrit comme point de départ à corriger. Deux conséquences concrètes pour la suite :
+
+1. **Conflit de port** : cet ancien déploiement utilise aussi le port 8000. Le nouveau déploiement automatisé (`/opt/kps-tasks-api/`) va le remplacer, pas coexister avec lui.
+2. **Données réelles à préserver** : la base PostgreSQL de cet ancien déploiement contient de vraies données, dans un volume Docker nommé `app_postgres_data` (le nom vient du dossier `app/`, que Docker Compose utilise par défaut comme préfixe). Le nouveau `docker-compose.prod.yml`, lancé depuis `/opt/kps-tasks-api/`, nommerait son volume différemment (`kps-tasks-api_postgres_data`) s'il n'était pas configuré explicitement — ce qui créerait une base **vide**, et donnerait l'impression d'une perte de données alors que l'ancien volume existerait toujours, juste orphelin. La correction : déclarer le volume comme **externe**, avec le nom exact de l'existant, dans `docker-compose.prod.yml`, pour que le nouveau déploiement reprenne exactement les mêmes données (détail dans `docs/prj4/deployment-process.md`).
+
+Schéma d'architecture complet (flux cible) :
+
+```
+Dépôt GitHub (push/tag)
+  → CI : lint, test, build, Gitleaks, Sonar
+  → docker_build : build + tag + push vers GHCR
+  → deploy (nouveau job) :
+      SSH vers le VPS (ronaldo@<IP>, clé privée en secret)
+      → copie docker-compose.prod.yml + scripts/deploy.sh vers /opt/kps-tasks-api/
+      → exécution de deploy.sh sur le VPS :
+          docker login (registre) → docker compose pull → docker compose up -d
+          → vérification /health
+```
+
+## 8. Vérifier que le VPS peut faire un `pull` (tâche 10)
+
+À valider une fois `docker-compose.prod.yml` et le job `deploy` en place (Jour 3, section suivante) — le premier déploiement réel servira de preuve.
