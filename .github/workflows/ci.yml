@@ -125,14 +125,14 @@ jobs:
 
       - name: Copy deployment files
         run: |
-          scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh \
+          scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh scripts/healthcheck.sh scripts/rollback.sh \
             "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/opt/kps-tasks-api/"
 
       - name: Run deployment
         run: |
           ssh -i ~/.ssh/deploy_key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" "
             cd /opt/kps-tasks-api &&
-            chmod +x deploy.sh &&
+            chmod +x deploy.sh healthcheck.sh rollback.sh &&
             IMAGE_TAG='${{ needs.docker_build.outputs.commit_tag }}' \
             REGISTRY_URL='${{ secrets.REGISTRY_URL }}' \
             REGISTRY_USER='${{ secrets.REGISTRY_USER }}' \
