@@ -96,6 +96,15 @@ The stack uses these variables from `.env`:
 - [Commit convention](docs/prj3/commit-convention.md)
 - [Mini-defense support](docs/prj3/defense-support.md)
 
+### Project 4 (CI/CD, VPS deployment, rollback) — `docs/prj4/`
+
+- [Overview](docs/prj4/overview.md)
+- [CI/CD architecture](docs/prj4/cicd-architecture.md)
+- [CI/CD variables](docs/prj4/ci-cd-variables.md)
+- [Image versioning](docs/prj4/image-versioning.md)
+- [Deployment process](docs/prj4/deployment-process.md)
+- [Intermediate questions](docs/prj4/intermediate-questions.md)
+
 ## Operational scripts
 
 - `scripts/start.sh`

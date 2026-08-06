@@ -29,3 +29,27 @@ Le lien entre les deux se fait par convention dans ce projet : quand un tag Git 
 ### 25. Comment vérifie-t-on qu'une image est bien dans le registre ?
 
 Dans ce projet, la CI le vérifie elle-même juste après le push, avec `docker manifest inspect <tag>` : cette commande interroge le registre et échoue si l'image n'y est pas — donc si le job passe, l'image est confirmée présente (voir l'étape "Verify image is available in the registry" du job `docker_build`). On peut aussi le vérifier manuellement : soit avec `docker pull <tag>` depuis n'importe quelle machine authentifiée, soit visuellement sur la page du package GitHub (`docs/prj4/cicd-architecture.md`, section "Où voir l'image concrètement").
+
+## Jour 3 — Déploiement automatisé sur le VPS
+
+Réponses détaillées dans `docs/prj4/deployment-process.md`. Résumé :
+
+### 42. Pourquoi séparer `docker-compose.yml` et `docker-compose.prod.yml` ?
+
+Le premier **construit** l'image (`build:`), pour développer/itérer. Le second **consomme** une image déjà construite et validée par la CI (`image: ${IMAGE_TAG}`) — la production ne recompile jamais, elle déploie exactement ce qui a été testé.
+
+### 43. Pourquoi ne pas construire l'image directement sur le VPS ?
+
+Mêmes raisons qu'à la question 24 : reproductibilité, séparation des responsabilités (servir ≠ compiler), traçabilité, rapidité d'un `pull` face à un `build` complet.
+
+### 44. Pourquoi garder un fichier `current-version.txt` ?
+
+Pour toujours savoir, de façon fiable et sans ambiguïté, quelle version tourne actuellement — et pouvoir y revenir. C'est la base du rollback automatique (Jour 4) : sans cette trace, aucun script ne peut savoir vers quoi revenir en cas d'échec.
+
+### 45. Comment s'assurer que les données PostgreSQL ne sont pas supprimées ?
+
+Deux garanties : `deploy.sh` n'utilise jamais `docker compose down` (seulement `up -d`, qui ne touche pas aux volumes), et le volume est déclaré `external: true` dans `docker-compose.prod.yml` — un volume externe n'est jamais créé ni supprimé par Compose, il doit préexister. Testé en conditions réelles : migration de l'ancien déploiement manuel du Projet 2 vers le nouveau pipeline, données toujours présentes après coup (`evidence/deploy-verification.txt`).
+
+### 46. Quelle est la différence entre déployer une image et déployer du code ?
+
+Déployer du code couple l'exécution à l'environnement déjà présent sur la machine cible (risque de divergence). Déployer une image transporte un artefact complet et figé (code + dépendances + environnement d'exécution) — le serveur n'a besoin que de Docker pour l'exécuter, rien d'autre à installer.
