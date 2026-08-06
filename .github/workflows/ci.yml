@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - feature/**
+    tags:
+      - "v*"
   pull_request:
     branches:
       - main
@@ -45,18 +47,98 @@ jobs:
           pip install --only-binary :all: pytest httpx
 
       - run: pytest
-  build:
-    name: Build Docker image
+  docker_build:
+    name: Build and push Docker image
     runs-on: ubuntu-latest
 
     needs: test
 
+    permissions:
+      contents: read
+      packages: write
+
+    outputs:
+      commit_tag: ${{ steps.tags.outputs.commit_tag }}
+
     steps:
       - uses: actions/checkout@v4
 
+      - name: Compute image tags
+        id: tags
+        run: |
+          IMAGE="ghcr.io/${{ github.repository_owner }}/kps-tasks-api"
+          IMAGE=$(echo "$IMAGE" | tr '[:upper:]' '[:lower:]')
+          COMMIT_TAG="$IMAGE:commit-${GITHUB_SHA::7}"
+          echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
+          echo "commit_tag=$COMMIT_TAG" >> "$GITHUB_OUTPUT"
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            echo "version_tag=$IMAGE:${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version_tag=" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build Docker image
-        #run: docker build -t kps-task .
-        run: docker build -t kps-tasks-api:ci-${GITHUB_SHA::7} .
+        run: |
+          docker build -t "${{ steps.tags.outputs.commit_tag }}" .
+          if [ -n "${{ steps.tags.outputs.version_tag }}" ]; then
+            docker tag "${{ steps.tags.outputs.commit_tag }}" "${{ steps.tags.outputs.version_tag }}"
+          fi
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push image
+        run: |
+          docker push "${{ steps.tags.outputs.commit_tag }}"
+          if [ -n "${{ steps.tags.outputs.version_tag }}" ]; then
+            docker push "${{ steps.tags.outputs.version_tag }}"
+          fi
+
+      - name: Verify image is available in the registry
+        run: |
+          docker manifest inspect "${{ steps.tags.outputs.commit_tag }}" > /dev/null
+          echo "Image available: ${{ steps.tags.outputs.commit_tag }}"
+
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+
+    needs: docker_build
+
+    if: github.ref == 'refs/heads/main'
+
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Copy deployment files
+        run: |
+          scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh \
+            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/opt/kps-tasks-api/"
+
+      - name: Run deployment
+        run: |
+          ssh -i ~/.ssh/deploy_key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" "
+            cd /opt/kps-tasks-api &&
+            chmod +x deploy.sh &&
+            IMAGE_TAG='${{ needs.docker_build.outputs.commit_tag }}' \
+            REGISTRY_URL='${{ secrets.REGISTRY_URL }}' \
+            REGISTRY_USER='${{ secrets.REGISTRY_USER }}' \
+            REGISTRY_PASSWORD='${{ secrets.REGISTRY_PASSWORD }}' \
+            ./deploy.sh
+          "
 
   secret_scan:
     name: Gitleaks secret scan

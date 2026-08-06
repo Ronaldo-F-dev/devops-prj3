@@ -1,0 +1,40 @@
+﻿2026-08-04T12:25:30.3894677Z ##[group]Run docker push "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-67e62a2"
+2026-08-04T12:25:30.3895264Z ^[[36;1mdocker push "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-67e62a2"^[[0m
+2026-08-04T12:25:30.3895644Z ^[[36;1mif [ -n "" ]; then^[[0m
+2026-08-04T12:25:30.3895878Z ^[[36;1m  docker push ""^[[0m
+2026-08-04T12:25:30.3896092Z ^[[36;1mfi^[[0m
+2026-08-04T12:25:30.3943095Z shell: /usr/bin/bash -e {0}
+2026-08-04T12:25:30.3943345Z ##[endgroup]
+2026-08-04T12:25:30.4210605Z The push refers to repository [ghcr.io/ronaldo-f-dev/kps-tasks-api]
+2026-08-04T12:25:30.5678723Z 54e75d66762b: Preparing
+2026-08-04T12:25:30.5679128Z 1f5044b53525: Preparing
+2026-08-04T12:25:30.5679386Z 087df81f90ef: Preparing
+2026-08-04T12:25:30.5679632Z af62f61332f0: Preparing
+2026-08-04T12:25:30.5679987Z 9091a87b41d6: Preparing
+2026-08-04T12:25:30.5680366Z f4fa0d5a8f5b: Preparing
+2026-08-04T12:25:30.5680740Z b80f3ed1ee6d: Preparing
+2026-08-04T12:25:30.5681000Z 83fdf57f71f2: Preparing
+2026-08-04T12:25:30.5681424Z ccbaccfc0388: Preparing
+2026-08-04T12:25:30.5681717Z f2ec4de84f55: Preparing
+2026-08-04T12:25:30.5685437Z f4fa0d5a8f5b: Waiting
+2026-08-04T12:25:30.5686169Z 83fdf57f71f2: Waiting
+2026-08-04T12:25:30.5686743Z b80f3ed1ee6d: Waiting
+2026-08-04T12:25:30.5687102Z ccbaccfc0388: Waiting
+2026-08-04T12:25:32.4916062Z f2ec4de84f55: Waiting
+2026-08-04T12:25:32.4916401Z 54e75d66762b: Pushed
+2026-08-04T12:25:32.5340290Z af62f61332f0: Pushed
+2026-08-04T12:25:32.7604466Z b80f3ed1ee6d: Layer already exists
+2026-08-04T12:25:32.7809723Z 9091a87b41d6: Pushed
+2026-08-04T12:25:32.9368755Z 83fdf57f71f2: Layer already exists
+2026-08-04T12:25:32.9431137Z ccbaccfc0388: Layer already exists
+2026-08-04T12:25:33.0925661Z f2ec4de84f55: Layer already exists
+2026-08-04T12:25:33.9166133Z 087df81f90ef: Pushed
+2026-08-04T12:25:34.2292350Z f4fa0d5a8f5b: Pushed
+2026-08-04T12:26:37.8976300Z 1f5044b53525: Pushed
+2026-08-04T12:26:40.3733568Z commit-67e62a2: digest: sha256:13115ebd1e199234a124cae3679d219bbaed90aa462949bc10aeff106c983b38 size: 2412
+﻿2026-08-04T12:26:40.3787299Z ##[group]Run docker manifest inspect "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-67e62a2" > /dev/null
+2026-08-04T12:26:40.3788043Z ^[[36;1mdocker manifest inspect "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-67e62a2" > /dev/null^[[0m
+2026-08-04T12:26:40.3788638Z ^[[36;1mecho "Image available: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-67e62a2"^[[0m
+2026-08-04T12:26:40.3831853Z shell: /usr/bin/bash -e {0}
+2026-08-04T12:26:40.3832393Z ##[endgroup]
+2026-08-04T12:26:41.1581502Z Image available: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-67e62a2
