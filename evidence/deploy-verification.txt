@@ -1,0 +1,21 @@
+Verification post-deploiement - 2026-08-06
+
+curl http://169.58.11.221:8000/health
+{"status":"ok","database":"ok","version":"1.0.0","details":null}
+
+curl http://169.58.11.221:8000/version
+{"name":"KPS Tasks API","version":"1.0.0","environment":"production"}
+
+curl http://169.58.11.221:8000/tasks
+[{"title":"Post 1","description":"Mon post","status":"todo","id":1,"created_at":"2026-07-28T08:39:34.023934Z","updated_at":"2026-07-28T08:39:34.023934Z"}]
+-> La tache creee lors du Projet 2 est toujours presente : aucune perte de donnees
+   pendant la bascule de /home/ronaldo/app (deploiement manuel) vers
+   /opt/kps-tasks-api (deploiement automatise).
+
+docker ps (sur le VPS) :
+CONTAINER ID   IMAGE                                                STATUS
+2d85d81e60bf   ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-a1058f6   Up (healthy)
+82ac92d1430a   postgres:16-alpine                                   Up (healthy)
+
+Volume reutilise (confirme via docker inspect) : app_postgres_data
+current-version.txt : ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-a1058f6
