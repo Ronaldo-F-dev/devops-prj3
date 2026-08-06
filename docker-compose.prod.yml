@@ -46,6 +46,8 @@ services:
 
 volumes:
   postgres_data:
+    external: true
+    name: ${POSTGRES_VOLUME_NAME:-app_postgres_data}
 
 networks:
   kps_net:

@@ -57,6 +57,9 @@ jobs:
       contents: read
       packages: write
 
+    outputs:
+      commit_tag: ${{ steps.tags.outputs.commit_tag }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -99,6 +102,43 @@ jobs:
         run: |
           docker manifest inspect "${{ steps.tags.outputs.commit_tag }}" > /dev/null
           echo "Image available: ${{ steps.tags.outputs.commit_tag }}"
+
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+
+    needs: docker_build
+
+    if: github.ref == 'refs/heads/main'
+
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Copy deployment files
+        run: |
+          scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh \
+            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/opt/kps-tasks-api/"
+
+      - name: Run deployment
+        run: |
+          ssh -i ~/.ssh/deploy_key "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" "
+            cd /opt/kps-tasks-api &&
+            chmod +x deploy.sh &&
+            IMAGE_TAG='${{ needs.docker_build.outputs.commit_tag }}' \
+            REGISTRY_URL='${{ secrets.REGISTRY_URL }}' \
+            REGISTRY_USER='${{ secrets.REGISTRY_USER }}' \
+            REGISTRY_PASSWORD='${{ secrets.REGISTRY_PASSWORD }}' \
+            ./deploy.sh
+          "
 
   secret_scan:
     name: Gitleaks secret scan
