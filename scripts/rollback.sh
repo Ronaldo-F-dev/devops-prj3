@@ -32,6 +32,13 @@ else
   echo "IMAGE_TAG=$PREVIOUS_TAG" >> .env
 fi
 
+# IMAGE_TAG may already be set in the shell environment (deploy.sh exports it
+# before calling this script, with the FAILED tag). `docker compose` prefers an
+# environment variable over the same key from --env-file, so the .env edit above
+# would silently be ignored unless we also override the shell-level value here.
+IMAGE_TAG="$PREVIOUS_TAG"
+export IMAGE_TAG
+
 echo "$REGISTRY_PASSWORD" | docker login "$REGISTRY_URL" -u "$REGISTRY_USER" --password-stdin
 docker compose -f docker-compose.prod.yml --env-file .env pull
 docker compose -f docker-compose.prod.yml --env-file .env up -d
