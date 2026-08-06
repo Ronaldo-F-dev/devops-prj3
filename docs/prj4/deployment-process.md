@@ -51,7 +51,9 @@ Déployer une **image**, c'est transférer un artefact qui contient déjà tout 
 
 ## Note sur l'approbation manuelle (bonus)
 
-Un environnement GitHub `production` a été configuré avec approbation manuelle obligatoire (`required_reviewers`) avant tout déploiement. En pratique, le premier test réel n'a **pas** marqué de pause : GitHub laisse les **administrateurs du dépôt** contourner cette règle (`can_admins_bypass: true`), et le compte utilisé ici est justement propriétaire du dépôt. La règle reste pleinement active pour n'importe quel autre collaborateur — c'est une limite à connaître, pas un bug du dispositif.
+Un environnement GitHub `production` a été configuré avec approbation manuelle obligatoire (`required_reviewers`) avant tout déploiement, restreint à la branche `main`.
+
+Le tout premier run n'a pas marqué de pause (probablement le temps que la règle de protection, créée juste avant, se propage pleinement côté GitHub). Le run suivant, lui, s'est bien arrêté sur `Deploy to VPS: waiting`, avec un déploiement en attente visible via l'API (`pending_deployments`) et dans l'onglet Actions → "Review deployments". L'approbation manuelle a été donnée depuis l'interface GitHub, et le déploiement a repris et terminé avec succès — le mécanisme fonctionne comme attendu.
 
 ## Preuves
 
