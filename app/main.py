@@ -25,7 +25,7 @@ logger = logging.getLogger("app")
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="Application KPS Tasks API, deployee automatiquement via CI/CD sur VPS.",
+    description="Application KPS Tasks API, deployee via CI/CD sur VPS.",
 )
 
 
