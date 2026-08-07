@@ -53,3 +53,31 @@ Deux garanties : `deploy.sh` n'utilise jamais `docker compose down` (seulement `
 ### 46. Quelle est la différence entre déployer une image et déployer du code ?
 
 Déployer du code couple l'exécution à l'environnement déjà présent sur la machine cible (risque de divergence). Déployer une image transporte un artefact complet et figé (code + dépendances + environnement d'exécution) — le serveur n'a besoin que de Docker pour l'exécuter, rien d'autre à installer.
+
+## Jour 4 — Healthcheck et rollback automatique
+
+Réponses détaillées, avec la preuve réelle (bug trouvé et corrigé en testant), dans `docs/prj4/rollback-strategy.md`. Résumé :
+
+### 57. Pourquoi lancer un healthcheck après le déploiement ?
+
+Parce qu'un conteneur démarré n'est pas la même chose qu'une application qui fonctionne. Seule une vraie requête vers `/health` confirme que l'application répond réellement.
+
+### 58. Qu'est-ce qu'un rollback automatique ?
+
+Un mécanisme qui détecte lui-même l'échec d'un déploiement et restaure la version précédente, sans intervention humaine.
+
+### 59. Différence entre un rollback applicatif et un rollback de base de données ?
+
+Un rollback applicatif remplace le code par une version antérieure (rapide, sans risque, l'ancienne image existe déjà). Un rollback de base de données doit gérer des données qui ont changé dans le temps (perte d'écritures récentes, risques de migration) — ce projet n'automatise jamais ce second type.
+
+### 60. Pourquoi le job doit échouer même si le rollback réussit ?
+
+Parce qu'un rollback réussi restaure un état stable, pas l'état voulu : le déploiement a échoué, et ça doit rester visible pour que quelqu'un corrige le problème avant le prochain push.
+
+### 61. Que se passe-t-il si le rollback échoue aussi ?
+
+Ça s'est produit réellement pendant ce projet (voir `docs/prj4/rollback-strategy.md`) : `rollback.sh` détecte l'échec via son propre healthcheck et se termine en erreur en réclamant une intervention manuelle — ce qui a effectivement été nécessaire pour restaurer le service, le temps de diagnostiquer et corriger le bug en cause.
+
+### 62. Quelles limites vois-tu à cette stratégie ?
+
+Un seul niveau d'historique (`previous-version.txt`), healthcheck limité à `/health` (ne couvre pas toutes les régressions possibles), aucune alerte active (juste des logs à consulter), et une dépendance totale à la disponibilité du VPS lui-même.
