@@ -68,4 +68,4 @@ Détail complet : `docs/prj4/deployment-process.md`.
 
 ## Ce que ces incidents ont en commun
 
-Aucun n'a été anticipé à l'avance — les trois ont été découverts en **exécutant réellement** le pipeline, pas en le relisant. C'est exactement l'argument central du Jour 4 : un système qui n'a jamais échoué en conditions réelles n'a pas prouvé qu'il fonctionne, il a juste eu de la chance de ne pas encore avoir été testé sérieusement.
+Aucun n'a été anticipé à l'avance — les quatre ont été découverts en **exécutant réellement** le pipeline, pas en le relisant. C'est exactement l'argument central du Jour 4 : un système qui n'a jamais échoué en conditions réelles n'a pas prouvé qu'il fonctionne, il a juste eu de la chance de ne pas encore avoir été testé sérieusement.
