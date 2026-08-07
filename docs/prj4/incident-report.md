@@ -1,6 +1,6 @@
 # Rapport d'incidents — Projet 4
 
-Trois incidents réels rencontrés pendant la construction de ce pipeline, documentés avec la méthode contexte / symptôme / diagnostic / correctif / prévention. Aucun n'est un exercice simulé — chacun a été trouvé en testant réellement le système.
+Quatre incidents réels rencontrés pendant la construction de ce pipeline, documentés avec la méthode contexte / symptôme / diagnostic / correctif / prévention. Aucun n'est un exercice simulé — chacun a été trouvé en testant réellement le système.
 
 ---
 
@@ -54,6 +54,18 @@ Détail complet : `docs/prj4/deployment-process.md`.
 
 ---
 
-## Ce que ces trois incidents ont en commun
+## Incident 4 — Deux déploiements approuvés en même temps, le plus ancien écrase le plus récent
+
+**Contexte** : démo complète du Jour 5 (Phase 1). Deux commits poussés à quelques minutes d'intervalle, chacun ayant généré son propre run et sa propre demande d'approbation de déploiement.
+
+**Symptôme** : les deux approbations ont été données. Le déploiement du commit le plus **récent** a réussi en premier (logique), mais celui du commit **plus ancien**, resté en attente, s'est exécuté juste après et a redéployé une version antérieure — sans erreur ni alerte, juste un `current-version.txt` revenu en arrière silencieusement.
+
+**Diagnostic** : le job `deploy` n'avait aucune protection de concurrence. Rien n'empêchait deux runs différents de déployer en parallèle ou dans le désordre — chacun ignore totalement l'existence de l'autre, et le dernier à s'exécuter gagne, indépendamment de l'ordre des commits.
+
+**Correctif** : ajout d'un groupe de concurrence sur le job `deploy` (`concurrency: group: production-deploy, cancel-in-progress: true`). Désormais, si un déploiement plus récent est créé pendant qu'un autre est en cours ou en attente d'approbation pour le même environnement, l'ancien est automatiquement annulé plutôt que de s'exécuter plus tard.
+
+**Prévention** : toute ressource partagée et mutable (ici, l'état déployé sur un VPS) déclenchée par des événements asynchrones (des approbations humaines, qui n'arrivent pas forcément dans l'ordre) a besoin d'une garantie d'ordonnancement explicite — ne jamais supposer que "les jobs CI s'exécutent dans l'ordre des commits" sans le forcer.
+
+## Ce que ces incidents ont en commun
 
 Aucun n'a été anticipé à l'avance — les trois ont été découverts en **exécutant réellement** le pipeline, pas en le relisant. C'est exactement l'argument central du Jour 4 : un système qui n'a jamais échoué en conditions réelles n'a pas prouvé qu'il fonctionne, il a juste eu de la chance de ne pas encore avoir été testé sérieusement.

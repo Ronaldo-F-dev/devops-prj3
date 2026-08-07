@@ -113,6 +113,14 @@ jobs:
 
     environment: production
 
+    # Deployments must never race: if a newer commit's deploy job is created
+    # (running or waiting for approval), any older one for the same
+    # environment is cancelled instead of running later and overwriting the
+    # newer state (see docs/prj4/incident-report.md, incident 4).
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: true
+
     steps:
       - uses: actions/checkout@v4
 
