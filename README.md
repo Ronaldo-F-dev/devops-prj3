@@ -103,7 +103,9 @@ The stack uses these variables from `.env`:
 - [CI/CD variables](docs/prj4/ci-cd-variables.md)
 - [Image versioning](docs/prj4/image-versioning.md)
 - [Deployment process](docs/prj4/deployment-process.md)
+- [Rollback strategy](docs/prj4/rollback-strategy.md)
 - [Intermediate questions](docs/prj4/intermediate-questions.md)
+- [Defense support (day-by-day demo guide)](docs/prj4/defense-support.md)
 
 ## Operational scripts
 
