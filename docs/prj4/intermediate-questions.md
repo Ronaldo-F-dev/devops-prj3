@@ -78,6 +78,6 @@ Parce qu'un rollback réussi restaure un état stable, pas l'état voulu : le d�
 
 Ça s'est produit réellement pendant ce projet (voir `docs/prj4/rollback-strategy.md`) : `rollback.sh` détecte l'échec via son propre healthcheck et se termine en erreur en réclamant une intervention manuelle — ce qui a effectivement été nécessaire pour restaurer le service, le temps de diagnostiquer et corriger le bug en cause.
 
-### 62. Quelles limites vois-tu à cette stratégie ?
+### 62. Quelles sont les limites de cette stratégie ?
 
 Un seul niveau d'historique (`previous-version.txt`), healthcheck limité à `/health` (ne couvre pas toutes les régressions possibles), aucune alerte active (juste des logs à consulter), et une dépendance totale à la disponibilité du VPS lui-même.

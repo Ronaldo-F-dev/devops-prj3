@@ -79,7 +79,7 @@ Deux points minimum étaient demandés par le brief (point 37) ; quatre ont ét�
 
 Parce qu'un secret commité arrive tôt ou tard sur un dépôt distant (souvent public, comme ici), et que le point de contrôle le plus fiable est automatique et systématique : personne ne relit ligne par ligne chaque diff avant de pousser. Un job Gitleaks qui tourne sur chaque push/PR détecte la fuite en quelques secondes, avant que le code ne soit fusionné ou même simplement consulté par quelqu'un d'autre.
 
-### 40. Que fais-tu si un vrai secret est commité ?
+### 40. Que faire si un vrai secret est commité ?
 
 C'est arrivé concrètement pendant ce projet (IP + mot de passe VPS retrouvés dans l'historique d'une branche). La marche suivie :
 1. **Faire tourner l'accès immédiatement** (changer le mot de passe / la clé), avant même de toucher à Git — un secret poussé sur un dépôt public doit être considéré comme compromis dès sa découverte, qu'on ait ou non la preuve qu'il ait été utilisé.
