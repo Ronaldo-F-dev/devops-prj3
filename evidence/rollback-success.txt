@@ -1,0 +1,722 @@
+﻿2026-08-06T13:20:10.4401869Z ##[debug]Starting: Deploy to VPS
+2026-08-06T13:20:10.4426505Z ##[debug]Cleaning runner temp folder: /home/runner/work/_temp
+2026-08-06T13:20:10.4564720Z ##[debug]Starting: Set up job
+2026-08-06T13:20:10.4566164Z Current runner version: '2.336.0'
+2026-08-06T13:20:10.4590360Z ##[group]Runner Image Provisioner
+2026-08-06T13:20:10.4591313Z Hosted Compute Agent
+2026-08-06T13:20:10.4592153Z Version: 20260729.566
+2026-08-06T13:20:10.4593162Z Commit: cf7153fe6e25b664e8693c24944bf2b00355d109
+2026-08-06T13:20:10.4594159Z Build Date: 2026-07-29T19:17:02Z
+2026-08-06T13:20:10.4594958Z Worker ID: {2f3d297d-158f-4d1f-9391-763c52ae0dbc}
+2026-08-06T13:20:10.4595859Z Azure Region: westus
+2026-08-06T13:20:10.4596558Z ##[endgroup]
+2026-08-06T13:20:10.4598295Z ##[group]Operating System
+2026-08-06T13:20:10.4599079Z Ubuntu
+2026-08-06T13:20:10.4599766Z 24.04.4
+2026-08-06T13:20:10.4600393Z LTS
+2026-08-06T13:20:10.4601111Z ##[endgroup]
+2026-08-06T13:20:10.4601795Z ##[group]Runner Image
+2026-08-06T13:20:10.4602643Z Image: ubuntu-24.04
+2026-08-06T13:20:10.4604108Z Version: 20260804.265.1
+2026-08-06T13:20:10.4605491Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260804.265/images/ubuntu/Ubuntu2404-Readme.md
+2026-08-06T13:20:10.4607121Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260804.265
+2026-08-06T13:20:10.4608232Z ##[endgroup]
+2026-08-06T13:20:10.4609692Z ##[group]GITHUB_TOKEN Permissions
+2026-08-06T13:20:10.4611873Z Contents: read
+2026-08-06T13:20:10.4613045Z Metadata: read
+2026-08-06T13:20:10.4613990Z Packages: read
+2026-08-06T13:20:10.4614748Z ##[endgroup]
+2026-08-06T13:20:10.4617094Z Secret source: Actions
+2026-08-06T13:20:10.4618616Z ##[debug]Primary repository: ***/devops-prj3
+2026-08-06T13:20:10.4619621Z Prepare workflow directory
+2026-08-06T13:20:10.4702058Z ##[debug]Creating pipeline directory: '/home/runner/work/devops-prj3'
+2026-08-06T13:20:10.4706506Z ##[debug]Creating workspace directory: '/home/runner/work/devops-prj3/devops-prj3'
+2026-08-06T13:20:10.4708608Z ##[debug]Update context data
+2026-08-06T13:20:10.4713109Z ##[debug]Evaluating job-level environment variables
+2026-08-06T13:20:10.4958050Z ##[debug]Evaluating job container
+2026-08-06T13:20:10.4962078Z ##[debug]Evaluating job service containers
+2026-08-06T13:20:10.4965599Z ##[debug]Evaluating job defaults
+2026-08-06T13:20:10.4997693Z Prepare all required actions
+2026-08-06T13:20:10.5049464Z Getting action download info
+2026-08-06T13:20:10.8634976Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-08-06T13:20:10.8683615Z ##[debug]Copied action archive '/opt/actionarchivecache/actions_checkout/11d5960a326750d5838078e36cf38b85af677262.tar.gz' to '/home/runner/work/_actions/_temp_91ac342b-3ad1-461a-bf16-ec7c7f2a19f4/89f74fc6-6c52-4775-a25a-96dddf936dd7.tar.gz'
+2026-08-06T13:20:10.9677931Z ##[debug]Unwrap 'actions-checkout-11d5960' to '/home/runner/work/_actions/actions/checkout/v4'
+2026-08-06T13:20:10.9801908Z ##[debug]Archive '/home/runner/work/_actions/_temp_91ac342b-3ad1-461a-bf16-ec7c7f2a19f4/89f74fc6-6c52-4775-a25a-96dddf936dd7.tar.gz' has been unzipped into '/home/runner/work/_actions/actions/checkout/v4'.
+2026-08-06T13:20:10.9918037Z ##[debug]action.yml for action: '/home/runner/work/_actions/actions/checkout/v4/action.yml'.
+2026-08-06T13:20:11.0904916Z ##[debug]Set step '__actions_checkout' display name to: 'Run actions/checkout@v4'
+2026-08-06T13:20:11.0909341Z ##[debug]Set step '__run' display name to: 'Set up SSH'
+2026-08-06T13:20:11.0911871Z ##[debug]Set step '__run_2' display name to: 'Copy deployment files'
+2026-08-06T13:20:11.0914729Z ##[debug]Set step '__run_3' display name to: 'Run deployment'
+2026-08-06T13:20:11.0915599Z Complete job name: Deploy to VPS
+2026-08-06T13:20:11.0944643Z ##[debug]Collect running processes for tracking orphan processes.
+2026-08-06T13:20:11.1174773Z ##[debug]Finishing: Set up job
+2026-08-06T13:20:11.1319342Z ##[debug]Evaluating condition for step: 'Run actions/checkout@v4'
+2026-08-06T13:20:11.1365111Z ##[debug]Evaluating: success()
+2026-08-06T13:20:11.1371138Z ##[debug]Evaluating success:
+2026-08-06T13:20:11.1387412Z ##[debug]=> true
+2026-08-06T13:20:11.1395181Z ##[debug]Result: true
+2026-08-06T13:20:11.1424954Z ##[debug]Starting: Run actions/checkout@v4
+2026-08-06T13:20:11.1507795Z ##[debug]Register post job cleanup for action: actions/checkout@v4
+2026-08-06T13:20:11.1603857Z ##[debug]Loading inputs
+2026-08-06T13:20:11.1615717Z ##[debug]Evaluating: github.repository
+2026-08-06T13:20:11.1617054Z ##[debug]Evaluating Index:
+2026-08-06T13:20:11.1619190Z ##[debug]..Evaluating github:
+2026-08-06T13:20:11.1620988Z ##[debug]..=> Object
+2026-08-06T13:20:11.1627440Z ##[debug]..Evaluating String:
+2026-08-06T13:20:11.1628467Z ##[debug]..=> 'repository'
+2026-08-06T13:20:11.1633172Z ##[debug]=> '***/devops-prj3'
+2026-08-06T13:20:11.1635021Z ##[debug]Result: '***/devops-prj3'
+2026-08-06T13:20:11.1639608Z ##[debug]Evaluating: github.token
+2026-08-06T13:20:11.1640280Z ##[debug]Evaluating Index:
+2026-08-06T13:20:11.1640890Z ##[debug]..Evaluating github:
+2026-08-06T13:20:11.1641522Z ##[debug]..=> Object
+2026-08-06T13:20:11.1642101Z ##[debug]..Evaluating String:
+2026-08-06T13:20:11.1643204Z ##[debug]..=> 'token'
+2026-08-06T13:20:11.1647154Z ##[debug]=> '***'
+2026-08-06T13:20:11.1650761Z ##[debug]Result: '***'
+2026-08-06T13:20:11.1677297Z ##[debug]Loading env
+2026-08-06T13:20:11.1751023Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-06T13:20:11.1760322Z ##[group]Run actions/checkout@v4
+2026-08-06T13:20:11.1761146Z with:
+2026-08-06T13:20:11.1761776Z   repository: ***/devops-prj3
+2026-08-06T13:20:11.1765626Z   token: ***
+2026-08-06T13:20:11.1766169Z   ssh-strict: true
+2026-08-06T13:20:11.1766689Z   ssh-user: git
+2026-08-06T13:20:11.1767217Z   persist-credentials: true
+2026-08-06T13:20:11.1767797Z   clean: true
+2026-08-06T13:20:11.1768324Z   sparse-checkout-cone-mode: true
+2026-08-06T13:20:11.1768924Z   fetch-depth: 1
+2026-08-06T13:20:11.1769430Z   fetch-tags: false
+2026-08-06T13:20:11.1769964Z   show-progress: true
+2026-08-06T13:20:11.1770491Z   lfs: false
+2026-08-06T13:20:11.1770997Z   submodules: false
+2026-08-06T13:20:11.1771547Z   set-safe-directory: true
+2026-08-06T13:20:11.1772140Z   allow-unsafe-pr-checkout: false
+2026-08-06T13:20:11.1773205Z ##[endgroup]
+2026-08-06T13:20:11.2860094Z ##[debug]GITHUB_WORKSPACE = '/home/runner/work/devops-prj3/devops-prj3'
+2026-08-06T13:20:11.2862254Z ##[debug]qualified repository = '***/devops-prj3'
+2026-08-06T13:20:11.2863755Z ##[debug]ref = 'refs/heads/main'
+2026-08-06T13:20:11.2864802Z ##[debug]commit = '23a9e5103ed5a0d10cad08cf3410aa937cb06bae'
+2026-08-06T13:20:11.2865858Z ##[debug]clean = true
+2026-08-06T13:20:11.2866748Z ##[debug]filter = undefined
+2026-08-06T13:20:11.2867638Z ##[debug]fetch depth = 1
+2026-08-06T13:20:11.2868508Z ##[debug]fetch tags = false
+2026-08-06T13:20:11.2869427Z ##[debug]show progress = true
+2026-08-06T13:20:11.2870324Z ##[debug]lfs = false
+2026-08-06T13:20:11.2871161Z ##[debug]submodules = false
+2026-08-06T13:20:11.2872050Z ##[debug]recursive submodules = false
+2026-08-06T13:20:11.2877962Z ##[debug]GitHub Host URL = 
+2026-08-06T13:20:11.2879517Z ##[debug]allow unsafe PR checkout = false
+2026-08-06T13:20:11.2896577Z ::add-matcher::/home/runner/work/_actions/actions/checkout/v4/dist/problem-matcher.json
+2026-08-06T13:20:11.2996999Z ##[debug]Added matchers: 'checkout-git'. Problem matchers scan action output for known warning or error strings and report these inline.
+2026-08-06T13:20:11.3005080Z Syncing repository: ***/devops-prj3
+2026-08-06T13:20:11.3007346Z ::group::Getting Git version info
+2026-08-06T13:20:11.3009521Z ##[group]Getting Git version info
+2026-08-06T13:20:11.3011429Z Working directory is '/home/runner/work/devops-prj3/devops-prj3'
+2026-08-06T13:20:11.3013756Z ##[debug]Getting git version
+2026-08-06T13:20:11.3014965Z [command]/usr/bin/git version
+2026-08-06T13:20:11.3138718Z git version 2.54.0
+2026-08-06T13:20:11.3159473Z ##[debug]0
+2026-08-06T13:20:11.3161988Z ##[debug]git version 2.54.0
+2026-08-06T13:20:11.3163289Z ##[debug]
+2026-08-06T13:20:11.3165600Z ##[debug]Set git useragent to: git/2.54.0 (github-actions-checkout)
+2026-08-06T13:20:11.3168213Z ::endgroup::
+2026-08-06T13:20:11.3169237Z ##[endgroup]
+2026-08-06T13:20:11.3177746Z ::add-mask::***
+2026-08-06T13:20:11.3181396Z Temporarily overriding HOME='/home/runner/work/_temp/8083f886-a286-46af-95d6-b8678ed8efc7' before making global git config changes
+2026-08-06T13:20:11.3184858Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-06T13:20:11.3194405Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-prj3/devops-prj3
+2026-08-06T13:20:11.3247150Z ##[debug]0
+2026-08-06T13:20:11.3253790Z ##[debug]
+2026-08-06T13:20:11.3254937Z Deleting the contents of '/home/runner/work/devops-prj3/devops-prj3'
+2026-08-06T13:20:11.3259632Z ::group::Initializing the repository
+2026-08-06T13:20:11.3260756Z ##[group]Initializing the repository
+2026-08-06T13:20:11.3264320Z [command]/usr/bin/git init /home/runner/work/devops-prj3/devops-prj3
+2026-08-06T13:20:11.3409557Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-08-06T13:20:11.3411469Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-08-06T13:20:11.3413430Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-08-06T13:20:11.3414935Z hint: call:
+2026-08-06T13:20:11.3415769Z hint:
+2026-08-06T13:20:11.3416772Z hint: 	git config --global init.defaultBranch <name>
+2026-08-06T13:20:11.3417901Z hint:
+2026-08-06T13:20:11.3418962Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-08-06T13:20:11.3420739Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-08-06T13:20:11.3422125Z hint:
+2026-08-06T13:20:11.3423162Z hint: 	git branch -m <name>
+2026-08-06T13:20:11.3424101Z hint:
+2026-08-06T13:20:11.3425310Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-08-06T13:20:11.3427252Z Initialized empty Git repository in /home/runner/work/devops-prj3/devops-prj3/.git/
+2026-08-06T13:20:11.3429419Z ##[debug]0
+2026-08-06T13:20:11.3430948Z ##[debug]Initialized empty Git repository in /home/runner/work/devops-prj3/devops-prj3/.git/
+2026-08-06T13:20:11.3431861Z ##[debug]
+2026-08-06T13:20:11.3433336Z [command]/usr/bin/git remote add origin https://github.com/***/devops-prj3
+2026-08-06T13:20:11.3482309Z ##[debug]0
+2026-08-06T13:20:11.3483861Z ##[debug]
+2026-08-06T13:20:11.3485433Z ::endgroup::
+2026-08-06T13:20:11.3486284Z ##[endgroup]
+2026-08-06T13:20:11.3487748Z ::group::Disabling automatic garbage collection
+2026-08-06T13:20:11.3489032Z ##[group]Disabling automatic garbage collection
+2026-08-06T13:20:11.3490308Z [command]/usr/bin/git config --local gc.auto 0
+2026-08-06T13:20:11.3526178Z ##[debug]0
+2026-08-06T13:20:11.3527274Z ##[debug]
+2026-08-06T13:20:11.3528095Z ::endgroup::
+2026-08-06T13:20:11.3528617Z ##[endgroup]
+2026-08-06T13:20:11.3529449Z ::group::Setting up auth
+2026-08-06T13:20:11.3530020Z ##[group]Setting up auth
+2026-08-06T13:20:11.3537433Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-06T13:20:11.3577459Z ##[debug]1
+2026-08-06T13:20:11.3578588Z ##[debug]
+2026-08-06T13:20:11.3585923Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-06T13:20:11.3993811Z ##[debug]0
+2026-08-06T13:20:11.3994803Z ##[debug]
+2026-08-06T13:20:11.4001141Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-06T13:20:11.4034217Z ##[debug]1
+2026-08-06T13:20:11.4035290Z ##[debug]
+2026-08-06T13:20:11.4040299Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-06T13:20:11.4277357Z ##[debug]0
+2026-08-06T13:20:11.4278451Z ##[debug]
+2026-08-06T13:20:11.4289989Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-06T13:20:11.4332187Z ##[debug]1
+2026-08-06T13:20:11.4333791Z ##[debug]
+2026-08-06T13:20:11.4339992Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-06T13:20:11.4570539Z ##[debug]0
+2026-08-06T13:20:11.4571554Z ##[debug]
+2026-08-06T13:20:11.4580080Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-08-06T13:20:11.4614392Z ##[debug]0
+2026-08-06T13:20:11.4616101Z ##[debug]
+2026-08-06T13:20:11.4623752Z ::endgroup::
+2026-08-06T13:20:11.4624708Z ##[endgroup]
+2026-08-06T13:20:11.4626383Z ::group::Fetching the repository
+2026-08-06T13:20:11.4627663Z ##[group]Fetching the repository
+2026-08-06T13:20:11.4636842Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +23a9e5103ed5a0d10cad08cf3410aa937cb06bae:refs/remotes/origin/main
+2026-08-06T13:20:11.9476536Z From https://github.com/***/devops-prj3
+2026-08-06T13:20:11.9477578Z  * [new ref]         23a9e5103ed5a0d10cad08cf3410aa937cb06bae -> origin/main
+2026-08-06T13:20:11.9516539Z ##[debug]0
+2026-08-06T13:20:11.9518167Z ##[debug]
+2026-08-06T13:20:11.9519579Z ::endgroup::
+2026-08-06T13:20:11.9520434Z ##[endgroup]
+2026-08-06T13:20:11.9521979Z ::group::Determining the checkout info
+2026-08-06T13:20:11.9523214Z ##[group]Determining the checkout info
+2026-08-06T13:20:11.9524523Z ::endgroup::
+2026-08-06T13:20:11.9525082Z ##[endgroup]
+2026-08-06T13:20:11.9526491Z [command]/usr/bin/git sparse-checkout disable
+2026-08-06T13:20:11.9572620Z ##[debug]0
+2026-08-06T13:20:11.9574540Z ##[debug]
+2026-08-06T13:20:11.9578193Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-08-06T13:20:11.9609250Z ##[debug]0
+2026-08-06T13:20:11.9610725Z ##[debug]
+2026-08-06T13:20:11.9612216Z ::group::Checking out the ref
+2026-08-06T13:20:11.9613248Z ##[group]Checking out the ref
+2026-08-06T13:20:11.9614760Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-08-06T13:20:11.9736372Z Switched to a new branch 'main'
+2026-08-06T13:20:11.9739216Z branch 'main' set up to track 'origin/main'.
+2026-08-06T13:20:11.9745132Z ##[debug]0
+2026-08-06T13:20:11.9746606Z ##[debug]branch 'main' set up to track 'origin/main'.
+2026-08-06T13:20:11.9747706Z ##[debug]
+2026-08-06T13:20:11.9748749Z ::endgroup::
+2026-08-06T13:20:11.9749249Z ##[endgroup]
+2026-08-06T13:20:11.9787617Z ##[debug]0
+2026-08-06T13:20:11.9788645Z ##[debug]commit 23a9e5103ed5a0d10cad08cf3410aa937cb06bae
+2026-08-06T13:20:11.9789612Z ##[debug]Author: Ronaldo <awademe***o@gmail.com>
+2026-08-06T13:20:11.9790351Z ##[debug]Date:   Thu Aug 6 10:35:40 2026 +0100
+2026-08-06T13:20:11.9791449Z ##[debug]
+2026-08-06T13:20:11.9792438Z ##[debug]    fix: export IMAGE_TAG in rollback.sh so docker compose doesn't reuse the failed tag from the shell environment
+2026-08-06T13:20:11.9793956Z ##[debug]
+2026-08-06T13:20:11.9794540Z [command]/usr/bin/git log -1 --format=%H
+2026-08-06T13:20:11.9822220Z 23a9e5103ed5a0d10cad08cf3410aa937cb06bae
+2026-08-06T13:20:11.9826491Z ##[debug]0
+2026-08-06T13:20:11.9827539Z ##[debug]23a9e5103ed5a0d10cad08cf3410aa937cb06bae
+2026-08-06T13:20:11.9828204Z ##[debug]
+2026-08-06T13:20:11.9903519Z ##[debug]Unsetting HOME override
+2026-08-06T13:20:11.9909448Z ::remove-matcher owner=checkout-git::
+2026-08-06T13:20:11.9924166Z ##[debug]Removed matchers: 'checkout-git'
+2026-08-06T13:20:11.9930220Z ##[debug]Node Action run completed with exit code 0
+2026-08-06T13:20:11.9965402Z ##[debug]Save intra-action state isPost = true
+2026-08-06T13:20:11.9966322Z ##[debug]Save intra-action state setSafeDirectory = true
+2026-08-06T13:20:11.9967343Z ##[debug]Save intra-action state repositoryPath = /home/runner/work/devops-prj3/devops-prj3
+2026-08-06T13:20:11.9972421Z ##[debug]Set output commit = 23a9e5103ed5a0d10cad08cf3410aa937cb06bae
+2026-08-06T13:20:11.9974293Z ##[debug]Set output ref = refs/heads/main
+2026-08-06T13:20:11.9991853Z ##[debug]Finishing: Run actions/checkout@v4
+2026-08-06T13:20:12.0011573Z ##[debug]Evaluating condition for step: 'Set up SSH'
+2026-08-06T13:20:12.0015454Z ##[debug]Evaluating: success()
+2026-08-06T13:20:12.0016344Z ##[debug]Evaluating success:
+2026-08-06T13:20:12.0017281Z ##[debug]=> true
+2026-08-06T13:20:12.0018090Z ##[debug]Result: true
+2026-08-06T13:20:12.0019248Z ##[debug]Starting: Set up SSH
+2026-08-06T13:20:12.0036683Z ##[debug]Loading inputs
+2026-08-06T13:20:12.0053334Z ##[debug]Evaluating: format('mkdir -p ~/.ssh
+2026-08-06T13:20:12.0054116Z ##[debug]printf ''%s\n'' "{0}" > ~/.ssh/deploy_key
+2026-08-06T13:20:12.0054789Z ##[debug]chmod 600 ~/.ssh/deploy_key
+2026-08-06T13:20:12.0055509Z ##[debug]ssh-keyscan -H "{1}" >> ~/.ssh/known_hosts 2>/dev/null
+2026-08-06T13:20:12.0056400Z ##[debug]', secrets.DEPLOY_SSH_PRIVATE_KEY, secrets.DEPLOY_HOST)
+2026-08-06T13:20:12.0057172Z ##[debug]Evaluating format:
+2026-08-06T13:20:12.0061463Z ##[debug]..Evaluating String:
+2026-08-06T13:20:12.0062194Z ##[debug]..=> 'mkdir -p ~/.ssh
+2026-08-06T13:20:12.0063205Z ##[debug]printf ''%s\n'' "{0}" > ~/.ssh/deploy_key
+2026-08-06T13:20:12.0063940Z ##[debug]chmod 600 ~/.ssh/deploy_key
+2026-08-06T13:20:12.0064661Z ##[debug]ssh-keyscan -H "{1}" >> ~/.ssh/known_hosts 2>/dev/null
+2026-08-06T13:20:12.0065383Z ##[debug]'
+2026-08-06T13:20:12.0078101Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:12.0078752Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:12.0079392Z ##[debug]....=> Object
+2026-08-06T13:20:12.0079964Z ##[debug]....Evaluating String:
+2026-08-06T13:20:12.0080579Z ##[debug]....=> 'DEPLOY_SSH_PRIVATE_KEY'
+2026-08-06T13:20:12.0081481Z ##[debug]..=> '***
+2026-08-06T13:20:12.0082289Z ##[debug]***
+2026-08-06T13:20:12.0083414Z ##[debug]***
+2026-08-06T13:20:12.0084204Z ##[debug]***
+2026-08-06T13:20:12.0084980Z ##[debug]***
+2026-08-06T13:20:12.0085682Z ##[debug]***
+2026-08-06T13:20:12.0086223Z ##[debug]***'
+2026-08-06T13:20:12.0087462Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:12.0088086Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:12.0088691Z ##[debug]....=> Object
+2026-08-06T13:20:12.0089253Z ##[debug]....Evaluating String:
+2026-08-06T13:20:12.0089843Z ##[debug]....=> 'DEPLOY_HOST'
+2026-08-06T13:20:12.0090479Z ##[debug]..=> '***'
+2026-08-06T13:20:12.0091148Z ##[debug]=> 'mkdir -p ~/.ssh
+2026-08-06T13:20:12.0091850Z ##[debug]printf ''%s\n'' "***
+2026-08-06T13:20:12.0093005Z ##[debug]***
+2026-08-06T13:20:12.0093822Z ##[debug]***
+2026-08-06T13:20:12.0094583Z ##[debug]***
+2026-08-06T13:20:12.0095342Z ##[debug]***
+2026-08-06T13:20:12.0096046Z ##[debug]***
+2026-08-06T13:20:12.0096656Z ##[debug]***" > ~/.ssh/deploy_key
+2026-08-06T13:20:12.0097240Z ##[debug]chmod 600 ~/.ssh/deploy_key
+2026-08-06T13:20:12.0098008Z ##[debug]ssh-keyscan -H "***" >> ~/.ssh/known_hosts 2>/dev/null
+2026-08-06T13:20:12.0098722Z ##[debug]'
+2026-08-06T13:20:12.0099268Z ##[debug]Result: 'mkdir -p ~/.ssh
+2026-08-06T13:20:12.0099962Z ##[debug]printf ''%s\n'' "***
+2026-08-06T13:20:12.0100803Z ##[debug]***
+2026-08-06T13:20:12.0101553Z ##[debug]***
+2026-08-06T13:20:12.0102297Z ##[debug]***
+2026-08-06T13:20:12.0103379Z ##[debug]***
+2026-08-06T13:20:12.0104090Z ##[debug]***
+2026-08-06T13:20:12.0104692Z ##[debug]***" > ~/.ssh/deploy_key
+2026-08-06T13:20:12.0105263Z ##[debug]chmod 600 ~/.ssh/deploy_key
+2026-08-06T13:20:12.0106027Z ##[debug]ssh-keyscan -H "***" >> ~/.ssh/known_hosts 2>/dev/null
+2026-08-06T13:20:12.0106717Z ##[debug]'
+2026-08-06T13:20:12.0112283Z ##[debug]Loading env
+2026-08-06T13:20:12.0132684Z ##[group]Run mkdir -p ~/.ssh
+2026-08-06T13:20:12.0133689Z ^[[36;1mmkdir -p ~/.ssh^[[0m
+2026-08-06T13:20:12.0134457Z ^[[36;1mprintf '%s\n' "***^[[0m
+2026-08-06T13:20:12.0135355Z ^[[36;1m***^[[0m
+2026-08-06T13:20:12.0136153Z ^[[36;1m***^[[0m
+2026-08-06T13:20:12.0136942Z ^[[36;1m***^[[0m
+2026-08-06T13:20:12.0137723Z ^[[36;1m***^[[0m
+2026-08-06T13:20:12.0138700Z ^[[36;1m***^[[0m
+2026-08-06T13:20:12.0139315Z ^[[36;1m***" > ~/.ssh/deploy_key^[[0m
+2026-08-06T13:20:12.0139911Z ^[[36;1mchmod 600 ~/.ssh/deploy_key^[[0m
+2026-08-06T13:20:12.0140682Z ^[[36;1mssh-keyscan -H "***" >> ~/.ssh/known_hosts 2>/dev/null^[[0m
+2026-08-06T13:20:12.0307646Z shell: /usr/bin/bash -e {0}
+2026-08-06T13:20:12.0308321Z ##[endgroup]
+2026-08-06T13:20:12.0400460Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/40a934d4-a7ba-427a-aa22-e02786f7200a.sh
+2026-08-06T13:20:14.3988951Z ##[debug]Finishing: Set up SSH
+2026-08-06T13:20:14.3999219Z ##[debug]Evaluating condition for step: 'Copy deployment files'
+2026-08-06T13:20:14.4002097Z ##[debug]Evaluating: success()
+2026-08-06T13:20:14.4002639Z ##[debug]Evaluating success:
+2026-08-06T13:20:14.4003415Z ##[debug]=> true
+2026-08-06T13:20:14.4004125Z ##[debug]Result: true
+2026-08-06T13:20:14.4004913Z ##[debug]Starting: Copy deployment files
+2026-08-06T13:20:14.4018204Z ##[debug]Loading inputs
+2026-08-06T13:20:14.4020705Z ##[debug]Evaluating: format('scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh scripts/healthcheck.sh scripts/rollback.sh \
+2026-08-06T13:20:14.4021490Z ##[debug]  "{0}@{1}:/opt/kps-tasks-api/"
+2026-08-06T13:20:14.4021908Z ##[debug]', secrets.DEPLOY_USER, secrets.DEPLOY_HOST)
+2026-08-06T13:20:14.4022338Z ##[debug]Evaluating format:
+2026-08-06T13:20:14.4022695Z ##[debug]..Evaluating String:
+2026-08-06T13:20:14.4023671Z ##[debug]..=> 'scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh scripts/healthcheck.sh scripts/rollback.sh \
+2026-08-06T13:20:14.4024350Z ##[debug]  "{0}@{1}:/opt/kps-tasks-api/"
+2026-08-06T13:20:14.4024712Z ##[debug]'
+2026-08-06T13:20:14.4025156Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:14.4025503Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:14.4025867Z ##[debug]....=> Object
+2026-08-06T13:20:14.4026213Z ##[debug]....Evaluating String:
+2026-08-06T13:20:14.4026564Z ##[debug]....=> 'DEPLOY_USER'
+2026-08-06T13:20:14.4027209Z ##[debug]..=> '***'
+2026-08-06T13:20:14.4027576Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:14.4027919Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:14.4028288Z ##[debug]....=> Object
+2026-08-06T13:20:14.4028620Z ##[debug]....Evaluating String:
+2026-08-06T13:20:14.4028985Z ##[debug]....=> 'DEPLOY_HOST'
+2026-08-06T13:20:14.4029377Z ##[debug]..=> '***'
+2026-08-06T13:20:14.4030016Z ##[debug]=> 'scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh scripts/healthcheck.sh scripts/rollback.sh \
+2026-08-06T13:20:14.4030751Z ##[debug]  "***@***:/opt/kps-tasks-api/"
+2026-08-06T13:20:14.4031140Z ##[debug]'
+2026-08-06T13:20:14.4031753Z ##[debug]Result: 'scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh scripts/healthcheck.sh scripts/rollback.sh \
+2026-08-06T13:20:14.4032476Z ##[debug]  "***@***:/opt/kps-tasks-api/"
+2026-08-06T13:20:14.4033013Z ##[debug]'
+2026-08-06T13:20:14.4033594Z ##[debug]Loading env
+2026-08-06T13:20:14.4039152Z ##[group]Run scp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh scripts/healthcheck.sh scripts/rollback.sh \
+2026-08-06T13:20:14.4040166Z ^[[36;1mscp -i ~/.ssh/deploy_key docker-compose.prod.yml scripts/deploy.sh scripts/healthcheck.sh scripts/rollback.sh \^[[0m
+2026-08-06T13:20:14.4040930Z ^[[36;1m  "***@***:/opt/kps-tasks-api/"^[[0m
+2026-08-06T13:20:14.4107047Z shell: /usr/bin/bash -e {0}
+2026-08-06T13:20:14.4107404Z ##[endgroup]
+2026-08-06T13:20:14.4171909Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/025b9999-0caf-40de-b304-f8413c7fba62.sh
+2026-08-06T13:20:22.6454805Z ##[debug]Finishing: Copy deployment files
+2026-08-06T13:20:22.6465650Z ##[debug]Evaluating condition for step: 'Run deployment'
+2026-08-06T13:20:22.6468375Z ##[debug]Evaluating: success()
+2026-08-06T13:20:22.6468894Z ##[debug]Evaluating success:
+2026-08-06T13:20:22.6469466Z ##[debug]=> true
+2026-08-06T13:20:22.6470011Z ##[debug]Result: true
+2026-08-06T13:20:22.6470765Z ##[debug]Starting: Run deployment
+2026-08-06T13:20:22.6485418Z ##[debug]Loading inputs
+2026-08-06T13:20:22.6487916Z ##[debug]Evaluating: format('ssh -i ~/.ssh/deploy_key "{0}@{1}" "
+2026-08-06T13:20:22.6488666Z ##[debug]  cd /opt/kps-tasks-api &&
+2026-08-06T13:20:22.6489087Z ##[debug]  chmod +x deploy.sh healthcheck.sh rollback.sh &&
+2026-08-06T13:20:22.6489514Z ##[debug]  IMAGE_TAG=''{2}'' \
+2026-08-06T13:20:22.6489870Z ##[debug]  REGISTRY_URL=''{3}'' \
+2026-08-06T13:20:22.6490220Z ##[debug]  REGISTRY_USER=''{4}'' \
+2026-08-06T13:20:22.6490577Z ##[debug]  REGISTRY_PASSWORD=''{5}'' \
+2026-08-06T13:20:22.6490945Z ##[debug]  ./deploy.sh
+2026-08-06T13:20:22.6491454Z ##[debug]"
+2026-08-06T13:20:22.6493199Z ##[debug]', secrets.DEPLOY_USER, secrets.DEPLOY_HOST, needs.docker_build.outputs.commit_tag, secrets.REGISTRY_URL, secrets.REGISTRY_USER, secrets.REGISTRY_PASSWORD)
+2026-08-06T13:20:22.6494063Z ##[debug]Evaluating format:
+2026-08-06T13:20:22.6494424Z ##[debug]..Evaluating String:
+2026-08-06T13:20:22.6494840Z ##[debug]..=> 'ssh -i ~/.ssh/deploy_key "{0}@{1}" "
+2026-08-06T13:20:22.6495241Z ##[debug]  cd /opt/kps-tasks-api &&
+2026-08-06T13:20:22.6495659Z ##[debug]  chmod +x deploy.sh healthcheck.sh rollback.sh &&
+2026-08-06T13:20:22.6496075Z ##[debug]  IMAGE_TAG=''{2}'' \
+2026-08-06T13:20:22.6496411Z ##[debug]  REGISTRY_URL=''{3}'' \
+2026-08-06T13:20:22.6496759Z ##[debug]  REGISTRY_USER=''{4}'' \
+2026-08-06T13:20:22.6497129Z ##[debug]  REGISTRY_PASSWORD=''{5}'' \
+2026-08-06T13:20:22.6497481Z ##[debug]  ./deploy.sh
+2026-08-06T13:20:22.6497774Z ##[debug]"
+2026-08-06T13:20:22.6498049Z ##[debug]'
+2026-08-06T13:20:22.6498574Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:22.6498940Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:22.6499309Z ##[debug]....=> Object
+2026-08-06T13:20:22.6499663Z ##[debug]....Evaluating String:
+2026-08-06T13:20:22.6500063Z ##[debug]....=> 'DEPLOY_USER'
+2026-08-06T13:20:22.6500589Z ##[debug]..=> '***'
+2026-08-06T13:20:22.6500971Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:22.6501318Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:22.6501669Z ##[debug]....=> Object
+2026-08-06T13:20:22.6501997Z ##[debug]....Evaluating String:
+2026-08-06T13:20:22.6502367Z ##[debug]....=> 'DEPLOY_HOST'
+2026-08-06T13:20:22.6503044Z ##[debug]..=> '***'
+2026-08-06T13:20:22.6503450Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:22.6503798Z ##[debug]....Evaluating Index:
+2026-08-06T13:20:22.6504141Z ##[debug]......Evaluating Index:
+2026-08-06T13:20:22.6504487Z ##[debug]........Evaluating needs:
+2026-08-06T13:20:22.6504856Z ##[debug]........=> Object
+2026-08-06T13:20:22.6505192Z ##[debug]........Evaluating String:
+2026-08-06T13:20:22.6505549Z ##[debug]........=> 'docker_build'
+2026-08-06T13:20:22.6505948Z ##[debug]......=> Object
+2026-08-06T13:20:22.6506289Z ##[debug]......Evaluating String:
+2026-08-06T13:20:22.6506639Z ##[debug]......=> 'outputs'
+2026-08-06T13:20:22.6506986Z ##[debug]....=> Object
+2026-08-06T13:20:22.6507312Z ##[debug]....Evaluating String:
+2026-08-06T13:20:22.6507666Z ##[debug]....=> 'commit_tag'
+2026-08-06T13:20:22.6508152Z ##[debug]..=> '***/***-f-dev/kps-tasks-api:commit-23a9e51'
+2026-08-06T13:20:22.6508653Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:22.6509018Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:22.6509373Z ##[debug]....=> Object
+2026-08-06T13:20:22.6509699Z ##[debug]....Evaluating String:
+2026-08-06T13:20:22.6510043Z ##[debug]....=> 'REGISTRY_URL'
+2026-08-06T13:20:22.6510421Z ##[debug]..=> '***'
+2026-08-06T13:20:22.6510759Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:22.6511106Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:22.6511459Z ##[debug]....=> Object
+2026-08-06T13:20:22.6511795Z ##[debug]....Evaluating String:
+2026-08-06T13:20:22.6512356Z ##[debug]....=> 'REGISTRY_USER'
+2026-08-06T13:20:22.6513070Z ##[debug]..=> '***'
+2026-08-06T13:20:22.6513461Z ##[debug]..Evaluating Index:
+2026-08-06T13:20:22.6513808Z ##[debug]....Evaluating secrets:
+2026-08-06T13:20:22.6514166Z ##[debug]....=> Object
+2026-08-06T13:20:22.6514489Z ##[debug]....Evaluating String:
+2026-08-06T13:20:22.6514840Z ##[debug]....=> 'REGISTRY_PASSWORD'
+2026-08-06T13:20:22.6515361Z ##[debug]..=> '***'
+2026-08-06T13:20:22.6515827Z ##[debug]=> 'ssh -i ~/.ssh/deploy_key "***@***" "
+2026-08-06T13:20:22.6516414Z ##[debug]  cd /opt/kps-tasks-api &&
+2026-08-06T13:20:22.6516831Z ##[debug]  chmod +x deploy.sh healthcheck.sh rollback.sh &&
+2026-08-06T13:20:22.6517393Z ##[debug]  IMAGE_TAG=''***/***-f-dev/kps-tasks-api:commit-23a9e51'' \
+2026-08-06T13:20:22.6517886Z ##[debug]  REGISTRY_URL=''***'' \
+2026-08-06T13:20:22.6518270Z ##[debug]  REGISTRY_USER=''***'' \
+2026-08-06T13:20:22.6518789Z ##[debug]  REGISTRY_PASSWORD=''***'' \
+2026-08-06T13:20:22.6519147Z ##[debug]  ./deploy.sh
+2026-08-06T13:20:22.6519458Z ##[debug]"
+2026-08-06T13:20:22.6519721Z ##[debug]'
+2026-08-06T13:20:22.6520160Z ##[debug]Result: 'ssh -i ~/.ssh/deploy_key "***@***" "
+2026-08-06T13:20:22.6520569Z ##[debug]  cd /opt/kps-tasks-api &&
+2026-08-06T13:20:22.6520985Z ##[debug]  chmod +x deploy.sh healthcheck.sh rollback.sh &&
+2026-08-06T13:20:22.6521534Z ##[debug]  IMAGE_TAG=''***/***-f-dev/kps-tasks-api:commit-23a9e51'' \
+2026-08-06T13:20:22.6522003Z ##[debug]  REGISTRY_URL=''***'' \
+2026-08-06T13:20:22.6522394Z ##[debug]  REGISTRY_USER=''***'' \
+2026-08-06T13:20:22.6523201Z ##[debug]  REGISTRY_PASSWORD=''***'' \
+2026-08-06T13:20:22.6523568Z ##[debug]  ./deploy.sh
+2026-08-06T13:20:22.6523867Z ##[debug]"
+2026-08-06T13:20:22.6524130Z ##[debug]'
+2026-08-06T13:20:22.6524682Z ##[debug]Loading env
+2026-08-06T13:20:22.6530118Z ##[group]Run ssh -i ~/.ssh/deploy_key "***@***" "
+2026-08-06T13:20:22.6530624Z ^[[36;1mssh -i ~/.ssh/deploy_key "***@***" "^[[0m
+2026-08-06T13:20:22.6531027Z ^[[36;1m  cd /opt/kps-tasks-api &&^[[0m
+2026-08-06T13:20:22.6531458Z ^[[36;1m  chmod +x deploy.sh healthcheck.sh rollback.sh &&^[[0m
+2026-08-06T13:20:22.6532027Z ^[[36;1m  IMAGE_TAG='***/***-f-dev/kps-tasks-api:commit-23a9e51' \^[[0m
+2026-08-06T13:20:22.6532488Z ^[[36;1m  REGISTRY_URL='***' \^[[0m
+2026-08-06T13:20:22.6533273Z ^[[36;1m  REGISTRY_USER='***' \^[[0m
+2026-08-06T13:20:22.6533787Z ^[[36;1m  REGISTRY_PASSWORD='***' \^[[0m
+2026-08-06T13:20:22.6534150Z ^[[36;1m  ./deploy.sh^[[0m
+2026-08-06T13:20:22.6534460Z ^[[36;1m"^[[0m
+2026-08-06T13:20:22.6601391Z shell: /usr/bin/bash -e {0}
+2026-08-06T13:20:22.6601754Z ##[endgroup]
+2026-08-06T13:20:22.6665810Z ##[debug]/usr/bin/bash -e /home/runner/work/_temp/9d54742f-8099-4868-9530-3e8ffc969663.sh
+2026-08-06T13:20:25.0376091Z ==> Deploying ***/***-f-dev/kps-tasks-api:commit-23a9e51 in /opt/kps-tasks-api
+2026-08-06T13:20:25.0504507Z ==> Previous version saved: ***/***-f-dev/kps-tasks-api:commit-f83cfa4
+2026-08-06T13:20:25.0652348Z ==> Logging in to ***
+2026-08-06T13:20:25.7538105Z 
+2026-08-06T13:20:25.7538740Z Login Succeeded
+2026-08-06T13:20:25.7539843Z WARNING! Your credentials are stored unencrypted in '/home/***/.docker/config.json'.
+2026-08-06T13:20:25.7540895Z Configure a credential helper to remove this warning. See
+2026-08-06T13:20:25.7541917Z https://docs.docker.com/go/credential-store/
+2026-08-06T13:20:25.7542520Z 
+2026-08-06T13:20:25.7593264Z ==> Pulling new image
+2026-08-06T13:20:26.2818979Z  Image postgres:16-alpine Pulling 
+2026-08-06T13:20:26.2819840Z  Image ***/***-f-dev/kps-tasks-api:commit-23a9e51 Pulling 
+2026-08-06T13:20:28.4125140Z  505c07d61614 Pulling fs layer 0B
+2026-08-06T13:20:28.4125902Z  4bc252e893b7 Pulling fs layer 0B
+2026-08-06T13:20:28.4126558Z  10b0a49ab9ae Pulling fs layer 0B
+2026-08-06T13:20:28.4127087Z  02fcce623715 Pulling fs layer 0B
+2026-08-06T13:20:28.4127587Z  3f90fcd43cf1 Pulling fs layer 0B
+2026-08-06T13:20:28.4128067Z  332683327cfb Pulling fs layer 0B
+2026-08-06T13:20:28.7721433Z  332683327cfb Downloading 93B
+2026-08-06T13:20:28.8678707Z  332683327cfb Download complete 0B
+2026-08-06T13:20:28.8684059Z  02fcce623715 Download complete 0B
+2026-08-06T13:20:28.8711892Z  332683327cfb Pull complete 0B
+2026-08-06T13:20:29.0836137Z  3f90fcd43cf1 Download complete 0B
+2026-08-06T13:20:29.0881808Z  3f90fcd43cf1 Extracting 1B
+2026-08-06T13:20:29.1696587Z  505c07d61614 Download complete 0B
+2026-08-06T13:20:29.1697453Z  4bc252e893b7 Downloading 2.097MB
+2026-08-06T13:20:29.1698019Z  10b0a49ab9ae Downloading 1.049MB
+2026-08-06T13:20:29.1728045Z  02fcce623715 Extracting 1B
+2026-08-06T13:20:29.1763949Z  3f90fcd43cf1 Pull complete 0B
+2026-08-06T13:20:29.2651422Z  4bc252e893b7 Downloading 4.194MB
+2026-08-06T13:20:29.2652035Z  10b0a49ab9ae Downloading 3.146MB
+2026-08-06T13:20:29.2672548Z  02fcce623715 Pull complete 0B
+2026-08-06T13:20:29.3703963Z  4bc252e893b7 Downloading 5.243MB
+2026-08-06T13:20:29.3704918Z  10b0a49ab9ae Downloading 4.194MB
+2026-08-06T13:20:29.4648353Z  4bc252e893b7 Downloading 8.389MB
+2026-08-06T13:20:29.4648924Z  10b0a49ab9ae Downloading 6.291MB
+2026-08-06T13:20:29.5696295Z  10b0a49ab9ae Downloading 7.893MB
+2026-08-06T13:20:29.5696822Z  4bc252e893b7 Downloading 9.437MB
+2026-08-06T13:20:29.6646709Z  4bc252e893b7 Downloading 10.49MB
+2026-08-06T13:20:29.6647272Z  10b0a49ab9ae Downloading 10.49MB
+2026-08-06T13:20:29.6708808Z  Image postgres:16-alpine Pulled 
+2026-08-06T13:20:29.7661731Z  10b0a49ab9ae Downloading 10.49MB
+2026-08-06T13:20:29.7662304Z  4bc252e893b7 Downloading 13.08MB
+2026-08-06T13:20:29.8757851Z  10b0a49ab9ae Downloading 11.53MB
+2026-08-06T13:20:29.8758557Z  4bc252e893b7 Downloading 14.68MB
+2026-08-06T13:20:29.9781199Z  10b0a49ab9ae Downloading 13.63MB
+2026-08-06T13:20:29.9781875Z  4bc252e893b7 Downloading 16.78MB
+2026-08-06T13:20:30.0673703Z  10b0a49ab9ae Downloading 14.68MB
+2026-08-06T13:20:30.0674282Z  4bc252e893b7 Downloading 18.87MB
+2026-08-06T13:20:30.1738198Z  4bc252e893b7 Downloading 20.97MB
+2026-08-06T13:20:30.1738755Z  10b0a49ab9ae Downloading 16.78MB
+2026-08-06T13:20:30.2665594Z  4bc252e893b7 Downloading 20.97MB
+2026-08-06T13:20:30.2666250Z  10b0a49ab9ae Downloading 19.92MB
+2026-08-06T13:20:30.4371428Z  10b0a49ab9ae Downloading 20.97MB
+2026-08-06T13:20:30.4372046Z  4bc252e893b7 Downloading 22.02MB
+2026-08-06T13:20:30.4749810Z  10b0a49ab9ae Downloading 20.97MB
+2026-08-06T13:20:30.4750628Z  4bc252e893b7 Downloading 22.02MB
+2026-08-06T13:20:30.5685761Z  4bc252e893b7 Downloading 24.12MB
+2026-08-06T13:20:30.5686777Z  10b0a49ab9ae Downloading 23.07MB
+2026-08-06T13:20:30.6681856Z  10b0a49ab9ae Downloading 25.17MB
+2026-08-06T13:20:30.6682598Z  4bc252e893b7 Downloading 25.17MB
+2026-08-06T13:20:30.7674434Z  4bc252e893b7 Downloading 27.26MB
+2026-08-06T13:20:30.7675197Z  10b0a49ab9ae Downloading 27.26MB
+2026-08-06T13:20:30.8666751Z  10b0a49ab9ae Downloading 29.99MB
+2026-08-06T13:20:30.8667648Z  4bc252e893b7 Downloading 28.31MB
+2026-08-06T13:20:30.9649611Z  10b0a49ab9ae Downloading 31.46MB
+2026-08-06T13:20:30.9650221Z  4bc252e893b7 Downloading 29.36MB
+2026-08-06T13:20:31.0691200Z  10b0a49ab9ae Downloading 33.55MB
+2026-08-06T13:20:31.0692029Z  4bc252e893b7 Downloading 31.46MB
+2026-08-06T13:20:31.1659211Z  4bc252e893b7 Download complete 0B
+2026-08-06T13:20:31.1660162Z  10b0a49ab9ae Downloading 35.65MB
+2026-08-06T13:20:31.1724378Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.2800556Z  10b0a49ab9ae Downloading 37.75MB
+2026-08-06T13:20:31.3137576Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.3652486Z  10b0a49ab9ae Downloading 39.85MB
+2026-08-06T13:20:31.3711813Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.4674236Z  10b0a49ab9ae Download complete 0B
+2026-08-06T13:20:31.4729000Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.6112429Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.7059899Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.7986933Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.8778671Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:31.9735171Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:32.0856019Z  4bc252e893b7 Extracting 1B
+2026-08-06T13:20:32.2260164Z  4bc252e893b7 Extracting 2B
+2026-08-06T13:20:32.2717624Z  4bc252e893b7 Pull complete 0B
+2026-08-06T13:20:32.2749072Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:32.3735169Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:32.5511947Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:32.5824779Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:32.6697538Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:32.7746073Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:32.9023742Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:32.9772124Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:33.0845214Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:33.1958369Z  10b0a49ab9ae Extracting 1B
+2026-08-06T13:20:33.2767714Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:33.3964703Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:33.4931282Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:33.6046857Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:33.7023956Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:33.7718155Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:33.8887038Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:33.9703834Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:34.0983801Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:34.1719693Z  10b0a49ab9ae Extracting 2B
+2026-08-06T13:20:34.2828332Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:34.3724219Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:34.4803501Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:34.5868069Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:34.8149151Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:34.8149635Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:34.9046033Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:34.9960850Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:35.0680174Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:35.1769077Z  10b0a49ab9ae Extracting 3B
+2026-08-06T13:20:35.2794636Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:35.4066380Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:35.4788066Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:35.5998513Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:35.6770433Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:35.7699138Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:35.8819440Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:35.9886349Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:36.0721218Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:36.1704931Z  10b0a49ab9ae Extracting 4B
+2026-08-06T13:20:36.2818326Z  10b0a49ab9ae Extracting 5B
+2026-08-06T13:20:36.4470748Z  10b0a49ab9ae Extracting 5B
+2026-08-06T13:20:36.4967442Z  10b0a49ab9ae Extracting 5B
+2026-08-06T13:20:36.5760547Z  10b0a49ab9ae Pull complete 0B
+2026-08-06T13:20:36.6491892Z  505c07d61614 Pull complete 0B
+2026-08-06T13:20:36.6605402Z  Image ***/***-f-dev/kps-tasks-api:commit-23a9e51 Pulled 
+2026-08-06T13:20:36.8024100Z ==> Restarting application
+2026-08-06T13:20:37.5353776Z  Container kps-tasks-api-db-1 Running 
+2026-08-06T13:20:37.5354653Z  Container kps-tasks-api-app-1 Recreate 
+2026-08-06T13:20:39.0164985Z  Container kps-tasks-api-app-1 Recreated 
+2026-08-06T13:20:39.0714723Z  Container kps-tasks-api-db-1 Waiting 
+2026-08-06T13:20:39.5897476Z  Container kps-tasks-api-db-1 Healthy 
+2026-08-06T13:20:39.5898129Z  Container kps-tasks-api-app-1 Starting 
+2026-08-06T13:20:40.4228301Z  Container kps-tasks-api-app-1 Started 
+2026-08-06T13:20:40.5667573Z ==> Waiting for the application to respond on port 8000
+2026-08-06T13:20:40.6156746Z ==> Healthcheck attempt 1/10 failed, waiting 3s
+2026-08-06T13:20:43.6371634Z ==> Healthcheck attempt 2/10 failed, waiting 3s
+2026-08-06T13:20:46.6622001Z ==> Healthcheck attempt 3/10 failed, waiting 3s
+2026-08-06T13:20:49.6865870Z ==> Healthcheck attempt 4/10 failed, waiting 3s
+2026-08-06T13:20:52.7135427Z ==> Healthcheck attempt 5/10 failed, waiting 3s
+2026-08-06T13:20:55.7492569Z ==> Healthcheck attempt 6/10 failed, waiting 3s
+2026-08-06T13:20:58.7731986Z ==> Healthcheck attempt 7/10 failed, waiting 3s
+2026-08-06T13:21:01.8033084Z ==> Healthcheck attempt 8/10 failed, waiting 3s
+2026-08-06T13:21:04.8285275Z ==> Healthcheck attempt 9/10 failed, waiting 3s
+2026-08-06T13:21:07.9346820Z ==> Healthcheck attempt 10/10 failed, waiting 3s
+2026-08-06T13:21:10.9562004Z ==> Healthcheck failed after 10 attempts
+2026-08-06T13:21:10.9580959Z ==> Healthcheck failed for ***/***-f-dev/kps-tasks-api:commit-23a9e51, triggering automatic rollback
+2026-08-06T13:21:10.9706000Z ==> Rolling back to ***/***-f-dev/kps-tasks-api:commit-f83cfa4
+2026-08-06T13:21:11.5650758Z 
+2026-08-06T13:21:11.5651865Z WARNING! Your credentials are stored unencrypted in '/home/***/.docker/config.json'.
+2026-08-06T13:21:11.5653191Z Configure a credential helper to remove this warning. See
+2026-08-06T13:21:11.5653844Z https://docs.docker.com/go/credential-store/
+2026-08-06T13:21:11.5654692Z 
+2026-08-06T13:21:11.5654845Z Login Succeeded
+2026-08-06T13:21:12.2020554Z  Image postgres:16-alpine Pulling 
+2026-08-06T13:21:12.2021473Z  Image ***/***-f-dev/kps-tasks-api:commit-f83cfa4 Pulling 
+2026-08-06T13:21:13.0961979Z  Image ***/***-f-dev/kps-tasks-api:commit-f83cfa4 Pulled 
+2026-08-06T13:21:15.6394309Z  Image postgres:16-alpine Pulled 
+2026-08-06T13:21:17.1142372Z  Container kps-tasks-api-db-1 Running 
+2026-08-06T13:21:17.1143381Z  Container kps-tasks-api-app-1 Recreate 
+2026-08-06T13:21:18.4106095Z  Container kps-tasks-api-app-1 Recreated 
+2026-08-06T13:21:18.4603013Z  Container kps-tasks-api-db-1 Waiting 
+2026-08-06T13:21:18.9888602Z  Container kps-tasks-api-db-1 Healthy 
+2026-08-06T13:21:18.9889217Z  Container kps-tasks-api-app-1 Starting 
+2026-08-06T13:21:19.4872264Z  Container kps-tasks-api-app-1 Started 
+2026-08-06T13:21:19.5712350Z ==> Verifying the rolled-back version responds
+2026-08-06T13:21:19.5950122Z ==> Healthcheck attempt 1/10 failed, waiting 3s
+2026-08-06T13:21:22.6126089Z ==> Healthcheck attempt 2/10 failed, waiting 3s
+2026-08-06T13:21:25.6527076Z ==> Healthcheck OK (attempt 3/10)
+2026-08-06T13:21:25.6542103Z ==> Rollback successful: ***/***-f-dev/kps-tasks-api:commit-f83cfa4 is back online
+2026-08-06T13:21:25.6550012Z ==> Rollback executed successfully, previous version restored
+2026-08-06T13:21:25.6551051Z ==> Deployment of ***/***-f-dev/kps-tasks-api:commit-23a9e51 FAILED
+2026-08-06T13:21:25.6588321Z ##[error]Process completed with exit code 1.
+2026-08-06T13:21:25.6602127Z ##[debug]Finishing: Run deployment
+2026-08-06T13:21:25.6645238Z ##[debug]Evaluating condition for step: 'Post Run actions/checkout@v4'
+2026-08-06T13:21:25.6648669Z ##[debug]Evaluating: always()
+2026-08-06T13:21:25.6649140Z ##[debug]Evaluating always:
+2026-08-06T13:21:25.6649986Z ##[debug]=> true
+2026-08-06T13:21:25.6650470Z ##[debug]Result: true
+2026-08-06T13:21:25.6651236Z ##[debug]Starting: Post Run actions/checkout@v4
+2026-08-06T13:21:25.6704647Z ##[debug]Loading inputs
+2026-08-06T13:21:25.6706350Z ##[debug]Evaluating: github.repository
+2026-08-06T13:21:25.6706733Z ##[debug]Evaluating Index:
+2026-08-06T13:21:25.6707022Z ##[debug]..Evaluating github:
+2026-08-06T13:21:25.6707328Z ##[debug]..=> Object
+2026-08-06T13:21:25.6707608Z ##[debug]..Evaluating String:
+2026-08-06T13:21:25.6707922Z ##[debug]..=> 'repository'
+2026-08-06T13:21:25.6708335Z ##[debug]=> '***/devops-prj3'
+2026-08-06T13:21:25.6708703Z ##[debug]Result: '***/devops-prj3'
+2026-08-06T13:21:25.6710878Z ##[debug]Evaluating: github.token
+2026-08-06T13:21:25.6711252Z ##[debug]Evaluating Index:
+2026-08-06T13:21:25.6711547Z ##[debug]..Evaluating github:
+2026-08-06T13:21:25.6711879Z ##[debug]..=> Object
+2026-08-06T13:21:25.6712154Z ##[debug]..Evaluating String:
+2026-08-06T13:21:25.6712438Z ##[debug]..=> 'token'
+2026-08-06T13:21:25.6715062Z ##[debug]=> '***'
+2026-08-06T13:21:25.6717428Z ##[debug]Result: '***'
+2026-08-06T13:21:25.6731937Z ##[debug]Loading env
+2026-08-06T13:21:25.6738793Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-06T13:21:25.6740313Z Post job cleanup.
+2026-08-06T13:21:25.7564501Z ##[debug]Getting git version
+2026-08-06T13:21:25.7585415Z [command]/usr/bin/git version
+2026-08-06T13:21:25.7630808Z git version 2.54.0
+2026-08-06T13:21:25.7653574Z ##[debug]0
+2026-08-06T13:21:25.7654323Z ##[debug]git version 2.54.0
+2026-08-06T13:21:25.7654757Z ##[debug]
+2026-08-06T13:21:25.7655613Z ##[debug]Set git useragent to: git/2.54.0 (github-actions-checkout)
+2026-08-06T13:21:25.7658399Z ::add-mask::***
+2026-08-06T13:21:25.7677019Z Temporarily overriding HOME='/home/runner/work/_temp/dbc6b2e2-3dc4-4e63-b7ba-be84e1a7a852' before making global git config changes
+2026-08-06T13:21:25.7678622Z Adding repository directory to the temporary git global config as a safe directory
+2026-08-06T13:21:25.7683658Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-prj3/devops-prj3
+2026-08-06T13:21:25.7716493Z ##[debug]0
+2026-08-06T13:21:25.7717216Z ##[debug]
+2026-08-06T13:21:25.7725280Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-08-06T13:21:25.7756068Z ##[debug]1
+2026-08-06T13:21:25.7756768Z ##[debug]
+2026-08-06T13:21:25.7761779Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-08-06T13:21:25.8002088Z ##[debug]0
+2026-08-06T13:21:25.8003200Z ##[debug]
+2026-08-06T13:21:25.8009582Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-08-06T13:21:25.8039390Z http.https://github.com/.extraheader
+2026-08-06T13:21:25.8046644Z ##[debug]0
+2026-08-06T13:21:25.8047549Z ##[debug]http.https://github.com/.extraheader
+2026-08-06T13:21:25.8048230Z ##[debug]
+2026-08-06T13:21:25.8053117Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-08-06T13:21:25.8086238Z ##[debug]0
+2026-08-06T13:21:25.8087433Z ##[debug]
+2026-08-06T13:21:25.8095004Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-08-06T13:21:25.8350416Z ##[debug]0
+2026-08-06T13:21:25.8351317Z ##[debug]
+2026-08-06T13:21:25.8359079Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-08-06T13:21:25.8434121Z ##[debug]1
+2026-08-06T13:21:25.8435076Z ##[debug]
+2026-08-06T13:21:25.8444382Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-08-06T13:21:25.8759382Z ##[debug]0
+2026-08-06T13:21:25.8765555Z ##[debug]
+2026-08-06T13:21:25.8766764Z ##[debug]Unsetting HOME override
+2026-08-06T13:21:25.8867997Z ##[debug]Node Action run completed with exit code 0
+2026-08-06T13:21:25.8872946Z ##[debug]Finishing: Post Run actions/checkout@v4
+2026-08-06T13:21:25.8940666Z ##[debug]Starting: Complete job
+2026-08-06T13:21:25.8943776Z Uploading runner diagnostic logs
+2026-08-06T13:21:25.8956210Z ##[debug]Starting diagnostic file upload.
+2026-08-06T13:21:25.8956605Z ##[debug]Setting up diagnostic log folders.
+2026-08-06T13:21:25.8958602Z ##[debug]Creating diagnostic log files folder.
+2026-08-06T13:21:25.8967381Z ##[debug]Copying 1 worker diagnostic logs.
+2026-08-06T13:21:25.8975410Z ##[debug]Copying 1 runner diagnostic logs.
+2026-08-06T13:21:25.8976548Z ##[debug]Zipping diagnostic files.
+2026-08-06T13:21:25.9049524Z ##[debug]Uploading diagnostic metadata file.
+2026-08-06T13:21:25.9081168Z ##[debug]Diagnostic file upload complete.
+2026-08-06T13:21:25.9081798Z Completed runner diagnostic log upload
+2026-08-06T13:21:25.9082133Z Cleaning up orphan processes
+2026-08-06T13:21:25.9368877Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-08-06T13:21:25.9370954Z ##[debug]Finishing: Complete job
+2026-08-06T13:21:25.9401449Z ##[debug]Finishing: Deploy to VPS

@@ -64,8 +64,6 @@ def version() -> VersionRead:
 
 @app.get("/health", response_model=HealthRead, tags=["meta"])
 def health(db: Session = Depends(get_db)):
-    # DELIBERATE BREAK for Project 4 Day 4 rollback test — do not merge as-is.
-    return JSONResponse(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, content={})
     try:
         db.execute(text("SELECT 1"))
     except SQLAlchemyError as exc:

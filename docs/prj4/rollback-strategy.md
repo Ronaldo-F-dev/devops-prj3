@@ -64,6 +64,15 @@ Parce qu'un rollback réussi ramène le système à un état **stable**, pas à 
 - **Aucune alerte externe** (Slack, e-mail...) : l'échec est visible dans les logs du job GitHub Actions, mais rien ne notifie activement une personne — il faut aller consulter le pipeline pour le voir.
 - **Le rollback dépend du VPS lui-même** : si le VPS est injoignable ou à court de ressources, ni le déploiement ni le rollback ne peuvent s'exécuter — ce cas n'est pas couvert par ce mécanisme (voir le Jour 5, incident déclenché par le formateur).
 
-## Preuve du mécanisme
+## Preuve du mécanisme (tâches 54-56)
 
-À venir : test réel avec une version volontairement cassée (tâche 54), voir `evidence/rollback-success.txt` une fois exécuté.
+Test réalisé en conditions réelles, sur la vraie production, pas un environnement simulé.
+
+1. **Version cassée déployée volontairement** : l'endpoint `/health` a été modifié pour renvoyer systématiquement `503`, peu importe l'état réel de la base (commit `test: break /health endpoint to trigger automatic rollback`). Les tests unitaires ne couvrent pas `/health`, donc `lint`/`test` passent normalement — seul un vrai déploiement peut révéler le problème, ce qui est exactement le point.
+2. **Premier essai : le rollback automatique a lui-même échoué.** `deploy.sh` a bien détecté l'échec du healthcheck et appelé `rollback.sh`, mais celui-ci a redéployé... la version cassée elle-même, pas la précédente. Preuve dans `evidence/deploy-failed.txt`.
+3. **Diagnostic** : `IMAGE_TAG` est transmis à `deploy.sh` comme variable d'environnement (depuis la commande SSH). Cette variable reste présente dans l'environnement du processus, et `rollback.sh` en hérite en tant que sous-processus. `rollback.sh` mettait bien à jour la **valeur dans le fichier** `.env`, mais `docker compose` donne toujours la priorité à une variable d'environnement déjà définie sur celle lue via `--env-file` — donc le `.env` corrigé était silencieusement ignoré, et l'ancienne valeur (la version cassée) restait utilisée.
+4. **Correctif** : `rollback.sh` réassigne et exporte explicitement `IMAGE_TAG` avec la version précédente avant d'appeler `docker compose`, pour qu'il n'y ait plus de désaccord possible entre le fichier et l'environnement du process.
+5. **Second essai, après correctif : succès complet.** Healthcheck échoué (10/10, comme prévu), rollback déclenché, cette fois vers la bonne image, vérifié par un nouveau healthcheck (réussi à la 3ᵉ tentative), `current-version.txt` mis à jour, et **le job s'est terminé en échec** malgré le rollback réussi — exactement le comportement voulu (question 60). Log complet : `evidence/rollback-success.txt`.
+6. **Vérification finale** : `/health`, `/version` et `/tasks` interrogés directement sur le VPS après rollback — application saine, données intactes.
+
+Ce n'est pas juste une preuve que "le rollback marche" : c'est la preuve qu'un premier essai a **révélé un vrai bug** (une hypothèse implicite fausse sur la priorité `docker compose` entre variables d'environnement et `--env-file`), que ce bug a été diagnostiqué à partir des logs réels, corrigé, puis re-testé avec succès — exactement le genre de cycle qu'un incident de production impose.
