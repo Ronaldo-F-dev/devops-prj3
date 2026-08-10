@@ -1,4 +1,4 @@
-# KPS Tasks API - Project 2 Docker Compose
+# KPS Tasks API - Project 5 Docker Compose
 
 This repository contains the application used in Project 1 and its Docker Compose packaging for Project 2.
 
