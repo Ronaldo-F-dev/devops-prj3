@@ -112,6 +112,7 @@ The stack uses these variables from `.env`:
 ### Project 5 (Kubernetes k3s migration) — `docs/prj5/`
 
 - [Overview](docs/prj5/overview.md)
+- [k3s installation](docs/prj5/k3s-installation.md)
 
 ## Operational scripts
 
