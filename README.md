@@ -109,6 +109,10 @@ The stack uses these variables from `.env`:
 - [Intermediate questions](docs/prj4/intermediate-questions.md)
 - [Defense support (day-by-day demo guide)](docs/prj4/defense-support.md)
 
+### Project 5 (Kubernetes k3s migration) — `docs/prj5/`
+
+- [Overview](docs/prj5/overview.md)
+
 ## Operational scripts
 
 - `scripts/start.sh`
