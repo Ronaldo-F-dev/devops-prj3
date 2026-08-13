@@ -113,6 +113,8 @@ The stack uses these variables from `.env`:
 
 - [Overview](docs/prj5/overview.md)
 - [k3s installation](docs/prj5/k3s-installation.md)
+- [Kubernetes app deployment](docs/prj5/kubernetes-app-deployment.md)
+- [Intermediate questions](docs/prj5/intermediate-questions.md)
 
 ## Operational scripts
 

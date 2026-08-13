@@ -1,0 +1,14 @@
+	Is the server running on that host and accepting TCP/IP connections?
+- host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection failed: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-08-13 09:40:58,837 INFO app GET /health -> 503 26.54ms
+INFO:     10.42.0.1:34818 - "GET /health HTTP/1.1" 503 Service Unavailable
+2026-08-13 09:40:58,875 INFO app GET /version -> 200 17.72ms
+INFO:     10.42.0.1:34832 - "GET /version HTTP/1.1" 200 OK
+2026-08-13 09:41:20,635 INFO app GET /version -> 200 1.32ms
+INFO:     10.42.0.1:57922 - "GET /version HTTP/1.1" 200 OK
+--- /health depuis le cluster ---
+{"status":"degraded","database":"error","version":"1.0.0","details":"OperationalError"}
+--- /version via le Service (ClusterIP) ---
+{"name":"KPS Tasks API","version":"1.0.0","environment":"production"}

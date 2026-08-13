@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kps-tasks-api
+  namespace: kps-tasks
+  labels:
+    app: kps-tasks-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kps-tasks-api
+  template:
+    metadata:
+      labels:
+        app: kps-tasks-api
+    spec:
+      containers:
+        - name: kps-tasks-api
+          image: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+          ports:
+            - containerPort: 8000
+          env:
+            - name: APP_NAME
+              value: "KPS Tasks API"
+            - name: APP_ENV
+              value: "production"
+            - name: APP_VERSION
+              value: "1.0.0"
+            - name: LOG_LEVEL
+              value: "INFO"
+            # DATABASE_URL volontairement absent ici : sans elle, l'application utilise
+            # sa valeur de repli interne (non sensible). La vraie connexion PostgreSQL
+            # sera injectee proprement au Jour 3, via ConfigMap (hote/port/nom de la base)
+            # et Secret (utilisateur/mot de passe) -- jamais en clair dans ce fichier.
