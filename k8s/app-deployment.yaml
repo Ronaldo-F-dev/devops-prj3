@@ -15,6 +15,16 @@ spec:
       labels:
         app: kps-tasks-api
     spec:
+      initContainers:
+        - name: init-db
+          image: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+          command: ["python", "-m", "app.init_db"]
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: kps-tasks-api-secret
+                  key: DATABASE_URL
       containers:
         - name: kps-tasks-api
           image: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
@@ -22,14 +32,24 @@ spec:
             - containerPort: 8000
           env:
             - name: APP_NAME
-              value: "KPS Tasks API"
+              valueFrom:
+                configMapKeyRef:
+                  name: kps-tasks-api-config
+                  key: APP_NAME
             - name: APP_ENV
-              value: "production"
+              valueFrom:
+                configMapKeyRef:
+                  name: kps-tasks-api-config
+                  key: APP_ENV
             - name: APP_VERSION
               value: "1.0.0"
             - name: LOG_LEVEL
-              value: "INFO"
-            # DATABASE_URL volontairement absent ici : sans elle, l'application utilise
-            # sa valeur de repli interne (non sensible). La vraie connexion PostgreSQL
-            # sera injectee proprement au Jour 3, via ConfigMap (hote/port/nom de la base)
-            # et Secret (utilisateur/mot de passe) -- jamais en clair dans ce fichier.
+              valueFrom:
+                configMapKeyRef:
+                  name: kps-tasks-api-config
+                  key: LOG_LEVEL
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: kps-tasks-api-secret
+                  key: DATABASE_URL
