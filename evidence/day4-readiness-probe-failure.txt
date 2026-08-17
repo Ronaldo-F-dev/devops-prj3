@@ -1,0 +1,86 @@
+Name:             kps-tasks-api-754bcc8cff-grqml
+Namespace:        kps-tasks
+Priority:         0
+Service Account:  default
+Node:             kps-vps/169.58.11.221
+Start Time:       Mon, 17 Aug 2026 08:43:44 +0100
+Labels:           app=kps-tasks-api
+                  pod-template-hash=754bcc8cff
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.15
+IPs:
+  IP:           10.42.0.15
+Controlled By:  ReplicaSet/kps-tasks-api-754bcc8cff
+Init Containers:
+  init-db:
+    Container ID:  containerd://c19d7ed0877118e3ac6d500d087a1eb0fcf1c0b5e0d203f4ff4d4cde1b4145a4
+    Image:         ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+    Image ID:      ghcr.io/ronaldo-f-dev/kps-tasks-api@sha256:297f7ef934a43ca34fb8ee866f58473187c06ce20ae34a65b1d9c55bab6d217a
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      python
+      -m
+      app.init_db
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 17 Aug 2026 08:43:44 +0100
+      Finished:     Mon, 17 Aug 2026 08:43:46 +0100
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      DATABASE_URL:  <set to the key 'DATABASE_URL' in secret 'kps-tasks-api-secret'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7kjmk (ro)
+Containers:
+  kps-tasks-api:
+    Container ID:   containerd://3554b4ffd6e6229e9770910d7c175d946a3228a65f137137de803d09aee48ade
+    Image:          ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+    Image ID:       ghcr.io/ronaldo-f-dev/kps-tasks-api@sha256:297f7ef934a43ca34fb8ee866f58473187c06ce20ae34a65b1d9c55bab6d217a
+    Port:           8000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Mon, 17 Aug 2026 08:43:46 +0100
+    Ready:          False
+    Restart Count:  0
+    Liveness:       http-get http://:8000/ delay=10s timeout=1s period=15s #success=1 #failure=3
+    Readiness:      http-get http://:8000/this-path-does-not-exist delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      APP_NAME:      <set to the key 'APP_NAME' of config map 'kps-tasks-api-config'>  Optional: false
+      APP_ENV:       <set to the key 'APP_ENV' of config map 'kps-tasks-api-config'>   Optional: false
+      APP_VERSION:   1.0.0
+      LOG_LEVEL:     <set to the key 'LOG_LEVEL' of config map 'kps-tasks-api-config'>  Optional: false
+      DATABASE_URL:  <set to the key 'DATABASE_URL' in secret 'kps-tasks-api-secret'>   Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7kjmk (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-7kjmk:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age               From               Message
+  ----     ------     ----              ----               -------
+  Normal   Scheduled  89s               default-scheduler  Successfully assigned kps-tasks/kps-tasks-api-754bcc8cff-grqml to kps-vps
+  Normal   Pulled     89s               kubelet            spec.initContainers{init-db}: Container image "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5" already present on machine and can be accessed by the pod
+  Normal   Created    89s               kubelet            spec.initContainers{init-db}: Container created
+  Normal   Started    89s               kubelet            spec.initContainers{init-db}: Container started
+  Normal   Pulled     87s               kubelet            spec.containers{kps-tasks-api}: Container image "ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5" already present on machine and can be accessed by the pod
+  Normal   Created    87s               kubelet            spec.containers{kps-tasks-api}: Container created
+  Normal   Started    87s               kubelet            spec.containers{kps-tasks-api}: Container started
+  Warning  Unhealthy  6s (x8 over 76s)  kubelet            spec.containers{kps-tasks-api}: Readiness probe failed: HTTP probe failed with statuscode: 404

@@ -1,0 +1,40 @@
+Test de rollout et rollback Kubernetes - Jour 4, Projet 5
+
+1. Image avant changement : ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+
+2. Modification de l'image (kubectl apply avec le nouveau tag dans le manifeste) :
+   kubectl apply -f k8s/app-deployment.yaml
+   kubectl rollout status deployment/kps-tasks-api -n kps-tasks --timeout=60s
+
+   Waiting for deployment "kps-tasks-api" rollout to finish: 0 out of 1 new replicas have been updated...
+   Waiting for deployment "kps-tasks-api" rollout to finish: 1 old replicas are pending termination...
+   deployment "kps-tasks-api" successfully rolled out
+
+3. Verification de l'image effectivement deployee :
+   ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-4b75ff8
+
+4. Historique des rollouts :
+   kubectl rollout history deployment/kps-tasks-api -n kps-tasks
+   REVISION  CHANGE-CAUSE
+   1         <none>
+   2         <none>
+   ...
+   9         <none>
+
+5. Rollback natif Kubernetes :
+   kubectl rollout undo deployment/kps-tasks-api -n kps-tasks
+
+   Avertissement recu (a documenter) :
+   "Warning: resource deployments/kps-tasks-api was previously managed with
+   'kubectl apply'. Rolling back will not update the
+   kubectl.kubernetes.io/last-applied-configuration annotation, which may
+   cause unexpected behavior on future 'kubectl apply' operations."
+
+   deployment.apps/kps-tasks-api rolled back
+   deployment "kps-tasks-api" successfully rolled out
+
+6. Verification apres rollback :
+   - Image revenue a : ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+   - GET /health : {"status":"ok","database":"ok","version":"1.0.0","details":null}
+   - GET /tasks : la tache creee au Jour 3 est toujours presente (aucune perte
+     de donnees pendant le rollout ni le rollback)

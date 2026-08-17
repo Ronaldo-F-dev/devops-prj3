@@ -115,6 +115,7 @@ The stack uses these variables from `.env`:
 - [k3s installation](docs/prj5/k3s-installation.md)
 - [Kubernetes app deployment](docs/prj5/kubernetes-app-deployment.md)
 - [ConfigMap, Secret and PostgreSQL](docs/prj5/configmap-secret-postgres.md)
+- [Probes and external exposure](docs/prj5/probes-and-exposure.md)
 - [Intermediate questions](docs/prj5/intermediate-questions.md)
 
 ## Operational scripts

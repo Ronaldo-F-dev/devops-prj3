@@ -57,3 +57,42 @@ kubectl exec <pod> -n <namespace> -- printenv <NOM_VARIABLE>
 ```
 
 On peut aussi remonter à la source, avant même de regarder dans le pod : `kubectl describe pod <pod> -n <namespace>` affiche la section `Environment`, qui montre d'où vient chaque variable (valeur en dur, `ConfigMapKeyRef`, `SecretKeyRef`) — utile pour vérifier la configuration sans avoir besoin d'un accès `exec` au conteneur.
+
+## Jour 4 — Probes, exposition externe, rollout et rollback
+
+### 51. Quelle est la différence entre `readinessProbe` et `livenessProbe` ?
+
+La `readinessProbe` répond à la question *"ce pod peut-il recevoir du trafic maintenant ?"* — si elle échoue, le pod est retiré des endpoints du Service, sans redémarrage. La `livenessProbe` répond à *"ce processus est-il encore vivant, ou faut-il le redémarrer ?"* — si elle échoue de façon répétée, Kubernetes tue et recrée le conteneur. Testé en conditions réelles dans ce projet (voir `docs/prj5/probes-and-exposure.md`) : les deux échouent de façon visiblement différente — l'une bloque un rollout sans rien casser, l'autre déclenche des redémarrages en boucle.
+
+### 52. Que se passe-t-il si la `readinessProbe` échoue ?
+
+Le pod reste `Running`, mais passe à `0/1` (`NOT READY`) et est retiré des `endpoints` du Service — il ne reçoit plus aucune requête. S'il s'agit d'un nouveau pod en cours de rollout, l'ancien pod (encore sain) continue de servir tout le trafic tant que le nouveau n'est pas devenu `Ready` : le rollout reste bloqué, mais la production n'est jamais interrompue.
+
+### 53. Que se passe-t-il si la `livenessProbe` échoue ?
+
+Une fois le nombre d'échecs consécutifs atteint (`failureThreshold`), Kubernetes tue le conteneur et le recrée (événement `Killing` puis `Started`) — le compteur `RESTARTS` du pod augmente. Si la cause de l'échec persiste (comme dans le test de ce projet, un chemin d'URL inexistant), le pod redémarre en boucle sans jamais se stabiliser.
+
+### 54. Quelle est la différence entre `ClusterIP`, `NodePort` et `Ingress` ?
+
+- **`ClusterIP`** (par défaut) : accessible uniquement depuis l'intérieur du cluster. Utilisé ici pour PostgreSQL (Jour 3) — jamais exposé à l'extérieur.
+- **`NodePort`** : ouvre un port fixe (30000-32767) sur **chaque nœud** du cluster, redirigé vers le Service. Simple à comprendre, mais peu élégant en production (port non standard, pas de nom de domaine, pas de TLS natif). Utilisé ici pour exposer l'application (port `30080`).
+- **`Ingress`** : un routeur HTTP/HTTPS de niveau supérieur (Traefik, déjà présent dans k3s par défaut — vu au Jour 1), qui permet de router plusieurs applications sur les ports standards 80/443 via des noms de domaine ou des chemins, avec gestion de certificats TLS. Plus proche d'un modèle de production, mais plus de concepts à maîtriser — non utilisé dans ce projet (NodePort imposé), réservé en bonus.
+
+### 55. Comment vérifier un rollout ?
+
+```bash
+kubectl rollout status deployment/<nom> -n <namespace>
+kubectl rollout history deployment/<nom> -n <namespace>
+```
+
+La première commande suit l'avancement en direct (utile juste après un `kubectl apply` qui change l'image). La seconde liste les révisions passées — utile pour savoir vers quelle révision revenir avant un rollback.
+
+### 56. Comment effectuer un rollback Kubernetes ?
+
+```bash
+kubectl rollout undo deployment/<nom> -n <namespace>
+# ou vers une révision précise :
+kubectl rollout undo deployment/<nom> -n <namespace> --to-revision=<numéro>
+```
+
+Point important découvert en le testant (voir `docs/prj5/probes-and-exposure.md`) : `kubectl rollout undo` change l'état réel du cluster mais **pas** le fichier manifeste local ni l'annotation utilisée par `kubectl apply` — il faut penser à remettre le fichier versionné en cohérence avec l'état réel après coup, sinon un futur `apply` réintroduirait la version qu'on vient d'annuler.
