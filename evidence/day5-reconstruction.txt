@@ -1,0 +1,10 @@
+NAME                             READY   STATUS    RESTARTS   AGE     IP           NODE      NOMINATED NODE   READINESS GATES
+kps-tasks-api-79958547df-2qnwv   1/1     Running   0          60s     10.42.0.24   kps-vps   <none>           <none>
+postgres-7777774646-tj2nn        1/1     Running   0          2m31s   10.42.0.22   kps-vps   <none>           <none>
+---
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kps-tasks-api   NodePort    10.43.183.144   <none>        8000:30080/TCP   2m23s
+postgres        ClusterIP   10.43.71.143    <none>        5432/TCP         2m29s
+---
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+postgres-pvc   Bound    pvc-ff2fec3b-77d7-415d-9fad-caf0775af1ac   1Gi        RWO            local-path     <unset>                 2m35s

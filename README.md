@@ -117,6 +117,7 @@ The stack uses these variables from `.env`:
 - [ConfigMap, Secret and PostgreSQL](docs/prj5/configmap-secret-postgres.md)
 - [Probes and external exposure](docs/prj5/probes-and-exposure.md)
 - [Kubernetes manifests reference (line by line)](docs/prj5/k8s-manifests-reference.md)
+- [Reconstruction and diagnostic (Day 5)](docs/prj5/diagnostic-kubernetes.md)
 - [Intermediate questions](docs/prj5/intermediate-questions.md)
 
 ## Operational scripts

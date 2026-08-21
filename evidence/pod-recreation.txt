@@ -1,0 +1,24 @@
+Preuve de recreation automatique d'un pod - Jour 5, Projet 5
+
+Avant suppression :
+NAME                             READY   STATUS    RESTARTS   AGE
+kps-tasks-api-79958547df-jxdwx   1/1     Running   0          33s
+
+Commande :
+$ kubectl delete pod kps-tasks-api-79958547df-jxdwx -n kps-tasks
+pod "kps-tasks-api-79958547df-jxdwx" deleted from kps-tasks namespace
+
+Apres suppression (nouveau pod, nom different, recree automatiquement par le Deployment) :
+NAME                             READY   STATUS    RESTARTS   AGE
+kps-tasks-api-79958547df-2qnwv   1/1     Running   0          20s
+
+Verification post-recreation :
+$ curl http://169.58.11.221:30080/health
+{"status":"ok","database":"ok","version":"1.0.0","details":null}
+
+$ curl http://169.58.11.221:30080/tasks
+[{"title":"Preuve reconstruction Jour 5", ... , "id":1, ...}]
+
+-> L'application est de nouveau accessible en moins de 30 secondes, et la
+   donnee creee juste avant la suppression du pod est toujours presente
+   (PostgreSQL, dans un pod separe, n'a jamais ete touche).
