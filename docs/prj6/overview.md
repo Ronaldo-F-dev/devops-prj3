@@ -13,7 +13,11 @@ Le déploiement Kubernetes du Projet 5 fonctionne, mais personne n'est jamais s�
 ## Changement structurel majeur : deux dépôts distincts
 
 - **Dépôt applicatif** (celui-ci, `devops-prj3`) : code, `Dockerfile`, tests, pipeline CI — construit et pousse toujours l'image Docker, exactement comme au Projet 4.
-- **Nouveau dépôt GitOps** (`kps-tasks-gitops`, à créer) : uniquement les manifestes Kubernetes, organisés par environnement, plus la configuration blue/green. C'est ce dépôt qu'ArgoCD surveille — **plus aucun `kubectl apply` manuel pour les changements applicatifs courants** une fois ArgoCD en place.
+- **Nouveau dépôt GitOps** : [`kps-tasks-gitops`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops) — uniquement les manifestes Kubernetes, organisés par environnement, plus la configuration blue/green. C'est ce dépôt qu'ArgoCD surveille — **plus aucun `kubectl apply` manuel pour les changements applicatifs courants** une fois ArgoCD en place. Toute la documentation détaillée jour par jour (installation ArgoCD, principes GitOps, synchronisation, drift, blue/green) vit dans ce second dépôt, pas ici.
+
+## Versioning
+
+Le tag Git `v1.0.0` du Projet 3/4 avait perdu son image correspondante dans le registre (package recréé pendant un dépannage du Projet 4). Un nouveau tag propre, `v1.1.0`, a été créé et poussé comme référence de départ pour ce projet — c'est cette version que le dépôt GitOps référence initialement.
 
 ## Contraintes non négociables
 
