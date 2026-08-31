@@ -122,6 +122,10 @@ The stack uses these variables from `.env`:
 - [Defense support](docs/prj5/soutenance.md)
 - [Intermediate questions](docs/prj5/intermediate-questions.md)
 
+### Project 6 (GitOps with ArgoCD) — `docs/prj6/`
+
+- [Overview](docs/prj6/overview.md)
+
 ## Operational scripts
 
 - `scripts/start.sh`
