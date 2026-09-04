@@ -49,3 +49,32 @@ Le tag Git `v1.0.0` du Projet 3/4 avait perdu son image correspondante dans le r
 ## Différence clé avec le Projet 5
 
 Le Projet 5 déployait manuellement (`kubectl apply -f k8s/`) — chaque changement était un acte volontaire et immédiat. Le Projet 6 délègue cet acte à ArgoCD : **committer dans Git devient le seul geste de déploiement**, et un écart entre Git et le cluster (drift) devient quelque chose qu'on peut désormais détecter et corriger, plutôt qu'une réalité invisible.
+
+---
+
+## État final — projet terminé
+
+Les 5 jours sont complets. Toute la documentation détaillée, jour par jour, vit dans le dépôt GitOps (voir raison au-dessus) :
+
+| Jour | Documents (dans `kps-tasks-gitops`) |
+|---|---|
+| 1 — Installation ArgoCD | [`docs/gitops-principles.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/gitops-principles.md), [`docs/argocd-installation.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/argocd-installation.md) |
+| 2 — Application ArgoCD | [`docs/argocd-application.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/argocd-application.md) |
+| 3 — Sync, version, drift | [`docs/sync-and-drift.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/sync-and-drift.md) |
+| 4 — Blue/green | [`docs/blue-green-deployment.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/blue-green-deployment.md), [`ADR-002`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/adr/ADR-002-blue-green-strategy.md) |
+| 5 — Rollback, incident, soutenance | [`docs/rollback-gitops.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/rollback-gitops.md), [`docs/incident-report.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/incident-report.md), [`docs/soutenance.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/soutenance.md) |
+| — | [`docs/intermediate-questions.md`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops/blob/main/docs/intermediate-questions.md) — questions 11 à 63, répondues |
+
+### Ce qui a été réellement démontré (pas juste écrit)
+
+- ArgoCD installé, 2 incidents réels rencontrés et résolus pendant l'installation (CRD trop volumineuse, mot de passe admin exposé puis changé)
+- Application `kps-tasks-api-dev` créée et synchronisée (`Synced` + `Healthy`)
+- Changement de version `v1.1.0` → `v1.2.0` piloté depuis Git, ArgoCD a détecté et appliqué seul
+- Synchronisation automatisée activée, drift provoqué volontairement (`kubectl scale`), détecté (`argocd app diff`) et corrigé depuis Git
+- Blue/green fonctionnel : deux versions tournant en parallèle, bascule par sélecteur de Service, testée dans les deux sens
+- Un vrai incident déclenché (tag d'image inexistant sur `green`), diagnostiqué (`kubectl describe`), corrigé — sans jamais impacter la version active (`blue`)
+
+### Support pour la soutenance
+
+- `kps-tasks-gitops/docs/soutenance.md` — trame de présentation
+- Cours complet "Cap sur GitOps" (artefact HTML téléchargé localement) — explique chaque concept et chaque commande utilisée, pensé pour quelqu'un qui découvre GitOps
