@@ -16,54 +16,55 @@ spec:
         app: kps-tasks-api
     spec:
       initContainers:
-        - name: init-db
-          image: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
-          command: ["python", "-m", "app.init_db"]
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: kps-tasks-api-secret
-                  key: DATABASE_URL
+      - name: init-db
+        image: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+        command: [ "python", "-m", "app.init_db" ]
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: kps-tasks-api-secret
+              key: DATABASE_URL
       containers:
-        - name: kps-tasks-api
-          image: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
-          ports:
-            - containerPort: 8000
-          env:
-            - name: APP_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: kps-tasks-api-config
-                  key: APP_NAME
-            - name: APP_ENV
-              valueFrom:
-                configMapKeyRef:
-                  name: kps-tasks-api-config
-                  key: APP_ENV
-            - name: APP_VERSION
-              value: "1.0.0"
-            - name: LOG_LEVEL
-              valueFrom:
-                configMapKeyRef:
-                  name: kps-tasks-api-config
-                  key: LOG_LEVEL
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: kps-tasks-api-secret
-                  key: DATABASE_URL
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8000
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            failureThreshold: 3
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8000
-            initialDelaySeconds: 10
-            periodSeconds: 15
-            failureThreshold: 3
+      - name: kps-tasks-api
+        image: ghcr.io/ronaldo-f-dev/kps-tasks-api:commit-ed490e5
+        ports:
+        - containerPort: 8000
+        env:
+        - name: APP_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: kps-tasks-api-config
+              key: APP_NAME
+        - name: APP_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: kps-tasks-api-config
+              key: APP_ENV
+        - name: APP_VERSION
+          value: "1.0.0"
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: kps-tasks-api-config
+              key: LOG_LEVEL
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: kps-tasks-api-secret
+              key: DATABASE_URL
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        livenessProbe:
+          #killing => started
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+          failureThreshold: 3
