@@ -1,0 +1,28 @@
+# Valeurs pour le chart kube-prometheus-stack (Prometheus + Grafana + Alertmanager + kube-state-metrics)
+# Adaptees a un cluster k3s a un seul noeud, ressources limitees.
+
+grafana:
+  service:
+    type: NodePort
+    nodePort: 30030
+  # Le mot de passe admin est fourni a l'installation via --set (genere aleatoirement,
+  # jamais commite ici) -- voir docs/prj7/monitoring-installation.md.
+
+alertmanager:
+  service:
+    type: NodePort
+    nodePort: 30093
+
+prometheus:
+  service:
+    type: NodePort
+    nodePort: 30090
+  prometheusSpec:
+    retention: 3d
+    resources:
+      requests:
+        cpu: 200m
+        memory: 512Mi
+
+# kube-state-metrics et les composants prometheus-operator/node-exporter
+# restent aux valeurs par defaut du chart -- suffisant pour un seul noeud.

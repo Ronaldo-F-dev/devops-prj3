@@ -1,0 +1,68 @@
+# Projet 7 — Runbook unique (à suivre du Jour 1 au Jour 5)
+
+**Ce document est LE seul fil à suivre pour la démo/soutenance.** Il se construit jour après jour, pas à la fin — chaque section ajoutée est déjà complète et vérifiée avant de passer à la suivante. Tous les autres fichiers `docs/prj7/*.md` existent aussi (un par jour, détaillé), mais si un seul document devait être ouvert pendant la présentation, c'est celui-ci.
+
+**Tout ce projet vit dans ce seul dépôt** (`devops-prj3`) — pas de second dépôt cette fois, contrairement au Projet 6, justement pour éviter d'avoir à jongler entre plusieurs sources en pleine présentation.
+
+- `monitoring/` — fichiers `values.yaml` Helm, règles d'alerte
+- `dashboards/` — exports JSON des dashboards Grafana
+- `docs/prj7/` — un fichier par jour + ce runbook
+- `evidence/` — preuves capturées (partagé avec les projets précédents)
+
+---
+
+## Jour 1 — Installation de la stack (terminé)
+
+### Ce qu'on installe et pourquoi
+
+| Outil | Rôle en une phrase |
+|---|---|
+| **Prometheus** | Collecte des métriques (nombres qui évoluent dans le temps : CPU, RAM, nombre de pods…) en interrogeant périodiquement le cluster |
+| **Grafana** | Affiche ces métriques (et les logs) sous forme de dashboards visuels |
+| **Alertmanager** | Reçoit les alertes déclenchées par Prometheus et décide quoi en faire (regrouper, notifier) |
+| **kube-state-metrics** | Traduit l'état des objets Kubernetes (pods, deployments…) en métriques que Prometheus peut lire |
+| **Loki** (Jour 3) | Centralise les logs de tous les pods, comme Prometheus mais pour du texte plutôt que des nombres |
+| **Promtail** (Jour 3) | Agent qui lit les logs de chaque pod et les envoie à Loki |
+
+### Namespace dédié
+
+```bash
+kubectl create namespace monitoring
+```
+Namespace `monitoring`, séparé de `kps-tasks` et `argocd` — isole les objets de supervision du reste, comme au Projet 5/6.
+
+### Installation
+
+Helm v3.16.3 installé sans sudo (binaire dans `~/bin`, même pattern que la CLI ArgoCD au Projet 6). Dépôts `prometheus-community` et `grafana` ajoutés. Chart `kube-prometheus-stack` installé avec le fichier [`monitoring/values-kube-prometheus-stack.yaml`](../../monitoring/values-kube-prometheus-stack.yaml) (NodePort 30030/30090/30093 pour Grafana/Prometheus/Alertmanager, ressources Prometheus réduites pour le VPS). Mot de passe admin Grafana généré et stocké côté serveur uniquement (`~/.grafana-admin-password`), jamais committé ni affiché.
+
+Détail complet, étape par étape, avec justification de chaque choix : [`monitoring-installation.md`](monitoring-installation.md).
+
+### Vérification
+
+```bash
+helm list -n monitoring
+kubectl get pods -n monitoring -o wide
+kubectl get svc -n monitoring
+```
+
+Résultat : release `deployed`, les 6 pods attendus tous `Running` — Alertmanager (2/2), Grafana (3/3), kube-state-metrics (1/1), prometheus-operator (1/1), node-exporter (1/1), Prometheus (2/2). Preuve : [`evidence/monitoring-pods.txt`](../../evidence/monitoring-pods.txt).
+
+### Accès externe
+
+| Interface | URL | Résultat |
+|---|---|---|
+| Grafana | http://169.58.11.221:30030/login | HTTP 200 |
+| Prometheus | http://169.58.11.221:30090 | HTTP 302 (redirection normale vers `/graph`) |
+| Alertmanager | http://169.58.11.221:30093 | HTTP 200 |
+
+Preuve : [`evidence/grafana-access.txt`](../../evidence/grafana-access.txt). Connexion Grafana : `admin` / mot de passe lu depuis `~/.grafana-admin-password` sur le VPS au moment de la démo.
+
+### Questions intermédiaires (11-16)
+
+Rôle de chaque composant (Prometheus, Grafana, Alertmanager, kube-state-metrics), pourquoi un namespace dédié, pourquoi Helm — réponses complètes dans [`monitoring-installation.md`](monitoring-installation.md#questions-intermédiaires-11-16).
+
+### Jour 1 — Résultat
+
+Namespace créé, Helm installé, stack déployée et vérifiée, accès externe confirmé sur les 3 interfaces, mot de passe sécurisé. **Prêt pour le Jour 2.**
+
+---

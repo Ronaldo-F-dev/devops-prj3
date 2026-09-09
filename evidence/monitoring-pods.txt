@@ -1,0 +1,23 @@
+=== helm list -n monitoring ===
+NAME                 	NAMESPACE 	REVISION	UPDATED                                	STATUS  	CHART                       	APP VERSION
+kube-prometheus-stack	monitoring	1       	2026-09-09 12:42:00.704775617 +0100 WAT	deployed	kube-prometheus-stack-90.0.0	v0.93.1    
+
+=== kubectl get pods -n monitoring ===
+NAME                                                        READY   STATUS    RESTARTS   AGE   IP              NODE      NOMINATED NODE   READINESS GATES
+alertmanager-kube-prometheus-stack-alertmanager-0           2/2     Running   0          19m   10.42.0.44      kps-vps   <none>           <none>
+kube-prometheus-stack-grafana-959775797-mcw7v               3/3     Running   0          19m   10.42.0.42      kps-vps   <none>           <none>
+kube-prometheus-stack-kube-state-metrics-86f5ff67cb-crlsb   1/1     Running   0          19m   10.42.0.41      kps-vps   <none>           <none>
+kube-prometheus-stack-operator-5f7c7756cd-bwhkz             1/1     Running   0          19m   10.42.0.40      kps-vps   <none>           <none>
+kube-prometheus-stack-prometheus-node-exporter-c74qt        1/1     Running   0          19m   169.58.11.221   kps-vps   <none>           <none>
+prometheus-kube-prometheus-stack-prometheus-0               2/2     Running   0          19m   10.42.0.45      kps-vps   <none>           <none>
+
+=== kubectl get svc -n monitoring ===
+NAME                                             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE
+alertmanager-operated                            ClusterIP   None            <none>        9093/TCP,9094/TCP,9094/UDP      19m
+kube-prometheus-stack-alertmanager               NodePort    10.43.138.168   <none>        9093:30093/TCP,8080:32256/TCP   19m
+kube-prometheus-stack-grafana                    NodePort    10.43.133.38    <none>        80:30030/TCP                    19m
+kube-prometheus-stack-kube-state-metrics         ClusterIP   10.43.82.244    <none>        8080/TCP                        19m
+kube-prometheus-stack-operator                   ClusterIP   10.43.6.207     <none>        443/TCP                         19m
+kube-prometheus-stack-prometheus                 NodePort    10.43.38.133    <none>        9090:30090/TCP,8080:30382/TCP   19m
+kube-prometheus-stack-prometheus-node-exporter   ClusterIP   10.43.195.86    <none>        9100/TCP                        19m
+prometheus-operated                              ClusterIP   None            <none>        9090/TCP                        19m

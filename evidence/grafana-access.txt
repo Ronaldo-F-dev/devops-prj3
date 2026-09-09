@@ -1,0 +1,10 @@
+=== Grafana (NodePort 30030) ===
+GET /login -> HTTP 200
+
+=== Prometheus (NodePort 30090) ===
+GET / -> HTTP 302 (302 = redirection normale vers /graph)
+
+=== Alertmanager (NodePort 30093) ===
+GET / -> HTTP 200
+
+Accès admin Grafana : utilisateur 'admin', mot de passe stocké côté serveur uniquement (~/.grafana-admin-password sur le VPS, jamais commité/affiché).
