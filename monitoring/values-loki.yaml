@@ -1,0 +1,16 @@
+# Valeurs pour le sous-chart Loki (via grafana/loki-stack), mode "single binary" + stockage filesystem.
+# Adaptees a un cluster k3s a un seul noeud (pas de stockage objet S3/GCS).
+
+loki:
+  isDefault: false  # la source de donnees par defaut de Grafana reste Prometheus
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClassName: local-path  # storage class par defaut de k3s
+
+# grafana et prometheus fournis par ce chart sont desactives : on reutilise
+# l'instance Grafana et la stack Prometheus deja installees au Jour 1.
+grafana:
+  enabled: false
+prometheus:
+  enabled: false

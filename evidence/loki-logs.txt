@@ -1,0 +1,21 @@
+=== Loki / Promtail installes (helm list -n monitoring) ===
+loki                 	monitoring	1       	2026-09-09 13:13:14.899094779 +0100 WAT	deployed	loki-stack-2.10.3           	v2.9.3     
+
+NAME                                                        READY   STATUS    RESTARTS   AGE   IP              NODE      NOMINATED NODE   READINESS GATES
+loki-0                                                      1/1     Running   0          16m   10.42.0.48      kps-vps   <none>           <none>
+loki-promtail-zst54                                         1/1     Running   0          16m   10.42.0.46      kps-vps   <none>           <none>
+
+=== Namespaces vus par Loki ===
+{"status":"success","data":["argocd","kps-tasks","kube-system","monitoring"]}
+
+
+=== Logs applicatifs kps-tasks (5 dernieres lignes, filtre par namespace) ===
+2026-09-09 12:30:02,798 INFO app GET /health -> 200 24.18ms
+INFO:     10.42.0.1:58848 - "GET /health HTTP/1.1" 200 OK
+2026-09-09 12:30:04,739 INFO app GET /health -> 200 31.13ms
+2026-09-09 12:30:00,884 INFO app GET / -> 200 4.45ms
+INFO:     10.42.0.1:44808 - "GET /health HTTP/1.1" 200 OK
+
+=== Erreur declenchee retrouvee (filtre LogQL : {namespace="kps-tasks"} |= "404") ===
+INFO:     10.42.0.1:43449 - "GET /tasks/999999 HTTP/1.1" 404 Not Found
+2026-09-09 12:29:33,597 INFO app GET /tasks/999999 -> 404 136.88ms

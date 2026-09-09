@@ -1,0 +1,239 @@
+{
+    "meta": {
+        "type": "db",
+        "canSave": true,
+        "canEdit": true,
+        "canAdmin": true,
+        "canStar": true,
+        "canDelete": true,
+        "slug": "opsready-07-application-kps-tasks-api",
+        "url": "/d/opsready07-app/opsready-07-application-kps-tasks-api",
+        "expires": "0001-01-01T00:00:00Z",
+        "created": "2026-09-09T12:07:20Z",
+        "updated": "2026-09-09T12:07:20Z",
+        "updatedBy": "Anonymous",
+        "createdBy": "Anonymous",
+        "version": 1,
+        "hasAcl": false,
+        "isFolder": false,
+        "apiVersion": "v0alpha1",
+        "folderId": 0,
+        "folderUid": "",
+        "folderTitle": "General",
+        "folderUrl": "",
+        "provisioned": false,
+        "provisionedExternalId": "",
+        "annotationsPermissions": {
+            "dashboard": {
+                "canAdd": true,
+                "canEdit": true,
+                "canDelete": true
+            }
+        }
+    },
+    "dashboard": {
+        "id": 3484284500168704,
+        "panels": [
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 6,
+                    "w": 6,
+                    "x": 0,
+                    "y": 0
+                },
+                "id": 1,
+                "targets": [
+                    {
+                        "expr": "count(kube_pod_info{namespace=\"kps-tasks\", pod=~\"kps-tasks-api-.*\"})",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Nombre de pods applicatifs",
+                "type": "stat"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 6,
+                    "w": 9,
+                    "x": 6,
+                    "y": 0
+                },
+                "id": 2,
+                "targets": [
+                    {
+                        "expr": "kube_pod_status_phase{namespace=\"kps-tasks\", pod=~\"kps-tasks-api-.*\", phase=\"Running\"} == 1",
+                        "format": "table",
+                        "instant": true,
+                        "refId": "A"
+                    }
+                ],
+                "title": "Etat des pods (phase)",
+                "type": "table"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 6,
+                    "w": 9,
+                    "x": 15,
+                    "y": 0
+                },
+                "id": 3,
+                "targets": [
+                    {
+                        "expr": "kube_pod_container_status_restarts_total{namespace=\"kps-tasks\", pod=~\"kps-tasks-api-.*\"}",
+                        "format": "table",
+                        "instant": true,
+                        "refId": "A"
+                    }
+                ],
+                "title": "Redemarrages (total cumule)",
+                "type": "table"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 6,
+                    "w": 12,
+                    "x": 0,
+                    "y": 6
+                },
+                "id": 4,
+                "targets": [
+                    {
+                        "expr": "kube_pod_status_ready{namespace=\"kps-tasks\", pod=~\"kps-tasks-api-.*\", condition=\"true\"} == 1",
+                        "format": "table",
+                        "instant": true,
+                        "refId": "A"
+                    }
+                ],
+                "title": "Disponibilite (readiness des pods)",
+                "type": "table"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 6,
+                    "w": 12,
+                    "x": 12,
+                    "y": 6
+                },
+                "id": 5,
+                "targets": [
+                    {
+                        "expr": "kube_pod_container_status_ready{namespace=\"kps-tasks\", pod=~\"kps-tasks-api-.*\"} == 1",
+                        "format": "table",
+                        "instant": true,
+                        "refId": "A"
+                    }
+                ],
+                "title": "Etat des probes (containers ready)",
+                "type": "table"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 12
+                },
+                "id": 6,
+                "targets": [
+                    {
+                        "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"kps-tasks\", pod=~\"kps-tasks-api-.*\"}[5m]))",
+                        "legendFormat": "{{pod}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Usage CPU (par pod)",
+                "type": "timeseries"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "fieldConfig": {
+                    "defaults": {
+                        "unit": "bytes"
+                    },
+                    "overrides": []
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 12
+                },
+                "id": 7,
+                "targets": [
+                    {
+                        "expr": "sum by (pod) (container_memory_working_set_bytes{namespace=\"kps-tasks\", pod=~\"kps-tasks-api-.*\"})",
+                        "legendFormat": "{{pod}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Usage RAM (par pod)",
+                "type": "timeseries"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 6,
+                    "w": 24,
+                    "x": 0,
+                    "y": 20
+                },
+                "id": 8,
+                "targets": [
+                    {
+                        "expr": "kube_deployment_status_replicas_available{namespace=\"kps-tasks\", deployment=~\"kps-tasks-api-.*\"}",
+                        "format": "table",
+                        "instant": true,
+                        "refId": "A"
+                    }
+                ],
+                "title": "Version active (blue/green - replicas disponibles)",
+                "type": "table"
+            }
+        ],
+        "refresh": "30s",
+        "schemaVersion": 39,
+        "tags": [
+            "opsready-07",
+            "application"
+        ],
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "timezone": "browser",
+        "title": "OpsReady-07 / Application KPS Tasks API",
+        "uid": "opsready07-app",
+        "version": 1
+    }
+}

@@ -1,0 +1,253 @@
+{
+    "meta": {
+        "type": "db",
+        "canSave": true,
+        "canEdit": true,
+        "canAdmin": true,
+        "canStar": true,
+        "canDelete": true,
+        "slug": "opsready-07-infrastructure-kubernetes",
+        "url": "/d/opsready07-infra/opsready-07-infrastructure-kubernetes",
+        "expires": "0001-01-01T00:00:00Z",
+        "created": "2026-09-09T12:07:20Z",
+        "updated": "2026-09-09T12:07:20Z",
+        "updatedBy": "Anonymous",
+        "createdBy": "Anonymous",
+        "version": 1,
+        "hasAcl": false,
+        "isFolder": false,
+        "apiVersion": "v0alpha1",
+        "folderId": 0,
+        "folderUid": "",
+        "folderTitle": "General",
+        "folderUrl": "",
+        "provisioned": false,
+        "provisionedExternalId": "",
+        "annotationsPermissions": {
+            "dashboard": {
+                "canAdd": true,
+                "canEdit": true,
+                "canDelete": true
+            }
+        }
+    },
+    "dashboard": {
+        "id": 3484284177207296,
+        "panels": [
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "fieldConfig": {
+                    "defaults": {
+                        "unit": "percent"
+                    },
+                    "overrides": []
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 0
+                },
+                "id": 1,
+                "targets": [
+                    {
+                        "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
+                        "legendFormat": "{{instance}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "CPU des nodes (%)",
+                "type": "timeseries"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "fieldConfig": {
+                    "defaults": {
+                        "unit": "percent"
+                    },
+                    "overrides": []
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 0
+                },
+                "id": 2,
+                "targets": [
+                    {
+                        "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
+                        "legendFormat": "{{instance}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "RAM des nodes (%)",
+                "type": "timeseries"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "fieldConfig": {
+                    "defaults": {
+                        "unit": "percent"
+                    },
+                    "overrides": []
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 8
+                },
+                "id": 3,
+                "targets": [
+                    {
+                        "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\"})",
+                        "legendFormat": "{{instance}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Disque utilis\u00e9 (%) - /",
+                "type": "timeseries"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 6,
+                    "x": 12,
+                    "y": 8
+                },
+                "id": 4,
+                "targets": [
+                    {
+                        "expr": "count(kube_pod_status_phase{phase=\"Running\"})",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Nombre de pods (Running)",
+                "type": "stat"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 6,
+                    "x": 18,
+                    "y": 8
+                },
+                "id": 5,
+                "targets": [
+                    {
+                        "expr": "kube_node_status_condition{condition=\"Ready\", status=\"true\"}",
+                        "legendFormat": "{{node}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Etat des nodes (Ready)",
+                "type": "stat"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 16
+                },
+                "id": 6,
+                "targets": [
+                    {
+                        "expr": "sum by (namespace) (rate(container_cpu_usage_seconds_total{namespace!=\"\"}[5m]))",
+                        "legendFormat": "{{namespace}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Usage CPU par namespace",
+                "type": "timeseries"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "fieldConfig": {
+                    "defaults": {
+                        "unit": "bytes"
+                    },
+                    "overrides": []
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 16
+                },
+                "id": 7,
+                "targets": [
+                    {
+                        "expr": "sum by (namespace) (container_memory_working_set_bytes{namespace!=\"\"})",
+                        "legendFormat": "{{namespace}}",
+                        "refId": "A"
+                    }
+                ],
+                "title": "Usage RAM par namespace",
+                "type": "timeseries"
+            },
+            {
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 24,
+                    "x": 0,
+                    "y": 24
+                },
+                "id": 8,
+                "targets": [
+                    {
+                        "expr": "sum by (namespace, pod) (rate(container_cpu_usage_seconds_total{namespace!=\"\", pod!=\"\"}[5m]))",
+                        "format": "table",
+                        "instant": true,
+                        "refId": "A"
+                    }
+                ],
+                "title": "Usage CPU par workload (pod)",
+                "type": "table"
+            }
+        ],
+        "refresh": "30s",
+        "schemaVersion": 39,
+        "tags": [
+            "opsready-07",
+            "infrastructure"
+        ],
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "timezone": "browser",
+        "title": "OpsReady-07 / Infrastructure Kubernetes",
+        "uid": "opsready07-infra",
+        "version": 1
+    }
+}

@@ -66,3 +66,42 @@ Rôle de chaque composant (Prometheus, Grafana, Alertmanager, kube-state-metrics
 Namespace créé, Helm installé, stack déployée et vérifiée, accès externe confirmé sur les 3 interfaces, mot de passe sécurisé. **Prêt pour le Jour 2.**
 
 ---
+
+## Jour 2 — Dashboards Grafana (terminé)
+
+Source de données Prometheus déjà provisionnée automatiquement par le chart (`uid: prometheus`, `isDefault: true`) — rien à configurer. Deux dashboards créés via l'API Grafana à partir de fichiers JSON versionnés :
+
+- [`dashboards/infrastructure-dashboard.json`](../../dashboards/infrastructure-dashboard.json) — CPU/RAM/disque des nodes, nombre de pods, état des nodes, usage CPU/RAM par namespace et par workload
+- [`dashboards/application-dashboard.json`](../../dashboards/application-dashboard.json) — pods `kps-tasks-api` (blue/green) : nombre, phase, redémarrages, readiness, CPU/RAM, replicas disponibles par version
+
+Chaque panel a été vérifié en interrogeant Prometheus directement (`/api/v1/query`) pour confirmer qu'il renvoie de vraies données, pas un panel vide. Détail complet, chaque requête PromQL expliquée, réponses aux questions 27-32 : [`grafana-dashboards.md`](grafana-dashboards.md). Preuves : [`evidence/grafana-dashboards-queries.txt`](../../evidence/grafana-dashboards-queries.txt).
+
+### Jour 2 — Résultat
+
+Deux dashboards exploitables et vérifiés, CPU nodes ~15,6 %, RAM nodes ~32,2 %, 2 pods applicatifs sains (0 redémarrage). **Prêt pour le Jour 3.**
+
+---
+
+## Jour 3 — Loki, Promtail et centralisation des logs (terminé)
+
+Installés ensemble via le chart `grafana/loki-stack` (Loki en mode single-binary + Promtail), `grafana.enabled=false`/`prometheus.enabled=false` pour ne pas dupliquer ce qui existe déjà depuis le Jour 1 :
+
+```bash
+helm install loki grafana/loki-stack -n monitoring \
+  -f monitoring/values-loki.yaml -f monitoring/values-promtail.yaml
+```
+
+- [`monitoring/values-loki.yaml`](../../monitoring/values-loki.yaml) — persistance 2Gi (`local-path`), pas de source par défaut
+- [`monitoring/values-promtail.yaml`](../../monitoring/values-promtail.yaml) — configuration par défaut (DaemonSet, un pod par nœud)
+
+Résultat : `loki-0` et `loki-promtail-...` tous deux `Running`. Loki ajouté comme source de données Grafana (Prometheus reste la source par défaut). Namespaces vus par Loki : `argocd`, `kps-tasks`, `kube-system`, `monitoring` — preuve que la collecte couvre tout le cluster.
+
+**Preuve de bout en bout** : une vraie erreur applicative déclenchée (`GET /tasks/999999` → `404`, endpoint existant de l'application) puis retrouvée dans Loki en quelques secondes avec le filtre LogQL `{namespace="kps-tasks"} |= "404"`.
+
+Détail complet (requêtes LogQL, cas PostgreSQL sans logs expliqué, réponses aux questions 43-49) : [`loki-promtail-logs.md`](loki-promtail-logs.md). Preuves : [`evidence/loki-logs.txt`](../../evidence/loki-logs.txt).
+
+### Jour 3 — Résultat
+
+Logs centralisés, filtrables par namespace/pod/application, erreur réelle déclenchée et retrouvée. **Prêt pour le Jour 4** (alertes Prometheus/Alertmanager).
+
+---

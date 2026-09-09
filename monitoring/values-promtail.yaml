@@ -1,0 +1,9 @@
+# Valeurs pour le sous-chart Promtail (via grafana/loki-stack).
+# Configuration par defaut du chart : DaemonSet qui lit /var/log/containers/*.log
+# sur chaque node et les envoie a Loki (http://loki:3100/loki/api/v1/push),
+# avec decouverte automatique des metadonnees Kubernetes (namespace, pod, container).
+# Aucune personnalisation necessaire pour ce projet -- garde ici pour tracer
+# explicitement que Promtail est un composant a part entiere, distinct de Loki.
+
+promtail:
+  enabled: true

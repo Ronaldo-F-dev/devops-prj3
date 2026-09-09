@@ -1,0 +1,21 @@
+=== Datasource Prometheus (provisionnée automatiquement par le chart) ===
+uid=prometheus, isDefault=true
+
+=== Dashboard 1 : Infrastructure Kubernetes (uid opsready07-infra) ===
+URL: http://169.58.11.221:30030/d/opsready07-infra/opsready-07-infrastructure-kubernetes
+CPU nodes (%)        : 15.56  (instance 169.58.11.221:9100)
+RAM nodes (%)        : 32.17
+Disque / (%)         : 17.82
+Pods Running (total) : 23
+
+=== Dashboard 2 : Application KPS Tasks API (uid opsready07-app) ===
+URL: http://169.58.11.221:30030/d/opsready07-app/opsready-07-application-kps-tasks-api
+Pods applicatifs (blue+green) : 2
+Redemarrages (kps-tasks-api-blue)  : 0
+Redemarrages (kps-tasks-api-green) : 0
+CPU pod blue  : 0.0102 core
+CPU pod green : 0.0099 core
+RAM pod blue  : 126631936 bytes (~126 Mi)
+RAM pod green : 125054976 bytes (~125 Mi)
+Replicas disponibles - deployment blue  : 1
+Replicas disponibles - deployment green : 1
