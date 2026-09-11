@@ -1,0 +1,45 @@
+=== INCIDENT - Chronologie complete ===
+
+-- Etat initial (sain) --
+2026-09-11T07:59:50Z : blue Running (v1.3.0, actif), green Running (v1.2.0, standby), 0 redemarrage
+
+-- Declenchement --
+Commit kps-tasks-gitops e4f4e5a : image du deployment green changee vers 'v9.9.9-does-not-exist'
+ArgoCD synchronise automatiquement (auto-sync active) apres rafraichissement force
+
+-- Symptome --
+kubectl get pods -n kps-tasks -l version=green
+kps-tasks-api-green-7cdf8c5548-w4s52   0/1   ImagePullBackOff
+(le pod green existant, lui, continue de tourner normalement -- l'ancien ReplicaSet n'est pas supprime tant que le nouveau n'est pas Ready)
+
+-- Dashboard application (kube_pod_container_status_ready) --
+kps-tasks-api-green-76dbbd8f48-t9fbz (ancien) : ready=1
+kps-tasks-api-green-7cdf8c5548-w4s52 (nouveau): ready=0
+
+-- Alerte Prometheus --
+KpsTaskApiPodNotReady -> state: pending puis firing, pod: kps-tasks-api-green-7cdf8c5548-w4s52
+
+-- Logs Loki --
+Aucune ligne de log pour ce pod (0 ligne) -- normal : le conteneur applicatif n'a jamais demarre, ImagePullBackOff se produit avant meme le lancement du process.
+
+-- kubectl describe pod (evenements) --
+Failed to pull image "ghcr.io/ronaldo-f-dev/kps-tasks-api:v9.9.9-does-not-exist": rpc error: code = NotFound ... not found
+Reason: ErrImagePull puis BackOff (x5 en 100s)
+
+-- ArgoCD --
+kps-tasks-api-dev : Synced / Progressing -- confirme que le manifeste vient bien de Git (pas de derive manuelle), et que la synchronisation est bloquee par le pod qui ne devient jamais Ready.
+
+-- Cause probable --
+Tag d'image inexistant commite dans le depot GitOps sur le deploiement green.
+
+-- Correctif --
+Commit kps-tasks-gitops b47f971 : image remise a 'v1.2.0'. Push + refresh force ArgoCD.
+
+-- Retour a la normale --
+kubectl get pods -n kps-tasks -l version=green
+kps-tasks-api-green-76dbbd8f48-t9fbz   1/1   Running   0   (age inchange)
+Application kps-tasks-api-dev : Synced / Healthy
+Alerte KpsTaskApiPodNotReady : reste visible quelques minutes sur le pod supprime (fenetre de staleness Prometheus, comportement normal), puis disparait.
+
+-- Impact utilisateur reel --
+AUCUN : le Service kps-tasks-api route sur le selecteur version=blue (v1.3.0), jamais touche par cet incident. Impact reel : la version green (cible de rollback / futur switch blue-green) etait cassee et serait devenue un probleme uniquement lors d'un futur bascule -- scenario 'Green non pret apres un switch' du brief.

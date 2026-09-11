@@ -123,3 +123,37 @@ Détail complet (fonctionnement d'une règle, justification de chaque seuil, ré
 4 alertes utiles configurées et vérifiées, chaîne complète Prometheus → Alertmanager prouvée avec une vraie alerte déclenchée. **Prêt pour le Jour 5** (incident, diagnostic, rapport, mini-soutenance).
 
 ---
+
+## Jour 5 — Incident, diagnostic et mini-soutenance (terminé)
+
+**Incident déclenché réellement** (pas simulé) : un tag d'image inexistant (`v9.9.9-does-not-exist`) commité sur `deployment-green.yaml` dans le dépôt GitOps (`kps-tasks-gitops`), synchronisé automatiquement par ArgoCD.
+
+**Démarche de diagnostic suivie** (dans l'ordre, sans commande au hasard) :
+1. Dashboard application → readiness à 0 sur le nouveau pod
+2. Dashboard infrastructure → rien d'anormal côté nodes
+3. Alertes → `KpsTaskApiPodNotReady` `firing`
+4. Logs Loki → 0 ligne (normal, le conteneur n'a jamais démarré)
+5. `kubectl describe pod` → cause exacte : `ErrImagePull`, image introuvable
+6. ArgoCD → `Synced` (vient de Git, pas une dérive manuelle) / `Progressing` (bloqué)
+
+**Cause** : tag d'image invalide dans le dépôt GitOps. **Correctif** : revert du tag (commit + push), resynchronisation ArgoCD. **Impact réel** : aucun côté utilisateur (le Service route vers `blue`, non affecté) — la version `green` (cible de rollback) était cassée, aurait posé problème lors d'un futur switch.
+
+Rapport complet : [`incident-report.md`](incident-report.md). Support de présentation : [`soutenance.md`](soutenance.md). Preuve : [`evidence/incident-diagnostic.txt`](../../evidence/incident-diagnostic.txt).
+
+### Jour 5 — Résultat
+
+Incident réel déclenché, diagnostiqué avec la stack complète (dashboards, alertes, logs, kubectl, ArgoCD), corrigé, documenté. **Projet 7 terminé.**
+
+---
+
+## Bilan du projet
+
+Les 5 jours sont complets, un seul dépôt du début à la fin, documentation construite au fil de l'eau (pas assemblée à la fin) — correction directe de ce qui avait posé problème au Projet 6.
+
+| Jour | Documents détaillés |
+|---|---|
+| 1 — Installation stack | [`monitoring-installation.md`](monitoring-installation.md) |
+| 2 — Dashboards Grafana | [`grafana-dashboards.md`](grafana-dashboards.md) |
+| 3 — Loki/Promtail | [`loki-promtail-logs.md`](loki-promtail-logs.md) |
+| 4 — Alertes | [`alerting-rules.md`](alerting-rules.md) |
+| 5 — Incident | [`incident-report.md`](incident-report.md), [`soutenance.md`](soutenance.md) |
