@@ -1,0 +1,26 @@
+# Regle d'alerte : usage CPU eleve sur les pods applicatifs.
+# Seuil bas volontairement (50 millicoeurs) car l'application est tres legere
+# (~10m en usage normal, voir docs/prj7/grafana-dashboards.md) -- un seuil realiste
+# pour de la production serait plus proche des limites de ressources reelles du
+# deploiement, mais un seuil bas permet de declencher reellement l'alerte en
+# generant une charge simple (voir docs/prj7/alerting-rules.md).
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kps-tasks-api-resource-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: kps-tasks-api.resources
+      rules:
+        - alert: KpsTaskApiHighCPU
+          expr: |
+            sum by (pod) (rate(container_cpu_usage_seconds_total{namespace="kps-tasks", pod=~"kps-tasks-api-.*"}[5m])) > 0.05
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Usage CPU eleve sur {{ $labels.pod }}"
+            description: "Le pod {{ $labels.pod }} consomme plus de 50 millicoeurs en moyenne sur 5 minutes, au-dessus du seuil attendu pour cette application (~10m en usage normal)."

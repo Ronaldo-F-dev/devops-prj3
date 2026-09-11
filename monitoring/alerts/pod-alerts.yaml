@@ -1,0 +1,34 @@
+# Regles d'alerte : sante des pods de l'application kps-tasks-api.
+# Le label "release: kube-prometheus-stack" est indispensable : c'est ce que
+# l'operateur Prometheus utilise (ruleSelector) pour savoir quelles
+# PrometheusRule charger. Sans lui, la regle est ignoree silencieusement.
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kps-tasks-api-pod-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: kps-tasks-api.pods
+      rules:
+        - alert: KpsTaskApiPodNotReady
+          expr: |
+            kube_pod_status_ready{namespace="kps-tasks", pod=~"kps-tasks-api-.*", condition="true"} == 0
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Pod {{ $labels.pod }} non pret depuis plus de 2 minutes"
+            description: "Le pod {{ $labels.pod }} (namespace kps-tasks) echoue sa probe de disponibilite depuis au moins 2 minutes. Verifier kubectl describe pod et les logs Loki."
+
+        - alert: KpsTaskApiPodRestarting
+          expr: |
+            increase(kube_pod_container_status_restarts_total{namespace="kps-tasks", pod=~"kps-tasks-api-.*"}[15m]) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Le pod {{ $labels.pod }} a redemarre recemment"
+            description: "Le conteneur {{ $labels.container }} du pod {{ $labels.pod }} a redemarre au moins une fois dans les 15 dernieres minutes -- signe possible de CrashLoopBackOff."

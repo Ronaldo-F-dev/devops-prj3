@@ -105,3 +105,21 @@ Détail complet (requêtes LogQL, cas PostgreSQL sans logs expliqué, réponses 
 Logs centralisés, filtrables par namespace/pod/application, erreur réelle déclenchée et retrouvée. **Prêt pour le Jour 4** (alertes Prometheus/Alertmanager).
 
 ---
+
+## Jour 4 — Alertes Prometheus et Alertmanager (terminé)
+
+4 règles d'alerte (`PrometheusRule`, label obligatoire `release: kube-prometheus-stack` pour être prises en compte) appliquées par `kubectl apply` :
+
+- [`monitoring/alerts/pod-alerts.yaml`](../../monitoring/alerts/pod-alerts.yaml) — `KpsTaskApiPodNotReady`, `KpsTaskApiPodRestarting`
+- [`monitoring/alerts/app-alerts.yaml`](../../monitoring/alerts/app-alerts.yaml) — `KpsTaskApiUnavailable` (critical, aucun pod blue/green prêt)
+- [`monitoring/alerts/resource-alerts.yaml`](../../monitoring/alerts/resource-alerts.yaml) — `KpsTaskApiHighCPU` (> 50 millicoeurs, seuil justifié par rapport à l'usage normal ~10m mesuré au Jour 2)
+
+Les 4 règles chargées et `health: ok` dans Prometheus. **Alerte réellement déclenchée** : une charge HTTP concurrente sur `GET /tasks` a fait passer le CPU du pod actif (`blue`) de ~0,01 à ~1,86 cœur ; `KpsTaskApiHighCPU` est passée `inactive` → `pending` → `firing` dans Prometheus, puis `active` dans Alertmanager (`/api/v2/alerts`). Aucun pod n'a redémarré pendant le test — l'application encaisse la charge.
+
+Détail complet (fonctionnement d'une règle, justification de chaque seuil, réponses aux questions 60-66) : [`alerting-rules.md`](alerting-rules.md). Preuve : [`evidence/alert-triggered.txt`](../../evidence/alert-triggered.txt).
+
+### Jour 4 — Résultat
+
+4 alertes utiles configurées et vérifiées, chaîne complète Prometheus → Alertmanager prouvée avec une vraie alerte déclenchée. **Prêt pour le Jour 5** (incident, diagnostic, rapport, mini-soutenance).
+
+---

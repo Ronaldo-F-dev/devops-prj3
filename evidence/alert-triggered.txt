@@ -1,0 +1,47 @@
+=== Regles Prometheus chargees (kubectl get prometheusrule -n monitoring) ===
+kps-tasks-api-app-alerts                                          10m
+kps-tasks-api-pod-alerts                                          10m
+kps-tasks-api-resource-alerts                                     10m
+
+=== Etat des regles dans Prometheus (/api/v1/rules) juste avant declenchement ===
+KpsTaskApiUnavailable   | health: ok | state: inactive
+KpsTaskApiPodNotReady   | health: ok | state: inactive
+KpsTaskApiPodRestarting | health: ok | state: inactive
+KpsTaskApiHighCPU       | health: ok | state: inactive
+
+=== Declenchement volontaire : generation de charge sur GET /tasks (blue, actif) ===
+Avant charge : CPU pod blue ~0.010 coeur (usage normal, voir Jour 2)
+Pendant charge (rate 2m) : CPU pod blue ~1.86 coeur, puis 1.23 coeur
+
+=== Alerte passee en firing dans Prometheus (/api/v1/rules) ===
+KpsTaskApiHighCPU | state: firing | pod: kps-tasks-api-blue-5fb6d8bdfb-xv7jt | activeAt: 2026-09-11T07:52:20Z | value: 1.23
+
+=== Alerte recue par Alertmanager (/api/v2/alerts) ===
+{
+  "annotations": {
+    "description": "Le pod kps-tasks-api-blue-5fb6d8bdfb-xv7jt consomme plus de 50 millicoeurs en moyenne sur 5 minutes, au-dessus du seuil attendu pour cette application (~10m en usage normal).",
+    "summary": "Usage CPU eleve sur kps-tasks-api-blue-5fb6d8bdfb-xv7jt"
+  },
+  "endsAt": "2026-09-11T07:59:50.997Z",
+  "fingerprint": "3355d5d778bf940b",
+  "receivers": [
+    {
+      "name": "null"
+    }
+  ],
+  "startsAt": "2026-09-11T07:54:20.997Z",
+  "status": {
+    "inhibitedBy": [],
+    "mutedBy": [],
+    "silencedBy": [],
+    "state": "active"
+  },
+  "updatedAt": "2026-09-11T07:55:51.002Z",
+  "generatorURL": "http://kube-prometheus-stack-prometheus.monitoring:9090/graph?g0.expr=sum+by+%28pod%29+%28rate%28container_cpu_usage_seconds_total%7Bnamespace%3D%22kps-tasks%22%2Cpod%3D~%22kps-tasks-api-.%2A%22%7D%5B5m%5D%29%29+%3E+0.05&g0.tab=1",
+  "labels": {
+    "alertname": "KpsTaskApiHighCPU",
+    "pod": "kps-tasks-api-blue-5fb6d8bdfb-xv7jt",
+    "prometheus": "monitoring/kube-prometheus-stack-prometheus",
+    "severity": "warning"
+  }
+}

@@ -1,0 +1,22 @@
+# Regle d'alerte : disponibilite globale de l'application (pas seulement un pod,
+# mais l'ensemble blue+green -- si aucun pod n'est pret, l'application est reellement indisponible).
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kps-tasks-api-app-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: kps-tasks-api.availability
+      rules:
+        - alert: KpsTaskApiUnavailable
+          expr: |
+            sum(kube_pod_status_ready{namespace="kps-tasks", pod=~"kps-tasks-api-.*", condition="true"}) == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "KPS Tasks API est indisponible"
+            description: "Aucun pod kps-tasks-api (blue ou green) n'est pret depuis au moins 1 minute -- l'application ne repond plus au trafic. Verifier le dashboard application, les logs Loki, puis ArgoCD si un deploiement est en cours."
