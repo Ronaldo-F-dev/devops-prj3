@@ -2,6 +2,8 @@
 
 **Ce document est LE seul fil à suivre pour la démo/soutenance.** Il se construit jour après jour, pas à la fin — chaque section ajoutée est déjà complète et vérifiée avant de passer à la suivante. Tous les autres fichiers `docs/prj7/*.md` existent aussi (un par jour, détaillé), mais si un seul document devait être ouvert pendant la présentation, c'est celui-ci.
 
+**Toutes les réponses aux questions intermédiaires du brief (11 à 66) sont rassemblées en un seul endroit** : [`intermediate-questions.md`](intermediate-questions.md) — à consulter si le formateur pose une question théorique pendant la soutenance, plutôt que de chercher dans le document du jour concerné.
+
 **Tout ce projet vit dans ce seul dépôt** (`devops-prj3`) — pas de second dépôt cette fois, contrairement au Projet 6, justement pour éviter d'avoir à jongler entre plusieurs sources en pleine présentation.
 
 - `monitoring/` — fichiers `values.yaml` Helm, règles d'alerte
