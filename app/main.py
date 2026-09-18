@@ -16,6 +16,8 @@ settings = get_settings()
 
 TASK_NOT_FOUND = "Task not found"
 
+_started_at = time.monotonic()
+
 logging.basicConfig(
     level=settings.log_level.upper(),
     format="%(asctime)s %(levelname)s %(name)s %(message)s",
@@ -72,6 +74,7 @@ def health(db: Session = Depends(get_db)):
             status="degraded",
             database="error",
             version=settings.app_version,
+            uptime_seconds=time.monotonic() - _started_at,
             details=str(exc.__class__.__name__),
         )
         return JSONResponse(
@@ -79,7 +82,12 @@ def health(db: Session = Depends(get_db)):
             content=payload.model_dump(),
         )
 
-    return HealthRead(status="ok", database="ok", version=settings.app_version)
+    return HealthRead(
+        status="ok",
+        database="ok",
+        version=settings.app_version,
+        uptime_seconds=time.monotonic() - _started_at,
+    )
 
 
 @app.get("/tasks", response_model=list[TaskRead], tags=["tasks"])

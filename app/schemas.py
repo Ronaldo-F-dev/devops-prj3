@@ -15,6 +15,7 @@ class HealthRead(BaseModel):
     status: str
     database: str
     version: str
+    uptime_seconds: float
     details: str | None = None
 
 
