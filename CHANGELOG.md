@@ -1,5 +1,36 @@
 # Changelog
 
+## v1.4.0 — 2026-09-18
+
+Ajout d'un champ `uptime_seconds` à la réponse de `GET /health`, calculé depuis le démarrage du processus. Changement volontairement petit, développé pour démontrer la chaîne DevOps complète de bout en bout au Projet 8 (Jour 2) : branche → PR → pipeline CI → merge → tag → registre → GitOps → ArgoCD → Kubernetes → observabilité.
+
+### Changements
+
+- `GET /health` renvoie désormais `uptime_seconds` (voir [`app/main.py`](app/main.py), [`app/schemas.py`](app/schemas.py))
+- Nouveau test `test_health_reports_uptime` (accepte `200` ou `503` — le endpoint peut légitimement renvoyer `503` si la base est injoignable, ce n'est pas un bug)
+
+### Documentation
+
+- Démo complète documentée : [OpsReady-08 capstone, Jour 2](https://github.com/Ronaldo-F-dev/opsready-08-capstone/blob/main/docs/day2-full-demo.md)
+
+## v1.3.0 — 2026-09-07
+
+Version de démonstration utilisée pour illustrer un changement de version piloté depuis Git au Projet 6 (GitOps/ArgoCD) — actuellement la version `blue` (active) du mécanisme blue/green.
+
+## v1.2.0 — 2026-08-31
+
+Version de référence pour la version `green` (standby) du mécanisme blue/green mis en place au Projet 6.
+
+## v1.1.0 — 2026-08-31
+
+Nouveau tag propre créé après la perte de l'image correspondant à `v1.0.0` dans le registre (package recréé pendant un dépannage du Projet 4) — référence de départ pour le dépôt GitOps du Projet 6.
+
+### Principaux changements (Projets 4-6, résumé)
+
+- Déploiement continu vers un VPS via Docker Compose, avec rollback automatique sur échec du healthcheck (Projet 4)
+- Migration vers Kubernetes (k3s) : Deployment, Service, ConfigMap/Secret pour PostgreSQL, probes de disponibilité (Projet 5)
+- Adoption de GitOps avec ArgoCD : dépôt GitOps séparé ([`kps-tasks-gitops`](https://github.com/Ronaldo-F-dev/kps-tasks-gitops)), synchronisation automatique, détection de drift, stratégie blue/green (Projet 6)
+
 ## v1.0.0 — 2026-08-03
 
 Première version stable du projet : chaîne CI complète (lint, test, build Docker), sécurité et qualité intégrées (Gitleaks, SonarCloud).
